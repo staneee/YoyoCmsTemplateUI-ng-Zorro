@@ -17,9 +17,9 @@ const routes: Routes = [
         children: [
             //{ path: '', redirectTo: 'users', pathMatch: 'full' },
             { path: 'home', component: HomeComponent, data: { translate: 'home' } ,  canActivate: [AppRouteGuard] },
-            { path: 'users', component: UsersComponent, data: { translate: 'users', permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
-            { path: 'roles', component: RolesComponent, data: { translate: 'roles', permission: 'Pages.Roles' }, canActivate: [AppRouteGuard] },
-            { path: 'tenants', component: TenantsComponent, data: { translate: 'tenants', permission: 'Pages.Users' }, canActivate: [AppRouteGuard] },
+            { path: 'users', component: UsersComponent, data: { translate: 'users', permission: 'Pages.Administration.Users' }, canActivate: [AppRouteGuard] },
+            { path: 'roles', component: RolesComponent, data: { translate: 'roles', permission: 'Pages.Administration.Roles' }, canActivate: [AppRouteGuard] },
+            { path: 'tenants', component: TenantsComponent, data: { translate: 'tenants', permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
             { path: 'about', component: AboutComponent, data: { translate: 'about' } }
         ]
     }
