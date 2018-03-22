@@ -2,9 +2,14 @@ import { Component, Injector, Input, OnInit } from '@angular/core';
 import { NzModalSubject } from 'ng-zorro-antd';
 import { zip } from 'rxjs/observable/zip';
 
-import { RoleServiceProxy, RoleDto, ListResultDtoOfPermissionDto } from '@shared/service-proxies/service-proxies';
 import { ModalComponentBase, ModalSubjectEvent } from '@shared/component-base';
 import { FormGroup, FormBuilder, Validators, FormControl, AsyncValidatorFn, AbstractControl } from '@angular/forms';
+import {
+	PermissionServiceProxy, RoleServiceProxy,
+	RoleEditDto, CreateOrUpdateRoleInput,
+	GetRoleForEditOutput,
+	ListResultDtoOfFlatPermissionWithLevelDto
+} from '@shared/service-proxies/service-proxies';
 
 @Component({
 	templateUrl: './edit-role.component.html',
@@ -16,15 +21,16 @@ export class EditRoleComponent extends ModalComponentBase implements OnInit, Mod
 
 	saving: boolean = false;
 
-	permissions: ListResultDtoOfPermissionDto = null;
-	role: RoleDto = new RoleDto();
+	permissions: ListResultDtoOfFlatPermissionWithLevelDto = null;
+	input: CreateOrUpdateRoleInput = new CreateOrUpdateRoleInput();
 	permissionOptions: { label: string, value: string, checked: boolean }[];
 
 	validateForm: FormGroup;
 
 	constructor(
 		injector: Injector,
-		private roleService: RoleServiceProxy,
+		private _permissionService: PermissionServiceProxy,
+		private _roleService: RoleServiceProxy,
 		private formBuilder: FormBuilder
 	) {
 		super(injector);
@@ -33,24 +39,21 @@ export class EditRoleComponent extends ModalComponentBase implements OnInit, Mod
 	ngOnInit(): void {
 		this.saving = true;
 		zip(
-            this.roleService.getAllPermissions(),
-            this.roleService.get(this.id)
+			this._permissionService.getAllPermissions(),
+			this._roleService.getRoleForEdit(this.id)
 		)
 		.finally(() => { this.saving = false; })
-		.subscribe(([ permissions, result]: [ ListResultDtoOfPermissionDto, RoleDto]) => {
-			
+		.subscribe(([permissions, result]) => {
 			this.permissions = permissions;
-			this.role = result;
+			this.input.role = result.role;
 			let options = [];
 			permissions.items.forEach(item => {
 				options.push({ label: this.l(item.displayName), value: item.name, checked: false });
 			});
-			
-			options.filter((item) => result.permissions.indexOf(item.value) >= 0).map(item => {item.checked = true});
-			
-			this.permissionOptions = options;
+			options.filter((item) => result.grantedPermissionNames.indexOf(item.value) >= 0).map(item => { item.checked = true });
+				this.permissionOptions = options;
 		});
-		
+
 		this.validateForm = this.formBuilder.group({
 			roleName: [null, Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(32)])],
 			displayName: [null, Validators.compose([Validators.required, Validators.maxLength(32)])],
@@ -80,14 +83,14 @@ export class EditRoleComponent extends ModalComponentBase implements OnInit, Mod
 		var permissions = [];
 
 		this.permissionOptions.forEach(element => {
-			if(element.checked)
+			if (element.checked)
 				permissions.push(element.value);
 		});
 
-		this.role.permissions = permissions;
+		this.input.grantedPermissionNames = permissions;
 
 		this.saving = true;
-		this.roleService.update(this.role)
+		this._roleService.createOrUpdateRole(this.input)
 			.finally(() => { this.saving = false; })
 			.subscribe(() => {
 				this.notify.success(this.l('SavedSuccessfully'));

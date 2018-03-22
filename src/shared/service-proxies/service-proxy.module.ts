@@ -34,6 +34,7 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.SubscriptionServiceProxy,
         ApiServiceProxies.UiCustomizationSettingsServiceProxy,
         ApiServiceProxies.WebLogServiceProxy,
+        ApiServiceProxies.NotificationServiceProxy,
         ApiServiceProxies.DemoUiComponentsServiceProxy
         //ApiServiceProxies.ConfigurationServiceProxy
     ]

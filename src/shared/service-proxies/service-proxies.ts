@@ -12,13 +12,13 @@ import { Http, Headers, ResponseContentType, Response } from '@angular/http';
 
 import * as moment from 'moment';
 
-export const API_BASE_URL = new  InjectionToken<string>('API_BASE_URL');
+export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 @Injectable()
 export class AccountServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -29,7 +29,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    isTenantAvailable(input: IsTenantAvailableInput): Observable<IsTenantAvailableOutput> {
+    isTenantAvailable(input: IsTenantAvailableInput | null | undefined): Observable<IsTenantAvailableOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/IsTenantAvailable";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -79,7 +79,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    register(input: RegisterInput): Observable<RegisterOutput> {
+    register(input: RegisterInput | null | undefined): Observable<RegisterOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/Register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -129,7 +129,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendPasswordResetCode(input: SendPasswordResetCodeInput): Observable<void> {
+    sendPasswordResetCode(input: SendPasswordResetCodeInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Account/SendPasswordResetCode";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -175,7 +175,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    resetPassword(input: ResetPasswordInput): Observable<ResetPasswordOutput> {
+    resetPassword(input: ResetPasswordInput | null | undefined): Observable<ResetPasswordOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/ResetPassword";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -225,7 +225,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendEmailActivationLink(input: SendEmailActivationLinkInput): Observable<void> {
+    sendEmailActivationLink(input: SendEmailActivationLinkInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Account/SendEmailActivationLink";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -271,7 +271,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    activateEmail(input: ActivateEmailInput): Observable<void> {
+    activateEmail(input: ActivateEmailInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Account/ActivateEmail";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -317,7 +317,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    impersonate(input: ImpersonateInput): Observable<ImpersonateOutput> {
+    impersonate(input: ImpersonateInput | null | undefined): Observable<ImpersonateOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/Impersonate";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -419,7 +419,7 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    switchToLinkedAccount(input: SwitchToLinkedAccountInput): Observable<SwitchToLinkedAccountOutput> {
+    switchToLinkedAccount(input: SwitchToLinkedAccountInput | null | undefined): Observable<SwitchToLinkedAccountOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/SwitchToLinkedAccount";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -470,7 +470,7 @@ export class AccountServiceProxy {
 export class AuditLogServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -488,7 +488,7 @@ export class AuditLogServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getAuditLogs(startDate: moment.Moment, endDate: moment.Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfAuditLogListDto> {
+    getAuditLogs(startDate: moment.Moment, endDate: moment.Moment, userName: string | null | undefined, serviceName: string | null | undefined, methodName: string | null | undefined, browserInfo: string | null | undefined, hasException: boolean | null | undefined, minExecutionDuration: number | null | undefined, maxExecutionDuration: number | null | undefined, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfAuditLogListDto> {
         let url_ = this.baseUrl + "/api/services/app/AuditLog/GetAuditLogs?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
@@ -580,7 +580,7 @@ export class AuditLogServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getAuditLogsToExcel(startDate: moment.Moment, endDate: moment.Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<FileDto> {
+    getAuditLogsToExcel(startDate: moment.Moment, endDate: moment.Moment, userName: string | null | undefined, serviceName: string | null | undefined, methodName: string | null | undefined, browserInfo: string | null | undefined, hasException: boolean | null | undefined, minExecutionDuration: number | null | undefined, maxExecutionDuration: number | null | undefined, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<FileDto> {
         let url_ = this.baseUrl + "/api/services/app/AuditLog/GetAuditLogsToExcel?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
@@ -666,7 +666,7 @@ export class AuditLogServiceProxy {
 export class CachingServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -729,7 +729,7 @@ export class CachingServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    clearCache(input: EntityDtoOfString): Observable<void> {
+    clearCache(input: EntityDtoOfString | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Caching/ClearCache";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -830,7 +830,7 @@ export class CachingServiceProxy {
 export class ChatServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -888,7 +888,7 @@ export class ChatServiceProxy {
      * @minMessageId (optional) 
      * @return Success
      */
-    getUserChatMessages(tenantId: number, userId: number, minMessageId: number): Observable<ListResultDtoOfChatMessageDto> {
+    getUserChatMessages(tenantId: number | null | undefined, userId: number, minMessageId: number | null | undefined): Observable<ListResultDtoOfChatMessageDto> {
         let url_ = this.baseUrl + "/api/services/app/Chat/GetUserChatMessages?";
         if (tenantId !== undefined)
             url_ += "TenantId=" + encodeURIComponent("" + tenantId) + "&"; 
@@ -943,7 +943,7 @@ export class ChatServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    markAllUnreadMessagesOfUserAsRead(input: MarkAllUnreadMessagesOfUserAsReadInput): Observable<void> {
+    markAllUnreadMessagesOfUserAsRead(input: MarkAllUnreadMessagesOfUserAsReadInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Chat/MarkAllUnreadMessagesOfUserAsRead";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -990,7 +990,7 @@ export class ChatServiceProxy {
 export class CommonLookupServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1051,7 +1051,7 @@ export class CommonLookupServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    findUsers(input: FindUsersInput): Observable<PagedResultDtoOfNameValueDto> {
+    findUsers(input: FindUsersInput | null | undefined): Observable<PagedResultDtoOfNameValueDto> {
         let url_ = this.baseUrl + "/api/services/app/CommonLookup/FindUsers";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1148,7 +1148,7 @@ export class CommonLookupServiceProxy {
 export class DemoUiComponentsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1159,7 +1159,7 @@ export class DemoUiComponentsServiceProxy {
      * @date (optional) 
      * @return Success
      */
-    sendAndGetDate(date: moment.Moment): Observable<DateToStringOutput> {
+    sendAndGetDate(date: moment.Moment | null | undefined): Observable<DateToStringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetDate?";
         if (date !== undefined)
             url_ += "date=" + encodeURIComponent(date ? "" + date.toJSON() : "") + "&"; 
@@ -1214,7 +1214,7 @@ export class DemoUiComponentsServiceProxy {
      * @date (optional) 
      * @return Success
      */
-    sendAndGetDateTime(date: moment.Moment): Observable<DateToStringOutput> {
+    sendAndGetDateTime(date: moment.Moment | null | undefined): Observable<DateToStringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetDateTime?";
         if (date !== undefined)
             url_ += "date=" + encodeURIComponent(date ? "" + date.toJSON() : "") + "&"; 
@@ -1270,7 +1270,7 @@ export class DemoUiComponentsServiceProxy {
      * @endDate (optional) 
      * @return Success
      */
-    sendAndGetDateRange(startDate: moment.Moment, endDate: moment.Moment): Observable<DateToStringOutput> {
+    sendAndGetDateRange(startDate: moment.Moment | null | undefined, endDate: moment.Moment | null | undefined): Observable<DateToStringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetDateRange?";
         if (startDate !== undefined)
             url_ += "startDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
@@ -1327,7 +1327,7 @@ export class DemoUiComponentsServiceProxy {
      * @searchTerm (optional) 
      * @return Success
      */
-    getCountries(searchTerm: string): Observable<NameValueOfString[]> {
+    getCountries(searchTerm: string | null | undefined): Observable<NameValueOfString[]> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/GetCountries?";
         if (searchTerm !== undefined)
             url_ += "searchTerm=" + encodeURIComponent("" + searchTerm) + "&"; 
@@ -1386,7 +1386,7 @@ export class DemoUiComponentsServiceProxy {
      * @selectedCountries (optional) 
      * @return Success
      */
-    sendAndGetSelectedCountries(selectedCountries: NameValueOfString[]): Observable<NameValueOfString[]> {
+    sendAndGetSelectedCountries(selectedCountries: NameValueOfString[] | null | undefined): Observable<NameValueOfString[]> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetSelectedCountries";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1446,7 +1446,7 @@ export class DemoUiComponentsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendAndGetValue(input: string): Observable<StringOutput> {
+    sendAndGetValue(input: string | null | undefined): Observable<StringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetValue?";
         if (input !== undefined)
             url_ += "input=" + encodeURIComponent("" + input) + "&"; 
@@ -1502,7 +1502,7 @@ export class DemoUiComponentsServiceProxy {
 export class EditionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1565,7 +1565,7 @@ export class EditionServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getEditionForEdit(id: number): Observable<GetEditionEditOutput> {
+    getEditionForEdit(id: number | null | undefined): Observable<GetEditionEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/Edition/GetEditionForEdit?";
         if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
@@ -1620,7 +1620,7 @@ export class EditionServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateEdition(input: CreateOrUpdateEditionDto): Observable<void> {
+    createOrUpdateEdition(input: CreateOrUpdateEditionDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Edition/CreateOrUpdateEdition";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1724,7 +1724,7 @@ export class EditionServiceProxy {
      * @selectedEditionId (optional) 
      * @return Success
      */
-    getEditionComboboxItems(selectedEditionId: number, addAllItem: boolean, onlyFreeItems: boolean): Observable<SubscribableEditionComboboxItemDto[]> {
+    getEditionComboboxItems(selectedEditionId: number | null | undefined, addAllItem: boolean, onlyFreeItems: boolean): Observable<SubscribableEditionComboboxItemDto[]> {
         let url_ = this.baseUrl + "/api/services/app/Edition/GetEditionComboboxItems?";
         if (selectedEditionId !== undefined)
             url_ += "selectedEditionId=" + encodeURIComponent("" + selectedEditionId) + "&"; 
@@ -1792,7 +1792,7 @@ export class EditionServiceProxy {
 export class FriendshipServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1803,7 +1803,7 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createFriendshipRequest(input: CreateFriendshipRequestInput): Observable<FriendDto> {
+    createFriendshipRequest(input: CreateFriendshipRequestInput | null | undefined): Observable<FriendDto> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/CreateFriendshipRequest";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1853,7 +1853,7 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createFriendshipRequestByUserName(input: CreateFriendshipRequestByUserNameInput): Observable<FriendDto> {
+    createFriendshipRequestByUserName(input: CreateFriendshipRequestByUserNameInput | null | undefined): Observable<FriendDto> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/CreateFriendshipRequestByUserName";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1903,7 +1903,7 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    blockUser(input: BlockUserInput): Observable<void> {
+    blockUser(input: BlockUserInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/BlockUser";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1949,7 +1949,7 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unblockUser(input: UnblockUserInput): Observable<void> {
+    unblockUser(input: UnblockUserInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/UnblockUser";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -1995,7 +1995,7 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    acceptFriendshipRequest(input: AcceptFriendshipRequestInput): Observable<void> {
+    acceptFriendshipRequest(input: AcceptFriendshipRequestInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/AcceptFriendshipRequest";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2042,7 +2042,7 @@ export class FriendshipServiceProxy {
 export class HostDashboardServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2242,7 +2242,7 @@ export class HostDashboardServiceProxy {
 export class HostSettingsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2305,7 +2305,7 @@ export class HostSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateAllSettings(input: HostSettingsEditDto): Observable<void> {
+    updateAllSettings(input: HostSettingsEditDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/HostSettings/UpdateAllSettings";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2357,7 +2357,7 @@ export class HostSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendTestEmail(input: SendTestEmailInput): Observable<void> {
+    sendTestEmail(input: SendTestEmailInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/HostSettings/SendTestEmail";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2410,7 +2410,7 @@ export class HostSettingsServiceProxy {
 export class InstallServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2421,7 +2421,7 @@ export class InstallServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    setup(input: InstallDto): Observable<void> {
+    setup(input: InstallDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Install/Setup";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2560,7 +2560,7 @@ export class InstallServiceProxy {
 export class InvoiceServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2621,7 +2621,7 @@ export class InvoiceServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createInvoice(input: CreateInvoiceDto): Observable<void> {
+    createInvoice(input: CreateInvoiceDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Invoice/CreateInvoice";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2668,7 +2668,7 @@ export class InvoiceServiceProxy {
 export class LanguageServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2731,7 +2731,7 @@ export class LanguageServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getLanguageForEdit(id: number): Observable<GetLanguageForEditOutput> {
+    getLanguageForEdit(id: number | null | undefined): Observable<GetLanguageForEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/Language/GetLanguageForEdit?";
         if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
@@ -2786,7 +2786,7 @@ export class LanguageServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateLanguage(input: CreateOrUpdateLanguageInput): Observable<void> {
+    createOrUpdateLanguage(input: CreateOrUpdateLanguageInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Language/CreateOrUpdateLanguage";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2890,7 +2890,7 @@ export class LanguageServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    setDefaultLanguage(input: SetDefaultLanguageInput): Observable<void> {
+    setDefaultLanguage(input: SetDefaultLanguageInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Language/SetDefaultLanguage";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -2945,7 +2945,7 @@ export class LanguageServiceProxy {
      * @filterText (optional) 
      * @return Success
      */
-    getLanguageTexts(maxResultCount: number, skipCount: number, sorting: string, sourceName: string, baseLanguageName: string, targetLanguageName: string, targetValueFilter: string, filterText: string): Observable<PagedResultDtoOfLanguageTextListDto> {
+    getLanguageTexts(maxResultCount: number, skipCount: number, sorting: string | null | undefined, sourceName: string, baseLanguageName: string | null | undefined, targetLanguageName: string, targetValueFilter: string | null | undefined, filterText: string | null | undefined): Observable<PagedResultDtoOfLanguageTextListDto> {
         let url_ = this.baseUrl + "/api/services/app/Language/GetLanguageTexts?";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
@@ -3022,7 +3022,7 @@ export class LanguageServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateLanguageText(input: UpdateLanguageTextInput): Observable<void> {
+    updateLanguageText(input: UpdateLanguageTextInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Language/UpdateLanguageText";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3075,7 +3075,7 @@ export class LanguageServiceProxy {
 export class LogServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3086,7 +3086,7 @@ export class LogServiceProxy {
      * @data (optional) 
      * @return Success
      */
-    test(data: string): Observable<string> {
+    test(data: string | null | undefined): Observable<string> {
         let url_ = this.baseUrl + "/api/services/app/Log/Test?";
         if (data !== undefined)
             url_ += "data=" + encodeURIComponent("" + data) + "&"; 
@@ -3133,10 +3133,259 @@ export class LogServiceProxy {
 }
 
 @Injectable()
+export class NotificationServiceProxy {
+    private http: Http;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http;
+        this.baseUrl = baseUrl ? baseUrl : "";
+    }
+
+    /**
+     * @state (optional) 
+     * @return Success
+     */
+    getUserNotifications(state: State | null | undefined, maxResultCount: number, skipCount: number): Observable<GetNotificationsOutput> {
+        let url_ = this.baseUrl + "/api/services/app/Notification/GetUserNotifications?";
+        if (state !== undefined)
+            url_ += "State=" + encodeURIComponent("" + state) + "&"; 
+        if (maxResultCount === undefined || maxResultCount === null)
+            throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
+        else
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+        if (skipCount === undefined || skipCount === null)
+            throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
+        else
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processGetUserNotifications(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetUserNotifications(<any>response_);
+                } catch (e) {
+                    return <Observable<GetNotificationsOutput>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<GetNotificationsOutput>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetUserNotifications(response: Response): Observable<GetNotificationsOutput> {
+        const status = response.status;
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? GetNotificationsOutput.fromJS(resultData200) : new GetNotificationsOutput();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<GetNotificationsOutput>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    setAllNotificationsAsRead(): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Notification/SetAllNotificationsAsRead";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processSetAllNotificationsAsRead(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processSetAllNotificationsAsRead(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processSetAllNotificationsAsRead(response: Response): Observable<void> {
+        const status = response.status;
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * @input (optional) 
+     * @return Success
+     */
+    setNotificationAsRead(input: EntityDtoOfGuid | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Notification/SetNotificationAsRead";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+
+        let options_ : any = {
+            body: content_,
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processSetNotificationAsRead(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processSetNotificationAsRead(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processSetNotificationAsRead(response: Response): Observable<void> {
+        const status = response.status;
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getNotificationSettings(): Observable<GetNotificationSettingsOutput> {
+        let url_ = this.baseUrl + "/api/services/app/Notification/GetNotificationSettings";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_ : any = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processGetNotificationSettings(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetNotificationSettings(<any>response_);
+                } catch (e) {
+                    return <Observable<GetNotificationSettingsOutput>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<GetNotificationSettingsOutput>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetNotificationSettings(response: Response): Observable<GetNotificationSettingsOutput> {
+        const status = response.status;
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? GetNotificationSettingsOutput.fromJS(resultData200) : new GetNotificationSettingsOutput();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<GetNotificationSettingsOutput>(<any>null);
+    }
+
+    /**
+     * @input (optional) 
+     * @return Success
+     */
+    updateNotificationSettings(input: UpdateNotificationSettingsInput | null | undefined): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/app/Notification/UpdateNotificationSettings";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(input);
+
+        let options_ : any = {
+            body: content_,
+            method: "put",
+            headers: new Headers({
+                "Content-Type": "application/json", 
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_ : any) => {
+            return this.processUpdateNotificationSettings(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processUpdateNotificationSettings(<any>response_);
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processUpdateNotificationSettings(response: Response): Observable<void> {
+        const status = response.status;
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            return Observable.of<void>(<any>null);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<void>(<any>null);
+    }
+}
+
+@Injectable()
 export class OrganizationUnitServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3199,7 +3448,7 @@ export class OrganizationUnitServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getOrganizationUnitUsers(id: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfOrganizationUnitUserListDto> {
+    getOrganizationUnitUsers(id: number, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfOrganizationUnitUserListDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/GetOrganizationUnitUsers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
@@ -3266,7 +3515,7 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrganizationUnit(input: CreateOrganizationUnitInput): Observable<OrganizationUnitDto> {
+    createOrganizationUnit(input: CreateOrganizationUnitInput | null | undefined): Observable<OrganizationUnitDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/CreateOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3322,7 +3571,7 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateOrganizationUnit(input: UpdateOrganizationUnitInput): Observable<OrganizationUnitDto> {
+    updateOrganizationUnit(input: UpdateOrganizationUnitInput | null | undefined): Observable<OrganizationUnitDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/UpdateOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3378,7 +3627,7 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    moveOrganizationUnit(input: MoveOrganizationUnitInput): Observable<OrganizationUnitDto> {
+    moveOrganizationUnit(input: MoveOrganizationUnitInput | null | undefined): Observable<OrganizationUnitDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/MoveOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3542,7 +3791,7 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    addUsersToOrganizationUnit(input: UsersToOrganizationUnitInput): Observable<void> {
+    addUsersToOrganizationUnit(input: UsersToOrganizationUnitInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/AddUsersToOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3594,7 +3843,7 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    findUsers(input: FindOrganizationUnitUsersInput): Observable<PagedResultDtoOfNameValueDto> {
+    findUsers(input: FindOrganizationUnitUsersInput | null | undefined): Observable<PagedResultDtoOfNameValueDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/FindUsers";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3651,7 +3900,7 @@ export class OrganizationUnitServiceProxy {
 export class PaymentServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3662,7 +3911,7 @@ export class PaymentServiceProxy {
      * @upgradeEditionId (optional) 
      * @return Success
      */
-    getPaymentInfo(upgradeEditionId: number): Observable<PaymentInfoDto> {
+    getPaymentInfo(upgradeEditionId: number | null | undefined): Observable<PaymentInfoDto> {
         let url_ = this.baseUrl + "/api/services/app/Payment/GetPaymentInfo?";
         if (upgradeEditionId !== undefined)
             url_ += "UpgradeEditionId=" + encodeURIComponent("" + upgradeEditionId) + "&"; 
@@ -3717,7 +3966,7 @@ export class PaymentServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createPayment(input: CreatePaymentDto): Observable<any> {
+    createPayment(input: CreatePaymentDto | null | undefined): Observable<any> {
         let url_ = this.baseUrl + "/api/services/app/Payment/CreatePayment";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3773,7 +4022,7 @@ export class PaymentServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    executePayment(input: ExecutePaymentDto): Observable<any> {
+    executePayment(input: ExecutePaymentDto | null | undefined): Observable<any> {
         let url_ = this.baseUrl + "/api/services/app/Payment/ExecutePayment";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -3829,7 +4078,7 @@ export class PaymentServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getPaymentHistory(sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfSubscriptionPaymentListDto> {
+    getPaymentHistory(sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfSubscriptionPaymentListDto> {
         let url_ = this.baseUrl + "/api/services/app/Payment/GetPaymentHistory?";
         if (sorting !== undefined)
             url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
@@ -3887,7 +4136,7 @@ export class PaymentServiceProxy {
 export class PermissionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3945,7 +4194,7 @@ export class PermissionServiceProxy {
 export class ProfileServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4090,7 +4339,7 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    verifySmsCode(input: VerifySmsCodeInputDto): Observable<void> {
+    verifySmsCode(input: VerifySmsCodeInputDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/VerifySmsCode";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4136,7 +4385,7 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateCurrentUserProfile(input: CurrentUserProfileEditDto): Observable<void> {
+    updateCurrentUserProfile(input: CurrentUserProfileEditDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/UpdateCurrentUserProfile";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4182,7 +4431,7 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    changePassword(input: ChangePasswordInput): Observable<void> {
+    changePassword(input: ChangePasswordInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/ChangePassword";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4228,7 +4477,7 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateProfilePicture(input: UpdateProfilePictureInput): Observable<void> {
+    updateProfilePicture(input: UpdateProfilePictureInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/UpdateProfilePicture";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4367,7 +4616,7 @@ export class ProfileServiceProxy {
      * @tenantId (optional) 
      * @return Success
      */
-    getFriendProfilePictureById(profilePictureId: string, userId: number, tenantId: number): Observable<GetProfilePictureOutput> {
+    getFriendProfilePictureById(profilePictureId: string | null | undefined, userId: number, tenantId: number | null | undefined): Observable<GetProfilePictureOutput> {
         let url_ = this.baseUrl + "/api/services/app/Profile/GetFriendProfilePictureById?";
         if (profilePictureId !== undefined)
             url_ += "ProfilePictureId=" + encodeURIComponent("" + profilePictureId) + "&"; 
@@ -4472,7 +4721,7 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    changeLanguage(input: ChangeUserLanguageDto): Observable<void> {
+    changeLanguage(input: ChangeUserLanguageDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/ChangeLanguage";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4519,7 +4768,7 @@ export class ProfileServiceProxy {
 export class RoleServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4530,7 +4779,7 @@ export class RoleServiceProxy {
      * @permission (optional) 
      * @return Success
      */
-    getRoles(permission: string): Observable<ListResultDtoOfRoleListDto> {
+    getRoles(permission: string | null | undefined): Observable<ListResultDtoOfRoleListDto> {
         let url_ = this.baseUrl + "/api/services/app/Role/GetRoles?";
         if (permission !== undefined)
             url_ += "Permission=" + encodeURIComponent("" + permission) + "&"; 
@@ -4585,7 +4834,7 @@ export class RoleServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getRoleForEdit(id: number): Observable<GetRoleForEditOutput> {
+    getRoleForEdit(id: number | null | undefined): Observable<GetRoleForEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/Role/GetRoleForEdit?";
         if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
@@ -4640,7 +4889,7 @@ export class RoleServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateRole(input: CreateOrUpdateRoleInput): Observable<void> {
+    createOrUpdateRole(input: CreateOrUpdateRoleInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Role/CreateOrUpdateRole";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -4745,7 +4994,7 @@ export class RoleServiceProxy {
 export class SessionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4849,7 +5098,7 @@ export class SessionServiceProxy {
 export class SubscriptionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4907,7 +5156,7 @@ export class SubscriptionServiceProxy {
 export class TenantServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4924,7 +5173,7 @@ export class TenantServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getTenants(filter: string, subscriptionEndDateStart: moment.Moment, subscriptionEndDateEnd: moment.Moment, creationDateStart: moment.Moment, creationDateEnd: moment.Moment, editionId: number, editionIdSpecified: boolean, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfTenantListDto> {
+    getTenants(filter: string | null | undefined, subscriptionEndDateStart: moment.Moment | null | undefined, subscriptionEndDateEnd: moment.Moment | null | undefined, creationDateStart: moment.Moment | null | undefined, creationDateEnd: moment.Moment | null | undefined, editionId: number | null | undefined, editionIdSpecified: boolean, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfTenantListDto> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/GetTenants?";
         if (filter !== undefined)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
@@ -5003,7 +5252,7 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createTenant(input: CreateTenantInput): Observable<void> {
+    createTenant(input: CreateTenantInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/CreateTenant";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5111,7 +5360,7 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateTenant(input: TenantEditDto): Observable<void> {
+    updateTenant(input: TenantEditDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/UpdateTenant";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5271,7 +5520,7 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateTenantFeatures(input: UpdateTenantFeaturesInput): Observable<void> {
+    updateTenantFeatures(input: UpdateTenantFeaturesInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/UpdateTenantFeatures";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5323,7 +5572,7 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    resetTenantSpecificFeatures(input: EntityDto): Observable<void> {
+    resetTenantSpecificFeatures(input: EntityDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/ResetTenantSpecificFeatures";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5375,7 +5624,7 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unlockTenantAdmin(input: EntityDto): Observable<void> {
+    unlockTenantAdmin(input: EntityDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/UnlockTenantAdmin";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5428,7 +5677,7 @@ export class TenantServiceProxy {
 export class TenantDashboardServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5603,7 +5852,7 @@ export class TenantDashboardServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    getWorldMap(input: any): Observable<GetWorldMapOutput> {
+    getWorldMap(input: any | null | undefined): Observable<GetWorldMapOutput> {
         let url_ = this.baseUrl + "/api/services/app/TenantDashboard/GetWorldMap?";
         if (input !== undefined)
             url_ += "input=" + encodeURIComponent("" + input) + "&"; 
@@ -5658,7 +5907,7 @@ export class TenantDashboardServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    getGeneralStats(input: any): Observable<GetGeneralStatsOutput> {
+    getGeneralStats(input: any | null | undefined): Observable<GetGeneralStatsOutput> {
         let url_ = this.baseUrl + "/api/services/app/TenantDashboard/GetGeneralStats?";
         if (input !== undefined)
             url_ += "input=" + encodeURIComponent("" + input) + "&"; 
@@ -5714,7 +5963,7 @@ export class TenantDashboardServiceProxy {
 export class TenantRegistrationServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5725,7 +5974,7 @@ export class TenantRegistrationServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    registerTenant(input: RegisterTenantInput): Observable<RegisterTenantOutput> {
+    registerTenant(input: RegisterTenantInput | null | undefined): Observable<RegisterTenantOutput> {
         let url_ = this.baseUrl + "/api/services/app/TenantRegistration/RegisterTenant";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -5872,7 +6121,7 @@ export class TenantRegistrationServiceProxy {
 export class TenantSettingsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5935,7 +6184,7 @@ export class TenantSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateAllSettings(input: TenantSettingsEditDto): Observable<void> {
+    updateAllSettings(input: TenantSettingsEditDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/UpdateAllSettings";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6083,7 +6332,7 @@ export class TenantSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendTestEmail(input: SendTestEmailInput): Observable<void> {
+    sendTestEmail(input: SendTestEmailInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/SendTestEmail";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6136,7 +6385,7 @@ export class TenantSettingsServiceProxy {
 export class TokenAuthServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6147,7 +6396,7 @@ export class TokenAuthServiceProxy {
      * @model (optional) 
      * @return Success
      */
-    authenticate(model: AuthenticateModel): Observable<AuthenticateResultModel> {
+    authenticate(model: AuthenticateModel | null | undefined): Observable<AuthenticateResultModel> {
         let url_ = this.baseUrl + "/api/TokenAuth/Authenticate";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6247,7 +6496,7 @@ export class TokenAuthServiceProxy {
      * @model (optional) 
      * @return Success
      */
-    externalAuthenticate(model: ExternalAuthenticateModel): Observable<ExternalAuthenticateResultModel> {
+    externalAuthenticate(model: ExternalAuthenticateModel | null | undefined): Observable<ExternalAuthenticateResultModel> {
         let url_ = this.baseUrl + "/api/TokenAuth/ExternalAuthenticate";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6298,7 +6547,7 @@ export class TokenAuthServiceProxy {
 export class UiCustomizationSettingsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6355,7 +6604,7 @@ export class UiCustomizationSettingsServiceProxy {
      * @settings (optional) 
      * @return Success
      */
-    updateUiManagementSettings(settings: UiCustomizationSettingsEditDto): Observable<void> {
+    updateUiManagementSettings(settings: UiCustomizationSettingsEditDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UiCustomizationSettings/UpdateUiManagementSettings";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6401,7 +6650,7 @@ export class UiCustomizationSettingsServiceProxy {
      * @settings (optional) 
      * @return Success
      */
-    updateDefaultUiManagementSettings(settings: UiCustomizationSettingsEditDto): Observable<void> {
+    updateDefaultUiManagementSettings(settings: UiCustomizationSettingsEditDto | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UiCustomizationSettings/UpdateDefaultUiManagementSettings";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6490,7 +6739,7 @@ export class UiCustomizationSettingsServiceProxy {
 export class UserServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6504,7 +6753,7 @@ export class UserServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getUsers(filter: string, permission: string, role: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfUserListDto> {
+    getUsers(filter: string | null | undefined, permission: string | null | undefined, role: number | null | undefined, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfUserListDto> {
         let url_ = this.baseUrl + "/api/services/app/User/GetUsers?";
         if (filter !== undefined)
             url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
@@ -6625,7 +6874,7 @@ export class UserServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getUserForEdit(id: number): Observable<GetUserForEditOutput> {
+    getUserForEdit(id: number | null | undefined): Observable<GetUserForEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/User/GetUserForEdit?";
         if (id !== undefined)
             url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
@@ -6736,7 +6985,7 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    resetUserSpecificPermissions(input: EntityDtoOfInt64): Observable<void> {
+    resetUserSpecificPermissions(input: EntityDtoOfInt64 | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/ResetUserSpecificPermissions";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6788,7 +7037,7 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateUserPermissions(input: UpdateUserPermissionsInput): Observable<void> {
+    updateUserPermissions(input: UpdateUserPermissionsInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/UpdateUserPermissions";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6840,7 +7089,7 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateUser(input: CreateOrUpdateUserInput): Observable<void> {
+    createOrUpdateUser(input: CreateOrUpdateUserInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/CreateOrUpdateUser";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6944,7 +7193,7 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unlockUser(input: EntityDtoOfInt64): Observable<void> {
+    unlockUser(input: EntityDtoOfInt64 | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/UnlockUser";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -6997,7 +7246,7 @@ export class UserServiceProxy {
 export class UserLinkServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -7008,7 +7257,7 @@ export class UserLinkServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    linkToUser(input: LinkToUserInput): Observable<void> {
+    linkToUser(input: LinkToUserInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UserLink/LinkToUser";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7054,7 +7303,7 @@ export class UserLinkServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getLinkedUsers(maxResultCount: number, skipCount: number, sorting: string): Observable<PagedResultDtoOfLinkedUserDto> {
+    getLinkedUsers(maxResultCount: number, skipCount: number, sorting: string | null | undefined): Observable<PagedResultDtoOfLinkedUserDto> {
         let url_ = this.baseUrl + "/api/services/app/UserLink/GetLinkedUsers?";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
@@ -7157,7 +7406,7 @@ export class UserLinkServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unlinkUser(input: UnlinkUserInput): Observable<void> {
+    unlinkUser(input: UnlinkUserInput | null | undefined): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UserLink/UnlinkUser";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -7204,7 +7453,7 @@ export class UserLinkServiceProxy {
 export class UserLoginServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -7262,7 +7511,7 @@ export class UserLoginServiceProxy {
 export class WebLogServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -7411,9 +7660,9 @@ export interface IIsTenantAvailableInput {
 }
 
 export class IsTenantAvailableOutput implements IIsTenantAvailableOutput {
-    state: IsTenantAvailableOutputState;
-    tenantId: number;
-    serverRootAddress: string;
+    state: IsTenantAvailableOutputState | undefined;
+    tenantId: number | undefined;
+    serverRootAddress: string | undefined;
 
     constructor(data?: IIsTenantAvailableOutput) {
         if (data) {
@@ -7449,9 +7698,9 @@ export class IsTenantAvailableOutput implements IIsTenantAvailableOutput {
 }
 
 export interface IIsTenantAvailableOutput {
-    state: IsTenantAvailableOutputState;
-    tenantId: number;
-    serverRootAddress: string;
+    state: IsTenantAvailableOutputState | undefined;
+    tenantId: number | undefined;
+    serverRootAddress: string | undefined;
 }
 
 export class RegisterInput implements IRegisterInput {
@@ -7460,7 +7709,7 @@ export class RegisterInput implements IRegisterInput {
     userName: string;
     emailAddress: string;
     password: string;
-    captchaResponse: string;
+    captchaResponse: string | undefined;
 
     constructor(data?: IRegisterInput) {
         if (data) {
@@ -7507,11 +7756,11 @@ export interface IRegisterInput {
     userName: string;
     emailAddress: string;
     password: string;
-    captchaResponse: string;
+    captchaResponse: string | undefined;
 }
 
 export class RegisterOutput implements IRegisterOutput {
-    canLogin: boolean;
+    canLogin: boolean | undefined;
 
     constructor(data?: IRegisterOutput) {
         if (data) {
@@ -7543,7 +7792,7 @@ export class RegisterOutput implements IRegisterOutput {
 }
 
 export interface IRegisterOutput {
-    canLogin: boolean;
+    canLogin: boolean | undefined;
 }
 
 export class SendPasswordResetCodeInput implements ISendPasswordResetCodeInput {
@@ -7583,11 +7832,11 @@ export interface ISendPasswordResetCodeInput {
 }
 
 export class ResetPasswordInput implements IResetPasswordInput {
-    userId: number;
+    userId: number | undefined;
     resetCode: string;
     password: string;
-    returnUrl: string;
-    singleSignIn: string;
+    returnUrl: string | undefined;
+    singleSignIn: string | undefined;
 
     constructor(data?: IResetPasswordInput) {
         if (data) {
@@ -7627,16 +7876,16 @@ export class ResetPasswordInput implements IResetPasswordInput {
 }
 
 export interface IResetPasswordInput {
-    userId: number;
+    userId: number | undefined;
     resetCode: string;
     password: string;
-    returnUrl: string;
-    singleSignIn: string;
+    returnUrl: string | undefined;
+    singleSignIn: string | undefined;
 }
 
 export class ResetPasswordOutput implements IResetPasswordOutput {
-    canLogin: boolean;
-    userName: string;
+    canLogin: boolean | undefined;
+    userName: string | undefined;
 
     constructor(data?: IResetPasswordOutput) {
         if (data) {
@@ -7670,8 +7919,8 @@ export class ResetPasswordOutput implements IResetPasswordOutput {
 }
 
 export interface IResetPasswordOutput {
-    canLogin: boolean;
-    userName: string;
+    canLogin: boolean | undefined;
+    userName: string | undefined;
 }
 
 export class SendEmailActivationLinkInput implements ISendEmailActivationLinkInput {
@@ -7751,8 +8000,8 @@ export interface IActivateEmailInput {
 }
 
 export class ImpersonateInput implements IImpersonateInput {
-    tenantId: number;
-    userId: number;
+    tenantId: number | undefined;
+    userId: number | undefined;
 
     constructor(data?: IImpersonateInput) {
         if (data) {
@@ -7786,13 +8035,13 @@ export class ImpersonateInput implements IImpersonateInput {
 }
 
 export interface IImpersonateInput {
-    tenantId: number;
-    userId: number;
+    tenantId: number | undefined;
+    userId: number | undefined;
 }
 
 export class ImpersonateOutput implements IImpersonateOutput {
-    impersonationToken: string;
-    tenancyName: string;
+    impersonationToken: string | undefined;
+    tenancyName: string | undefined;
 
     constructor(data?: IImpersonateOutput) {
         if (data) {
@@ -7826,13 +8075,13 @@ export class ImpersonateOutput implements IImpersonateOutput {
 }
 
 export interface IImpersonateOutput {
-    impersonationToken: string;
-    tenancyName: string;
+    impersonationToken: string | undefined;
+    tenancyName: string | undefined;
 }
 
 export class SwitchToLinkedAccountInput implements ISwitchToLinkedAccountInput {
-    targetTenantId: number;
-    targetUserId: number;
+    targetTenantId: number | undefined;
+    targetUserId: number | undefined;
 
     constructor(data?: ISwitchToLinkedAccountInput) {
         if (data) {
@@ -7866,13 +8115,13 @@ export class SwitchToLinkedAccountInput implements ISwitchToLinkedAccountInput {
 }
 
 export interface ISwitchToLinkedAccountInput {
-    targetTenantId: number;
-    targetUserId: number;
+    targetTenantId: number | undefined;
+    targetUserId: number | undefined;
 }
 
 export class SwitchToLinkedAccountOutput implements ISwitchToLinkedAccountOutput {
-    switchAccountToken: string;
-    tenancyName: string;
+    switchAccountToken: string | undefined;
+    tenancyName: string | undefined;
 
     constructor(data?: ISwitchToLinkedAccountOutput) {
         if (data) {
@@ -7906,13 +8155,13 @@ export class SwitchToLinkedAccountOutput implements ISwitchToLinkedAccountOutput
 }
 
 export interface ISwitchToLinkedAccountOutput {
-    switchAccountToken: string;
-    tenancyName: string;
+    switchAccountToken: string | undefined;
+    tenancyName: string | undefined;
 }
 
 export class PagedResultDtoOfAuditLogListDto implements IPagedResultDtoOfAuditLogListDto {
-    totalCount: number;
-    items: AuditLogListDto[];
+    totalCount: number | undefined;
+    items: AuditLogListDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfAuditLogListDto) {
         if (data) {
@@ -7954,26 +8203,26 @@ export class PagedResultDtoOfAuditLogListDto implements IPagedResultDtoOfAuditLo
 }
 
 export interface IPagedResultDtoOfAuditLogListDto {
-    totalCount: number;
-    items: AuditLogListDto[];
+    totalCount: number | undefined;
+    items: AuditLogListDto[] | undefined;
 }
 
 export class AuditLogListDto implements IAuditLogListDto {
-    userId: number;
-    userName: string;
-    impersonatorTenantId: number;
-    impersonatorUserId: number;
-    serviceName: string;
-    methodName: string;
-    parameters: string;
-    executionTime: moment.Moment;
-    executionDuration: number;
-    clientIpAddress: string;
-    clientName: string;
-    browserInfo: string;
-    exception: string;
-    customData: string;
-    id: number;
+    userId: number | undefined;
+    userName: string | undefined;
+    impersonatorTenantId: number | undefined;
+    impersonatorUserId: number | undefined;
+    serviceName: string | undefined;
+    methodName: string | undefined;
+    parameters: string | undefined;
+    executionTime: moment.Moment | undefined;
+    executionDuration: number | undefined;
+    clientIpAddress: string | undefined;
+    clientName: string | undefined;
+    browserInfo: string | undefined;
+    exception: string | undefined;
+    customData: string | undefined;
+    id: number | undefined;
 
     constructor(data?: IAuditLogListDto) {
         if (data) {
@@ -8033,21 +8282,21 @@ export class AuditLogListDto implements IAuditLogListDto {
 }
 
 export interface IAuditLogListDto {
-    userId: number;
-    userName: string;
-    impersonatorTenantId: number;
-    impersonatorUserId: number;
-    serviceName: string;
-    methodName: string;
-    parameters: string;
-    executionTime: moment.Moment;
-    executionDuration: number;
-    clientIpAddress: string;
-    clientName: string;
-    browserInfo: string;
-    exception: string;
-    customData: string;
-    id: number;
+    userId: number | undefined;
+    userName: string | undefined;
+    impersonatorTenantId: number | undefined;
+    impersonatorUserId: number | undefined;
+    serviceName: string | undefined;
+    methodName: string | undefined;
+    parameters: string | undefined;
+    executionTime: moment.Moment | undefined;
+    executionDuration: number | undefined;
+    clientIpAddress: string | undefined;
+    clientName: string | undefined;
+    browserInfo: string | undefined;
+    exception: string | undefined;
+    customData: string | undefined;
+    id: number | undefined;
 }
 
 export class FileDto implements IFileDto {
@@ -8095,7 +8344,7 @@ export interface IFileDto {
 }
 
 export class ListResultDtoOfCacheDto implements IListResultDtoOfCacheDto {
-    items: CacheDto[];
+    items: CacheDto[] | undefined;
 
     constructor(data?: IListResultDtoOfCacheDto) {
         if (data) {
@@ -8135,11 +8384,11 @@ export class ListResultDtoOfCacheDto implements IListResultDtoOfCacheDto {
 }
 
 export interface IListResultDtoOfCacheDto {
-    items: CacheDto[];
+    items: CacheDto[] | undefined;
 }
 
 export class CacheDto implements ICacheDto {
-    name: string;
+    name: string | undefined;
 
     constructor(data?: ICacheDto) {
         if (data) {
@@ -8171,11 +8420,11 @@ export class CacheDto implements ICacheDto {
 }
 
 export interface ICacheDto {
-    name: string;
+    name: string | undefined;
 }
 
 export class EntityDtoOfString implements IEntityDtoOfString {
-    id: string;
+    id: string | undefined;
 
     constructor(data?: IEntityDtoOfString) {
         if (data) {
@@ -8207,12 +8456,12 @@ export class EntityDtoOfString implements IEntityDtoOfString {
 }
 
 export interface IEntityDtoOfString {
-    id: string;
+    id: string | undefined;
 }
 
 export class GetUserChatFriendsWithSettingsOutput implements IGetUserChatFriendsWithSettingsOutput {
-    serverTime: moment.Moment;
-    friends: FriendDto[];
+    serverTime: moment.Moment | undefined;
+    friends: FriendDto[] | undefined;
 
     constructor(data?: IGetUserChatFriendsWithSettingsOutput) {
         if (data) {
@@ -8254,19 +8503,19 @@ export class GetUserChatFriendsWithSettingsOutput implements IGetUserChatFriends
 }
 
 export interface IGetUserChatFriendsWithSettingsOutput {
-    serverTime: moment.Moment;
-    friends: FriendDto[];
+    serverTime: moment.Moment | undefined;
+    friends: FriendDto[] | undefined;
 }
 
 export class FriendDto implements IFriendDto {
-    friendUserId: number;
-    friendTenantId: number;
-    friendUserName: string;
-    friendTenancyName: string;
-    friendProfilePictureId: string;
-    unreadMessageCount: number;
-    isOnline: boolean;
-    state: FriendDtoState;
+    friendUserId: number | undefined;
+    friendTenantId: number | undefined;
+    friendUserName: string | undefined;
+    friendTenancyName: string | undefined;
+    friendProfilePictureId: string | undefined;
+    unreadMessageCount: number | undefined;
+    isOnline: boolean | undefined;
+    state: FriendDtoState | undefined;
 
     constructor(data?: IFriendDto) {
         if (data) {
@@ -8312,18 +8561,18 @@ export class FriendDto implements IFriendDto {
 }
 
 export interface IFriendDto {
-    friendUserId: number;
-    friendTenantId: number;
-    friendUserName: string;
-    friendTenancyName: string;
-    friendProfilePictureId: string;
-    unreadMessageCount: number;
-    isOnline: boolean;
-    state: FriendDtoState;
+    friendUserId: number | undefined;
+    friendTenantId: number | undefined;
+    friendUserName: string | undefined;
+    friendTenancyName: string | undefined;
+    friendProfilePictureId: string | undefined;
+    unreadMessageCount: number | undefined;
+    isOnline: boolean | undefined;
+    state: FriendDtoState | undefined;
 }
 
 export class ListResultDtoOfChatMessageDto implements IListResultDtoOfChatMessageDto {
-    items: ChatMessageDto[];
+    items: ChatMessageDto[] | undefined;
 
     constructor(data?: IListResultDtoOfChatMessageDto) {
         if (data) {
@@ -8363,21 +8612,21 @@ export class ListResultDtoOfChatMessageDto implements IListResultDtoOfChatMessag
 }
 
 export interface IListResultDtoOfChatMessageDto {
-    items: ChatMessageDto[];
+    items: ChatMessageDto[] | undefined;
 }
 
 export class ChatMessageDto implements IChatMessageDto {
-    userId: number;
-    tenantId: number;
-    targetUserId: number;
-    targetTenantId: number;
-    side: ChatMessageDtoSide;
-    readState: ChatMessageDtoReadState;
-    receiverReadState: ChatMessageDtoReceiverReadState;
-    message: string;
-    creationTime: moment.Moment;
-    sharedMessageId: string;
-    id: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
+    targetUserId: number | undefined;
+    targetTenantId: number | undefined;
+    side: ChatMessageDtoSide | undefined;
+    readState: ChatMessageDtoReadState | undefined;
+    receiverReadState: ChatMessageDtoReceiverReadState | undefined;
+    message: string | undefined;
+    creationTime: moment.Moment | undefined;
+    sharedMessageId: string | undefined;
+    id: number | undefined;
 
     constructor(data?: IChatMessageDto) {
         if (data) {
@@ -8429,22 +8678,22 @@ export class ChatMessageDto implements IChatMessageDto {
 }
 
 export interface IChatMessageDto {
-    userId: number;
-    tenantId: number;
-    targetUserId: number;
-    targetTenantId: number;
-    side: ChatMessageDtoSide;
-    readState: ChatMessageDtoReadState;
-    receiverReadState: ChatMessageDtoReceiverReadState;
-    message: string;
-    creationTime: moment.Moment;
-    sharedMessageId: string;
-    id: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
+    targetUserId: number | undefined;
+    targetTenantId: number | undefined;
+    side: ChatMessageDtoSide | undefined;
+    readState: ChatMessageDtoReadState | undefined;
+    receiverReadState: ChatMessageDtoReceiverReadState | undefined;
+    message: string | undefined;
+    creationTime: moment.Moment | undefined;
+    sharedMessageId: string | undefined;
+    id: number | undefined;
 }
 
 export class MarkAllUnreadMessagesOfUserAsReadInput implements IMarkAllUnreadMessagesOfUserAsReadInput {
-    tenantId: number;
-    userId: number;
+    tenantId: number | undefined;
+    userId: number | undefined;
 
     constructor(data?: IMarkAllUnreadMessagesOfUserAsReadInput) {
         if (data) {
@@ -8478,12 +8727,12 @@ export class MarkAllUnreadMessagesOfUserAsReadInput implements IMarkAllUnreadMes
 }
 
 export interface IMarkAllUnreadMessagesOfUserAsReadInput {
-    tenantId: number;
-    userId: number;
+    tenantId: number | undefined;
+    userId: number | undefined;
 }
 
 export class ListResultDtoOfSubscribableEditionComboboxItemDto implements IListResultDtoOfSubscribableEditionComboboxItemDto {
-    items: SubscribableEditionComboboxItemDto[];
+    items: SubscribableEditionComboboxItemDto[] | undefined;
 
     constructor(data?: IListResultDtoOfSubscribableEditionComboboxItemDto) {
         if (data) {
@@ -8523,14 +8772,14 @@ export class ListResultDtoOfSubscribableEditionComboboxItemDto implements IListR
 }
 
 export interface IListResultDtoOfSubscribableEditionComboboxItemDto {
-    items: SubscribableEditionComboboxItemDto[];
+    items: SubscribableEditionComboboxItemDto[] | undefined;
 }
 
 export class SubscribableEditionComboboxItemDto implements ISubscribableEditionComboboxItemDto {
-    isFree: boolean;
-    value: string;
-    displayText: string;
-    isSelected: boolean;
+    isFree: boolean | undefined;
+    value: string | undefined;
+    displayText: string | undefined;
+    isSelected: boolean | undefined;
 
     constructor(data?: ISubscribableEditionComboboxItemDto) {
         if (data) {
@@ -8568,17 +8817,17 @@ export class SubscribableEditionComboboxItemDto implements ISubscribableEditionC
 }
 
 export interface ISubscribableEditionComboboxItemDto {
-    isFree: boolean;
-    value: string;
-    displayText: string;
-    isSelected: boolean;
+    isFree: boolean | undefined;
+    value: string | undefined;
+    displayText: string | undefined;
+    isSelected: boolean | undefined;
 }
 
 export class FindUsersInput implements IFindUsersInput {
-    tenantId: number;
-    maxResultCount: number;
-    skipCount: number;
-    filter: string;
+    tenantId: number | undefined;
+    maxResultCount: number | undefined;
+    skipCount: number | undefined;
+    filter: string | undefined;
 
     constructor(data?: IFindUsersInput) {
         if (data) {
@@ -8616,15 +8865,15 @@ export class FindUsersInput implements IFindUsersInput {
 }
 
 export interface IFindUsersInput {
-    tenantId: number;
-    maxResultCount: number;
-    skipCount: number;
-    filter: string;
+    tenantId: number | undefined;
+    maxResultCount: number | undefined;
+    skipCount: number | undefined;
+    filter: string | undefined;
 }
 
 export class PagedResultDtoOfNameValueDto implements IPagedResultDtoOfNameValueDto {
-    totalCount: number;
-    items: NameValueDto[];
+    totalCount: number | undefined;
+    items: NameValueDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfNameValueDto) {
         if (data) {
@@ -8666,13 +8915,13 @@ export class PagedResultDtoOfNameValueDto implements IPagedResultDtoOfNameValueD
 }
 
 export interface IPagedResultDtoOfNameValueDto {
-    totalCount: number;
-    items: NameValueDto[];
+    totalCount: number | undefined;
+    items: NameValueDto[] | undefined;
 }
 
 export class NameValueDto implements INameValueDto {
-    name: string;
-    value: string;
+    name: string | undefined;
+    value: string | undefined;
 
     constructor(data?: INameValueDto) {
         if (data) {
@@ -8706,12 +8955,12 @@ export class NameValueDto implements INameValueDto {
 }
 
 export interface INameValueDto {
-    name: string;
-    value: string;
+    name: string | undefined;
+    value: string | undefined;
 }
 
 export class GetDefaultEditionNameOutput implements IGetDefaultEditionNameOutput {
-    name: string;
+    name: string | undefined;
 
     constructor(data?: IGetDefaultEditionNameOutput) {
         if (data) {
@@ -8743,11 +8992,11 @@ export class GetDefaultEditionNameOutput implements IGetDefaultEditionNameOutput
 }
 
 export interface IGetDefaultEditionNameOutput {
-    name: string;
+    name: string | undefined;
 }
 
 export class DateToStringOutput implements IDateToStringOutput {
-    dateString: string;
+    dateString: string | undefined;
 
     constructor(data?: IDateToStringOutput) {
         if (data) {
@@ -8779,12 +9028,12 @@ export class DateToStringOutput implements IDateToStringOutput {
 }
 
 export interface IDateToStringOutput {
-    dateString: string;
+    dateString: string | undefined;
 }
 
 export class NameValueOfString implements INameValueOfString {
-    name: string;
-    value: string;
+    name: string | undefined;
+    value: string | undefined;
 
     constructor(data?: INameValueOfString) {
         if (data) {
@@ -8818,12 +9067,12 @@ export class NameValueOfString implements INameValueOfString {
 }
 
 export interface INameValueOfString {
-    name: string;
-    value: string;
+    name: string | undefined;
+    value: string | undefined;
 }
 
 export class StringOutput implements IStringOutput {
-    output: string;
+    output: string | undefined;
 
     constructor(data?: IStringOutput) {
         if (data) {
@@ -8855,11 +9104,11 @@ export class StringOutput implements IStringOutput {
 }
 
 export interface IStringOutput {
-    output: string;
+    output: string | undefined;
 }
 
 export class ListResultDtoOfEditionListDto implements IListResultDtoOfEditionListDto {
-    items: EditionListDto[];
+    items: EditionListDto[] | undefined;
 
     constructor(data?: IListResultDtoOfEditionListDto) {
         if (data) {
@@ -8899,14 +9148,14 @@ export class ListResultDtoOfEditionListDto implements IListResultDtoOfEditionLis
 }
 
 export interface IListResultDtoOfEditionListDto {
-    items: EditionListDto[];
+    items: EditionListDto[] | undefined;
 }
 
 export class EditionListDto implements IEditionListDto {
-    name: string;
-    displayName: string;
-    creationTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    displayName: string | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 
     constructor(data?: IEditionListDto) {
         if (data) {
@@ -8944,16 +9193,16 @@ export class EditionListDto implements IEditionListDto {
 }
 
 export interface IEditionListDto {
-    name: string;
-    displayName: string;
-    creationTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    displayName: string | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 }
 
 export class GetEditionEditOutput implements IGetEditionEditOutput {
-    edition: EditionEditDto;
-    featureValues: NameValueDto[];
-    features: FlatFeatureDto[];
+    edition: EditionEditDto | undefined;
+    featureValues: NameValueDto[] | undefined;
+    features: FlatFeatureDto[] | undefined;
 
     constructor(data?: IGetEditionEditOutput) {
         if (data) {
@@ -9005,19 +9254,19 @@ export class GetEditionEditOutput implements IGetEditionEditOutput {
 }
 
 export interface IGetEditionEditOutput {
-    edition: EditionEditDto;
-    featureValues: NameValueDto[];
-    features: FlatFeatureDto[];
+    edition: EditionEditDto | undefined;
+    featureValues: NameValueDto[] | undefined;
+    features: FlatFeatureDto[] | undefined;
 }
 
 export class EditionEditDto implements IEditionEditDto {
-    id: number;
+    id: number | undefined;
     displayName: string;
-    monthlyPrice: number;
-    annualPrice: number;
-    trialDayCount: number;
-    waitingDayAfterExpire: number;
-    expiringEditionId: number;
+    monthlyPrice: number | undefined;
+    annualPrice: number | undefined;
+    trialDayCount: number | undefined;
+    waitingDayAfterExpire: number | undefined;
+    expiringEditionId: number | undefined;
 
     constructor(data?: IEditionEditDto) {
         if (data) {
@@ -9061,22 +9310,22 @@ export class EditionEditDto implements IEditionEditDto {
 }
 
 export interface IEditionEditDto {
-    id: number;
+    id: number | undefined;
     displayName: string;
-    monthlyPrice: number;
-    annualPrice: number;
-    trialDayCount: number;
-    waitingDayAfterExpire: number;
-    expiringEditionId: number;
+    monthlyPrice: number | undefined;
+    annualPrice: number | undefined;
+    trialDayCount: number | undefined;
+    waitingDayAfterExpire: number | undefined;
+    expiringEditionId: number | undefined;
 }
 
 export class FlatFeatureDto implements IFlatFeatureDto {
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    defaultValue: string;
-    inputType: FeatureInputTypeDto;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    defaultValue: string | undefined;
+    inputType: FeatureInputTypeDto | undefined;
 
     constructor(data?: IFlatFeatureDto) {
         if (data) {
@@ -9118,19 +9367,19 @@ export class FlatFeatureDto implements IFlatFeatureDto {
 }
 
 export interface IFlatFeatureDto {
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    defaultValue: string;
-    inputType: FeatureInputTypeDto;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    defaultValue: string | undefined;
+    inputType: FeatureInputTypeDto | undefined;
 }
 
 export class FeatureInputTypeDto implements IFeatureInputTypeDto {
-    name: string;
-    attributes: { [key: string] : any; };
-    validator: IValueValidator;
-    itemSource: LocalizableComboboxItemSourceDto;
+    name: string | undefined;
+    attributes: { [key: string] : any; } | undefined;
+    validator: IValueValidator | undefined;
+    itemSource: LocalizableComboboxItemSourceDto | undefined;
 
     constructor(data?: IFeatureInputTypeDto) {
         if (data) {
@@ -9180,15 +9429,15 @@ export class FeatureInputTypeDto implements IFeatureInputTypeDto {
 }
 
 export interface IFeatureInputTypeDto {
-    name: string;
-    attributes: { [key: string] : any; };
-    validator: IValueValidator;
-    itemSource: LocalizableComboboxItemSourceDto;
+    name: string | undefined;
+    attributes: { [key: string] : any; } | undefined;
+    validator: IValueValidator | undefined;
+    itemSource: LocalizableComboboxItemSourceDto | undefined;
 }
 
 export class IValueValidator implements IIValueValidator {
-    name: string;
-    attributes: { [key: string] : any; };
+    readonly name: string | undefined;
+    readonly attributes: { [key: string] : any; } | undefined;
 
     constructor(data?: IIValueValidator) {
         if (data) {
@@ -9201,12 +9450,12 @@ export class IValueValidator implements IIValueValidator {
 
     init(data?: any) {
         if (data) {
-            this.name = data["name"];
+            (<any>this).name = data["name"];
             if (data["attributes"]) {
-                this.attributes = {};
+                (<any>this).attributes = {};
                 for (let key in data["attributes"]) {
                     if (data["attributes"].hasOwnProperty(key))
-                        this.attributes[key] = data["attributes"][key];
+                        (<any>this).attributes[key] = data["attributes"][key];
                 }
             }
         }
@@ -9234,12 +9483,12 @@ export class IValueValidator implements IIValueValidator {
 }
 
 export interface IIValueValidator {
-    name: string;
-    attributes: { [key: string] : any; };
+    name: string | undefined;
+    attributes: { [key: string] : any; } | undefined;
 }
 
 export class LocalizableComboboxItemSourceDto implements ILocalizableComboboxItemSourceDto {
-    items: LocalizableComboboxItemDto[];
+    items: LocalizableComboboxItemDto[] | undefined;
 
     constructor(data?: ILocalizableComboboxItemSourceDto) {
         if (data) {
@@ -9279,12 +9528,12 @@ export class LocalizableComboboxItemSourceDto implements ILocalizableComboboxIte
 }
 
 export interface ILocalizableComboboxItemSourceDto {
-    items: LocalizableComboboxItemDto[];
+    items: LocalizableComboboxItemDto[] | undefined;
 }
 
 export class LocalizableComboboxItemDto implements ILocalizableComboboxItemDto {
-    value: string;
-    displayText: string;
+    value: string | undefined;
+    displayText: string | undefined;
 
     constructor(data?: ILocalizableComboboxItemDto) {
         if (data) {
@@ -9318,8 +9567,8 @@ export class LocalizableComboboxItemDto implements ILocalizableComboboxItemDto {
 }
 
 export interface ILocalizableComboboxItemDto {
-    value: string;
-    displayText: string;
+    value: string | undefined;
+    displayText: string | undefined;
 }
 
 export class CreateOrUpdateEditionDto implements ICreateOrUpdateEditionDto {
@@ -9375,8 +9624,8 @@ export interface ICreateOrUpdateEditionDto {
 }
 
 export class CreateFriendshipRequestInput implements ICreateFriendshipRequestInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 
     constructor(data?: ICreateFriendshipRequestInput) {
         if (data) {
@@ -9410,13 +9659,13 @@ export class CreateFriendshipRequestInput implements ICreateFriendshipRequestInp
 }
 
 export interface ICreateFriendshipRequestInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 }
 
 export class CreateFriendshipRequestByUserNameInput implements ICreateFriendshipRequestByUserNameInput {
     tenancyName: string;
-    userName: string;
+    userName: string | undefined;
 
     constructor(data?: ICreateFriendshipRequestByUserNameInput) {
         if (data) {
@@ -9451,12 +9700,12 @@ export class CreateFriendshipRequestByUserNameInput implements ICreateFriendship
 
 export interface ICreateFriendshipRequestByUserNameInput {
     tenancyName: string;
-    userName: string;
+    userName: string | undefined;
 }
 
 export class BlockUserInput implements IBlockUserInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 
     constructor(data?: IBlockUserInput) {
         if (data) {
@@ -9490,13 +9739,13 @@ export class BlockUserInput implements IBlockUserInput {
 }
 
 export interface IBlockUserInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 }
 
 export class UnblockUserInput implements IUnblockUserInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 
     constructor(data?: IUnblockUserInput) {
         if (data) {
@@ -9530,13 +9779,13 @@ export class UnblockUserInput implements IUnblockUserInput {
 }
 
 export interface IUnblockUserInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 }
 
 export class AcceptFriendshipRequestInput implements IAcceptFriendshipRequestInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 
     constructor(data?: IAcceptFriendshipRequestInput) {
         if (data) {
@@ -9570,26 +9819,26 @@ export class AcceptFriendshipRequestInput implements IAcceptFriendshipRequestInp
 }
 
 export interface IAcceptFriendshipRequestInput {
-    userId: number;
-    tenantId: number;
+    userId: number | undefined;
+    tenantId: number | undefined;
 }
 
 export class HostDashboardData implements IHostDashboardData {
-    newTenantsCount: number;
-    newSubscriptionAmount: number;
-    dashboardPlaceholder1: number;
-    dashboardPlaceholder2: number;
-    incomeStatistics: IncomeStastistic[];
-    editionStatistics: TenantEdition[];
-    expiringTenants: ExpiringTenant[];
-    recentTenants: RecentTenant[];
-    maxExpiringTenantsShownCount: number;
-    maxRecentTenantsShownCount: number;
-    subscriptionEndAlertDayCount: number;
-    recentTenantsDayCount: number;
-    subscriptionEndDateStart: moment.Moment;
-    subscriptionEndDateEnd: moment.Moment;
-    tenantCreationStartDate: moment.Moment;
+    newTenantsCount: number | undefined;
+    newSubscriptionAmount: number | undefined;
+    dashboardPlaceholder1: number | undefined;
+    dashboardPlaceholder2: number | undefined;
+    incomeStatistics: IncomeStastistic[] | undefined;
+    editionStatistics: TenantEdition[] | undefined;
+    expiringTenants: ExpiringTenant[] | undefined;
+    recentTenants: RecentTenant[] | undefined;
+    maxExpiringTenantsShownCount: number | undefined;
+    maxRecentTenantsShownCount: number | undefined;
+    subscriptionEndAlertDayCount: number | undefined;
+    recentTenantsDayCount: number | undefined;
+    subscriptionEndDateStart: moment.Moment | undefined;
+    subscriptionEndDateEnd: moment.Moment | undefined;
+    tenantCreationStartDate: moment.Moment | undefined;
 
     constructor(data?: IHostDashboardData) {
         if (data) {
@@ -9681,27 +9930,27 @@ export class HostDashboardData implements IHostDashboardData {
 }
 
 export interface IHostDashboardData {
-    newTenantsCount: number;
-    newSubscriptionAmount: number;
-    dashboardPlaceholder1: number;
-    dashboardPlaceholder2: number;
-    incomeStatistics: IncomeStastistic[];
-    editionStatistics: TenantEdition[];
-    expiringTenants: ExpiringTenant[];
-    recentTenants: RecentTenant[];
-    maxExpiringTenantsShownCount: number;
-    maxRecentTenantsShownCount: number;
-    subscriptionEndAlertDayCount: number;
-    recentTenantsDayCount: number;
-    subscriptionEndDateStart: moment.Moment;
-    subscriptionEndDateEnd: moment.Moment;
-    tenantCreationStartDate: moment.Moment;
+    newTenantsCount: number | undefined;
+    newSubscriptionAmount: number | undefined;
+    dashboardPlaceholder1: number | undefined;
+    dashboardPlaceholder2: number | undefined;
+    incomeStatistics: IncomeStastistic[] | undefined;
+    editionStatistics: TenantEdition[] | undefined;
+    expiringTenants: ExpiringTenant[] | undefined;
+    recentTenants: RecentTenant[] | undefined;
+    maxExpiringTenantsShownCount: number | undefined;
+    maxRecentTenantsShownCount: number | undefined;
+    subscriptionEndAlertDayCount: number | undefined;
+    recentTenantsDayCount: number | undefined;
+    subscriptionEndDateStart: moment.Moment | undefined;
+    subscriptionEndDateEnd: moment.Moment | undefined;
+    tenantCreationStartDate: moment.Moment | undefined;
 }
 
 export class IncomeStastistic implements IIncomeStastistic {
-    label: string;
-    date: moment.Moment;
-    amount: number;
+    label: string | undefined;
+    date: moment.Moment | undefined;
+    amount: number | undefined;
 
     constructor(data?: IIncomeStastistic) {
         if (data) {
@@ -9737,14 +9986,14 @@ export class IncomeStastistic implements IIncomeStastistic {
 }
 
 export interface IIncomeStastistic {
-    label: string;
-    date: moment.Moment;
-    amount: number;
+    label: string | undefined;
+    date: moment.Moment | undefined;
+    amount: number | undefined;
 }
 
 export class TenantEdition implements ITenantEdition {
-    label: string;
-    value: number;
+    label: string | undefined;
+    value: number | undefined;
 
     constructor(data?: ITenantEdition) {
         if (data) {
@@ -9778,13 +10027,13 @@ export class TenantEdition implements ITenantEdition {
 }
 
 export interface ITenantEdition {
-    label: string;
-    value: number;
+    label: string | undefined;
+    value: number | undefined;
 }
 
 export class ExpiringTenant implements IExpiringTenant {
-    tenantName: string;
-    remainingDayCount: number;
+    tenantName: string | undefined;
+    remainingDayCount: number | undefined;
 
     constructor(data?: IExpiringTenant) {
         if (data) {
@@ -9818,14 +10067,14 @@ export class ExpiringTenant implements IExpiringTenant {
 }
 
 export interface IExpiringTenant {
-    tenantName: string;
-    remainingDayCount: number;
+    tenantName: string | undefined;
+    remainingDayCount: number | undefined;
 }
 
 export class RecentTenant implements IRecentTenant {
-    id: number;
-    name: string;
-    creationTime: moment.Moment;
+    id: number | undefined;
+    name: string | undefined;
+    creationTime: moment.Moment | undefined;
 
     constructor(data?: IRecentTenant) {
         if (data) {
@@ -9861,13 +10110,13 @@ export class RecentTenant implements IRecentTenant {
 }
 
 export interface IRecentTenant {
-    id: number;
-    name: string;
-    creationTime: moment.Moment;
+    id: number | undefined;
+    name: string | undefined;
+    creationTime: moment.Moment | undefined;
 }
 
 export class GetIncomeStatisticsDataOutput implements IGetIncomeStatisticsDataOutput {
-    incomeStatistics: IncomeStastistic[];
+    incomeStatistics: IncomeStastistic[] | undefined;
 
     constructor(data?: IGetIncomeStatisticsDataOutput) {
         if (data) {
@@ -9907,11 +10156,11 @@ export class GetIncomeStatisticsDataOutput implements IGetIncomeStatisticsDataOu
 }
 
 export interface IGetIncomeStatisticsDataOutput {
-    incomeStatistics: IncomeStastistic[];
+    incomeStatistics: IncomeStastistic[] | undefined;
 }
 
 export class GetEditionTenantStatisticsOutput implements IGetEditionTenantStatisticsOutput {
-    editionStatistics: TenantEdition[];
+    editionStatistics: TenantEdition[] | undefined;
 
     constructor(data?: IGetEditionTenantStatisticsOutput) {
         if (data) {
@@ -9951,7 +10200,7 @@ export class GetEditionTenantStatisticsOutput implements IGetEditionTenantStatis
 }
 
 export interface IGetEditionTenantStatisticsOutput {
-    editionStatistics: TenantEdition[];
+    editionStatistics: TenantEdition[] | undefined;
 }
 
 export class HostSettingsEditDto implements IHostSettingsEditDto {
@@ -9960,7 +10209,7 @@ export class HostSettingsEditDto implements IHostSettingsEditDto {
     email: EmailSettingsEditDto;
     tenantManagement: TenantManagementSettingsEditDto;
     security: SecuritySettingsEditDto;
-    billing: HostBillingSettingsEditDto;
+    billing: HostBillingSettingsEditDto | undefined;
 
     constructor(data?: IHostSettingsEditDto) {
         if (data) {
@@ -10014,12 +10263,12 @@ export interface IHostSettingsEditDto {
     email: EmailSettingsEditDto;
     tenantManagement: TenantManagementSettingsEditDto;
     security: SecuritySettingsEditDto;
-    billing: HostBillingSettingsEditDto;
+    billing: HostBillingSettingsEditDto | undefined;
 }
 
 export class GeneralSettingsEditDto implements IGeneralSettingsEditDto {
-    timezone: string;
-    timezoneForComparison: string;
+    timezone: string | undefined;
+    timezoneForComparison: string | undefined;
 
     constructor(data?: IGeneralSettingsEditDto) {
         if (data) {
@@ -10053,13 +10302,13 @@ export class GeneralSettingsEditDto implements IGeneralSettingsEditDto {
 }
 
 export interface IGeneralSettingsEditDto {
-    timezone: string;
-    timezoneForComparison: string;
+    timezone: string | undefined;
+    timezoneForComparison: string | undefined;
 }
 
 export class HostUserManagementSettingsEditDto implements IHostUserManagementSettingsEditDto {
-    isEmailConfirmationRequiredForLogin: boolean;
-    smsVerificationEnabled: boolean;
+    isEmailConfirmationRequiredForLogin: boolean | undefined;
+    smsVerificationEnabled: boolean | undefined;
 
     constructor(data?: IHostUserManagementSettingsEditDto) {
         if (data) {
@@ -10093,20 +10342,20 @@ export class HostUserManagementSettingsEditDto implements IHostUserManagementSet
 }
 
 export interface IHostUserManagementSettingsEditDto {
-    isEmailConfirmationRequiredForLogin: boolean;
-    smsVerificationEnabled: boolean;
+    isEmailConfirmationRequiredForLogin: boolean | undefined;
+    smsVerificationEnabled: boolean | undefined;
 }
 
 export class EmailSettingsEditDto implements IEmailSettingsEditDto {
-    defaultFromAddress: string;
-    defaultFromDisplayName: string;
-    smtpHost: string;
-    smtpPort: number;
-    smtpUserName: string;
-    smtpPassword: string;
-    smtpDomain: string;
-    smtpEnableSsl: boolean;
-    smtpUseDefaultCredentials: boolean;
+    defaultFromAddress: string | undefined;
+    defaultFromDisplayName: string | undefined;
+    smtpHost: string | undefined;
+    smtpPort: number | undefined;
+    smtpUserName: string | undefined;
+    smtpPassword: string | undefined;
+    smtpDomain: string | undefined;
+    smtpEnableSsl: boolean | undefined;
+    smtpUseDefaultCredentials: boolean | undefined;
 
     constructor(data?: IEmailSettingsEditDto) {
         if (data) {
@@ -10154,22 +10403,22 @@ export class EmailSettingsEditDto implements IEmailSettingsEditDto {
 }
 
 export interface IEmailSettingsEditDto {
-    defaultFromAddress: string;
-    defaultFromDisplayName: string;
-    smtpHost: string;
-    smtpPort: number;
-    smtpUserName: string;
-    smtpPassword: string;
-    smtpDomain: string;
-    smtpEnableSsl: boolean;
-    smtpUseDefaultCredentials: boolean;
+    defaultFromAddress: string | undefined;
+    defaultFromDisplayName: string | undefined;
+    smtpHost: string | undefined;
+    smtpPort: number | undefined;
+    smtpUserName: string | undefined;
+    smtpPassword: string | undefined;
+    smtpDomain: string | undefined;
+    smtpEnableSsl: boolean | undefined;
+    smtpUseDefaultCredentials: boolean | undefined;
 }
 
 export class TenantManagementSettingsEditDto implements ITenantManagementSettingsEditDto {
-    allowSelfRegistration: boolean;
-    isNewRegisteredTenantActiveByDefault: boolean;
-    useCaptchaOnRegistration: boolean;
-    defaultEditionId: number;
+    allowSelfRegistration: boolean | undefined;
+    isNewRegisteredTenantActiveByDefault: boolean | undefined;
+    useCaptchaOnRegistration: boolean | undefined;
+    defaultEditionId: number | undefined;
 
     constructor(data?: ITenantManagementSettingsEditDto) {
         if (data) {
@@ -10207,18 +10456,18 @@ export class TenantManagementSettingsEditDto implements ITenantManagementSetting
 }
 
 export interface ITenantManagementSettingsEditDto {
-    allowSelfRegistration: boolean;
-    isNewRegisteredTenantActiveByDefault: boolean;
-    useCaptchaOnRegistration: boolean;
-    defaultEditionId: number;
+    allowSelfRegistration: boolean | undefined;
+    isNewRegisteredTenantActiveByDefault: boolean | undefined;
+    useCaptchaOnRegistration: boolean | undefined;
+    defaultEditionId: number | undefined;
 }
 
 export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
-    useDefaultPasswordComplexitySettings: boolean;
-    passwordComplexity: PasswordComplexitySetting;
-    defaultPasswordComplexity: PasswordComplexitySetting;
-    userLockOut: UserLockOutSettingsEditDto;
-    twoFactorLogin: TwoFactorLoginSettingsEditDto;
+    useDefaultPasswordComplexitySettings: boolean | undefined;
+    passwordComplexity: PasswordComplexitySetting | undefined;
+    defaultPasswordComplexity: PasswordComplexitySetting | undefined;
+    userLockOut: UserLockOutSettingsEditDto | undefined;
+    twoFactorLogin: TwoFactorLoginSettingsEditDto | undefined;
 
     constructor(data?: ISecuritySettingsEditDto) {
         if (data) {
@@ -10258,16 +10507,16 @@ export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
 }
 
 export interface ISecuritySettingsEditDto {
-    useDefaultPasswordComplexitySettings: boolean;
-    passwordComplexity: PasswordComplexitySetting;
-    defaultPasswordComplexity: PasswordComplexitySetting;
-    userLockOut: UserLockOutSettingsEditDto;
-    twoFactorLogin: TwoFactorLoginSettingsEditDto;
+    useDefaultPasswordComplexitySettings: boolean | undefined;
+    passwordComplexity: PasswordComplexitySetting | undefined;
+    defaultPasswordComplexity: PasswordComplexitySetting | undefined;
+    userLockOut: UserLockOutSettingsEditDto | undefined;
+    twoFactorLogin: TwoFactorLoginSettingsEditDto | undefined;
 }
 
 export class HostBillingSettingsEditDto implements IHostBillingSettingsEditDto {
-    legalName: string;
-    address: string;
+    legalName: string | undefined;
+    address: string | undefined;
 
     constructor(data?: IHostBillingSettingsEditDto) {
         if (data) {
@@ -10301,16 +10550,16 @@ export class HostBillingSettingsEditDto implements IHostBillingSettingsEditDto {
 }
 
 export interface IHostBillingSettingsEditDto {
-    legalName: string;
-    address: string;
+    legalName: string | undefined;
+    address: string | undefined;
 }
 
 export class PasswordComplexitySetting implements IPasswordComplexitySetting {
-    requireDigit: boolean;
-    requireLowercase: boolean;
-    requireNonAlphanumeric: boolean;
-    requireUppercase: boolean;
-    requiredLength: number;
+    requireDigit: boolean | undefined;
+    requireLowercase: boolean | undefined;
+    requireNonAlphanumeric: boolean | undefined;
+    requireUppercase: boolean | undefined;
+    requiredLength: number | undefined;
 
     constructor(data?: IPasswordComplexitySetting) {
         if (data) {
@@ -10350,17 +10599,17 @@ export class PasswordComplexitySetting implements IPasswordComplexitySetting {
 }
 
 export interface IPasswordComplexitySetting {
-    requireDigit: boolean;
-    requireLowercase: boolean;
-    requireNonAlphanumeric: boolean;
-    requireUppercase: boolean;
-    requiredLength: number;
+    requireDigit: boolean | undefined;
+    requireLowercase: boolean | undefined;
+    requireNonAlphanumeric: boolean | undefined;
+    requireUppercase: boolean | undefined;
+    requiredLength: number | undefined;
 }
 
 export class UserLockOutSettingsEditDto implements IUserLockOutSettingsEditDto {
-    isEnabled: boolean;
-    maxFailedAccessAttemptsBeforeLockout: number;
-    defaultAccountLockoutSeconds: number;
+    isEnabled: boolean | undefined;
+    maxFailedAccessAttemptsBeforeLockout: number | undefined;
+    defaultAccountLockoutSeconds: number | undefined;
 
     constructor(data?: IUserLockOutSettingsEditDto) {
         if (data) {
@@ -10396,18 +10645,18 @@ export class UserLockOutSettingsEditDto implements IUserLockOutSettingsEditDto {
 }
 
 export interface IUserLockOutSettingsEditDto {
-    isEnabled: boolean;
-    maxFailedAccessAttemptsBeforeLockout: number;
-    defaultAccountLockoutSeconds: number;
+    isEnabled: boolean | undefined;
+    maxFailedAccessAttemptsBeforeLockout: number | undefined;
+    defaultAccountLockoutSeconds: number | undefined;
 }
 
 export class TwoFactorLoginSettingsEditDto implements ITwoFactorLoginSettingsEditDto {
-    isEnabledForApplication: boolean;
-    isEnabled: boolean;
-    isEmailProviderEnabled: boolean;
-    isSmsProviderEnabled: boolean;
-    isRememberBrowserEnabled: boolean;
-    isGoogleAuthenticatorEnabled: boolean;
+    isEnabledForApplication: boolean | undefined;
+    isEnabled: boolean | undefined;
+    isEmailProviderEnabled: boolean | undefined;
+    isSmsProviderEnabled: boolean | undefined;
+    isRememberBrowserEnabled: boolean | undefined;
+    isGoogleAuthenticatorEnabled: boolean | undefined;
 
     constructor(data?: ITwoFactorLoginSettingsEditDto) {
         if (data) {
@@ -10449,12 +10698,12 @@ export class TwoFactorLoginSettingsEditDto implements ITwoFactorLoginSettingsEdi
 }
 
 export interface ITwoFactorLoginSettingsEditDto {
-    isEnabledForApplication: boolean;
-    isEnabled: boolean;
-    isEmailProviderEnabled: boolean;
-    isSmsProviderEnabled: boolean;
-    isRememberBrowserEnabled: boolean;
-    isGoogleAuthenticatorEnabled: boolean;
+    isEnabledForApplication: boolean | undefined;
+    isEnabled: boolean | undefined;
+    isEmailProviderEnabled: boolean | undefined;
+    isSmsProviderEnabled: boolean | undefined;
+    isRememberBrowserEnabled: boolean | undefined;
+    isGoogleAuthenticatorEnabled: boolean | undefined;
 }
 
 export class SendTestEmailInput implements ISendTestEmailInput {
@@ -10497,10 +10746,10 @@ export class InstallDto implements IInstallDto {
     connectionString: string;
     adminPassword: string;
     webSiteUrl: string;
-    serverUrl: string;
+    serverUrl: string | undefined;
     defaultLanguage: string;
-    smtpSettings: EmailSettingsEditDto;
-    billInfo: HostBillingSettingsEditDto;
+    smtpSettings: EmailSettingsEditDto | undefined;
+    billInfo: HostBillingSettingsEditDto | undefined;
 
     constructor(data?: IInstallDto) {
         if (data) {
@@ -10547,17 +10796,17 @@ export interface IInstallDto {
     connectionString: string;
     adminPassword: string;
     webSiteUrl: string;
-    serverUrl: string;
+    serverUrl: string | undefined;
     defaultLanguage: string;
-    smtpSettings: EmailSettingsEditDto;
-    billInfo: HostBillingSettingsEditDto;
+    smtpSettings: EmailSettingsEditDto | undefined;
+    billInfo: HostBillingSettingsEditDto | undefined;
 }
 
 export class AppSettingsJsonDto implements IAppSettingsJsonDto {
-    connectionString: string;
-    webSiteUrl: string;
-    serverSiteUrl: string;
-    languages: NameValue[];
+    connectionString: string | undefined;
+    webSiteUrl: string | undefined;
+    serverSiteUrl: string | undefined;
+    languages: NameValue[] | undefined;
 
     constructor(data?: IAppSettingsJsonDto) {
         if (data) {
@@ -10603,15 +10852,15 @@ export class AppSettingsJsonDto implements IAppSettingsJsonDto {
 }
 
 export interface IAppSettingsJsonDto {
-    connectionString: string;
-    webSiteUrl: string;
-    serverSiteUrl: string;
-    languages: NameValue[];
+    connectionString: string | undefined;
+    webSiteUrl: string | undefined;
+    serverSiteUrl: string | undefined;
+    languages: NameValue[] | undefined;
 }
 
 export class NameValue implements INameValue {
-    name: string;
-    value: string;
+    name: string | undefined;
+    value: string | undefined;
 
     constructor(data?: INameValue) {
         if (data) {
@@ -10645,12 +10894,12 @@ export class NameValue implements INameValue {
 }
 
 export interface INameValue {
-    name: string;
-    value: string;
+    name: string | undefined;
+    value: string | undefined;
 }
 
 export class CheckDatabaseOutput implements ICheckDatabaseOutput {
-    isDatabaseExist: boolean;
+    isDatabaseExist: boolean | undefined;
 
     constructor(data?: ICheckDatabaseOutput) {
         if (data) {
@@ -10682,19 +10931,19 @@ export class CheckDatabaseOutput implements ICheckDatabaseOutput {
 }
 
 export interface ICheckDatabaseOutput {
-    isDatabaseExist: boolean;
+    isDatabaseExist: boolean | undefined;
 }
 
 export class InvoiceDto implements IInvoiceDto {
-    amount: number;
-    editionDisplayName: string;
-    invoiceNo: string;
-    invoiceDate: moment.Moment;
-    tenantLegalName: string;
-    tenantAddress: string[];
-    tenantTaxNo: string;
-    hostLegalName: string;
-    hostAddress: string[];
+    amount: number | undefined;
+    editionDisplayName: string | undefined;
+    invoiceNo: string | undefined;
+    invoiceDate: moment.Moment | undefined;
+    tenantLegalName: string | undefined;
+    tenantAddress: string[] | undefined;
+    tenantTaxNo: string | undefined;
+    hostLegalName: string | undefined;
+    hostAddress: string[] | undefined;
 
     constructor(data?: IInvoiceDto) {
         if (data) {
@@ -10758,19 +11007,19 @@ export class InvoiceDto implements IInvoiceDto {
 }
 
 export interface IInvoiceDto {
-    amount: number;
-    editionDisplayName: string;
-    invoiceNo: string;
-    invoiceDate: moment.Moment;
-    tenantLegalName: string;
-    tenantAddress: string[];
-    tenantTaxNo: string;
-    hostLegalName: string;
-    hostAddress: string[];
+    amount: number | undefined;
+    editionDisplayName: string | undefined;
+    invoiceNo: string | undefined;
+    invoiceDate: moment.Moment | undefined;
+    tenantLegalName: string | undefined;
+    tenantAddress: string[] | undefined;
+    tenantTaxNo: string | undefined;
+    hostLegalName: string | undefined;
+    hostAddress: string[] | undefined;
 }
 
 export class CreateInvoiceDto implements ICreateInvoiceDto {
-    subscriptionPaymentId: number;
+    subscriptionPaymentId: number | undefined;
 
     constructor(data?: ICreateInvoiceDto) {
         if (data) {
@@ -10802,12 +11051,12 @@ export class CreateInvoiceDto implements ICreateInvoiceDto {
 }
 
 export interface ICreateInvoiceDto {
-    subscriptionPaymentId: number;
+    subscriptionPaymentId: number | undefined;
 }
 
 export class GetLanguagesOutput implements IGetLanguagesOutput {
-    defaultLanguageName: string;
-    items: ApplicationLanguageListDto[];
+    defaultLanguageName: string | undefined;
+    items: ApplicationLanguageListDto[] | undefined;
 
     constructor(data?: IGetLanguagesOutput) {
         if (data) {
@@ -10849,24 +11098,24 @@ export class GetLanguagesOutput implements IGetLanguagesOutput {
 }
 
 export interface IGetLanguagesOutput {
-    defaultLanguageName: string;
-    items: ApplicationLanguageListDto[];
+    defaultLanguageName: string | undefined;
+    items: ApplicationLanguageListDto[] | undefined;
 }
 
 export class ApplicationLanguageListDto implements IApplicationLanguageListDto {
-    tenantId: number;
-    name: string;
-    displayName: string;
-    icon: string;
-    isDisabled: boolean;
-    isDeleted: boolean;
-    deleterUserId: number;
-    deletionTime: moment.Moment;
-    lastModificationTime: moment.Moment;
-    lastModifierUserId: number;
-    creationTime: moment.Moment;
-    creatorUserId: number;
-    id: number;
+    tenantId: number | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    icon: string | undefined;
+    isDisabled: boolean | undefined;
+    isDeleted: boolean | undefined;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
 
     constructor(data?: IApplicationLanguageListDto) {
         if (data) {
@@ -10922,25 +11171,25 @@ export class ApplicationLanguageListDto implements IApplicationLanguageListDto {
 }
 
 export interface IApplicationLanguageListDto {
-    tenantId: number;
-    name: string;
-    displayName: string;
-    icon: string;
-    isDisabled: boolean;
-    isDeleted: boolean;
-    deleterUserId: number;
-    deletionTime: moment.Moment;
-    lastModificationTime: moment.Moment;
-    lastModifierUserId: number;
-    creationTime: moment.Moment;
-    creatorUserId: number;
-    id: number;
+    tenantId: number | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    icon: string | undefined;
+    isDisabled: boolean | undefined;
+    isDeleted: boolean | undefined;
+    deleterUserId: number | undefined;
+    deletionTime: moment.Moment | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
 }
 
 export class GetLanguageForEditOutput implements IGetLanguageForEditOutput {
-    language: ApplicationLanguageEditDto;
-    languageNames: ComboboxItemDto[];
-    flags: ComboboxItemDto[];
+    language: ApplicationLanguageEditDto | undefined;
+    languageNames: ComboboxItemDto[] | undefined;
+    flags: ComboboxItemDto[] | undefined;
 
     constructor(data?: IGetLanguageForEditOutput) {
         if (data) {
@@ -10992,16 +11241,16 @@ export class GetLanguageForEditOutput implements IGetLanguageForEditOutput {
 }
 
 export interface IGetLanguageForEditOutput {
-    language: ApplicationLanguageEditDto;
-    languageNames: ComboboxItemDto[];
-    flags: ComboboxItemDto[];
+    language: ApplicationLanguageEditDto | undefined;
+    languageNames: ComboboxItemDto[] | undefined;
+    flags: ComboboxItemDto[] | undefined;
 }
 
 export class ApplicationLanguageEditDto implements IApplicationLanguageEditDto {
-    id: number;
+    id: number | undefined;
     name: string;
-    icon: string;
-    isEnabled: boolean;
+    icon: string | undefined;
+    isEnabled: boolean | undefined;
 
     constructor(data?: IApplicationLanguageEditDto) {
         if (data) {
@@ -11039,16 +11288,16 @@ export class ApplicationLanguageEditDto implements IApplicationLanguageEditDto {
 }
 
 export interface IApplicationLanguageEditDto {
-    id: number;
+    id: number | undefined;
     name: string;
-    icon: string;
-    isEnabled: boolean;
+    icon: string | undefined;
+    isEnabled: boolean | undefined;
 }
 
 export class ComboboxItemDto implements IComboboxItemDto {
-    value: string;
-    displayText: string;
-    isSelected: boolean;
+    value: string | undefined;
+    displayText: string | undefined;
+    isSelected: boolean | undefined;
 
     constructor(data?: IComboboxItemDto) {
         if (data) {
@@ -11084,9 +11333,9 @@ export class ComboboxItemDto implements IComboboxItemDto {
 }
 
 export interface IComboboxItemDto {
-    value: string;
-    displayText: string;
-    isSelected: boolean;
+    value: string | undefined;
+    displayText: string | undefined;
+    isSelected: boolean | undefined;
 }
 
 export class CreateOrUpdateLanguageInput implements ICreateOrUpdateLanguageInput {
@@ -11165,8 +11414,8 @@ export interface ISetDefaultLanguageInput {
 }
 
 export class PagedResultDtoOfLanguageTextListDto implements IPagedResultDtoOfLanguageTextListDto {
-    totalCount: number;
-    items: LanguageTextListDto[];
+    totalCount: number | undefined;
+    items: LanguageTextListDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfLanguageTextListDto) {
         if (data) {
@@ -11208,14 +11457,14 @@ export class PagedResultDtoOfLanguageTextListDto implements IPagedResultDtoOfLan
 }
 
 export interface IPagedResultDtoOfLanguageTextListDto {
-    totalCount: number;
-    items: LanguageTextListDto[];
+    totalCount: number | undefined;
+    items: LanguageTextListDto[] | undefined;
 }
 
 export class LanguageTextListDto implements ILanguageTextListDto {
-    key: string;
-    baseValue: string;
-    targetValue: string;
+    key: string | undefined;
+    baseValue: string | undefined;
+    targetValue: string | undefined;
 
     constructor(data?: ILanguageTextListDto) {
         if (data) {
@@ -11251,9 +11500,9 @@ export class LanguageTextListDto implements ILanguageTextListDto {
 }
 
 export interface ILanguageTextListDto {
-    key: string;
-    baseValue: string;
-    targetValue: string;
+    key: string | undefined;
+    baseValue: string | undefined;
+    targetValue: string | undefined;
 }
 
 export class UpdateLanguageTextInput implements IUpdateLanguageTextInput {
@@ -11304,8 +11553,464 @@ export interface IUpdateLanguageTextInput {
     value: string;
 }
 
+export class GetNotificationsOutput implements IGetNotificationsOutput {
+    unreadCount: number | undefined;
+    totalCount: number | undefined;
+    items: UserNotification[] | undefined;
+
+    constructor(data?: IGetNotificationsOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.unreadCount = data["unreadCount"];
+            this.totalCount = data["totalCount"];
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(UserNotification.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): GetNotificationsOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetNotificationsOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["unreadCount"] = this.unreadCount;
+        data["totalCount"] = this.totalCount;
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IGetNotificationsOutput {
+    unreadCount: number | undefined;
+    totalCount: number | undefined;
+    items: UserNotification[] | undefined;
+}
+
+export class UserNotification implements IUserNotification {
+    tenantId: number | undefined;
+    userId: number | undefined;
+    state: UserNotificationState | undefined;
+    notification: TenantNotification | undefined;
+    id: string | undefined;
+
+    constructor(data?: IUserNotification) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.tenantId = data["tenantId"];
+            this.userId = data["userId"];
+            this.state = data["state"];
+            this.notification = data["notification"] ? TenantNotification.fromJS(data["notification"]) : <any>undefined;
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): UserNotification {
+        data = typeof data === 'object' ? data : {};
+        let result = new UserNotification();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tenantId"] = this.tenantId;
+        data["userId"] = this.userId;
+        data["state"] = this.state;
+        data["notification"] = this.notification ? this.notification.toJSON() : <any>undefined;
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IUserNotification {
+    tenantId: number | undefined;
+    userId: number | undefined;
+    state: UserNotificationState | undefined;
+    notification: TenantNotification | undefined;
+    id: string | undefined;
+}
+
+export class TenantNotification implements ITenantNotification {
+    tenantId: number | undefined;
+    notificationName: string | undefined;
+    data: NotificationData | undefined;
+    entityType: string | undefined;
+    entityTypeName: string | undefined;
+    entityId: any | undefined;
+    severity: TenantNotificationSeverity | undefined;
+    creationTime: moment.Moment | undefined;
+    id: string | undefined;
+
+    constructor(data?: ITenantNotification) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.tenantId = data["tenantId"];
+            this.notificationName = data["notificationName"];
+            this.data = data["data"] ? NotificationData.fromJS(data["data"]) : <any>undefined;
+            this.entityType = data["entityType"];
+            this.entityTypeName = data["entityTypeName"];
+            if (data["entityId"]) {
+                this.entityId = {};
+                for (let key in data["entityId"]) {
+                    if (data["entityId"].hasOwnProperty(key))
+                        this.entityId[key] = data["entityId"][key];
+                }
+            }
+            this.severity = data["severity"];
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): TenantNotification {
+        data = typeof data === 'object' ? data : {};
+        let result = new TenantNotification();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["tenantId"] = this.tenantId;
+        data["notificationName"] = this.notificationName;
+        data["data"] = this.data ? this.data.toJSON() : <any>undefined;
+        data["entityType"] = this.entityType;
+        data["entityTypeName"] = this.entityTypeName;
+        if (this.entityId) {
+            data["entityId"] = {};
+            for (let key in this.entityId) {
+                if (this.entityId.hasOwnProperty(key))
+                    data["entityId"][key] = this.entityId[key];
+            }
+        }
+        data["severity"] = this.severity;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface ITenantNotification {
+    tenantId: number | undefined;
+    notificationName: string | undefined;
+    data: NotificationData | undefined;
+    entityType: string | undefined;
+    entityTypeName: string | undefined;
+    entityId: any | undefined;
+    severity: TenantNotificationSeverity | undefined;
+    creationTime: moment.Moment | undefined;
+    id: string | undefined;
+}
+
+export class NotificationData implements INotificationData {
+    readonly type: string | undefined;
+    properties: { [key: string] : any; } | undefined;
+
+    constructor(data?: INotificationData) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            (<any>this).type = data["type"];
+            if (data["properties"]) {
+                this.properties = {};
+                for (let key in data["properties"]) {
+                    if (data["properties"].hasOwnProperty(key))
+                        this.properties[key] = data["properties"][key];
+                }
+            }
+        }
+    }
+
+    static fromJS(data: any): NotificationData {
+        data = typeof data === 'object' ? data : {};
+        let result = new NotificationData();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["type"] = this.type;
+        if (this.properties) {
+            data["properties"] = {};
+            for (let key in this.properties) {
+                if (this.properties.hasOwnProperty(key))
+                    data["properties"][key] = this.properties[key];
+            }
+        }
+        return data; 
+    }
+}
+
+export interface INotificationData {
+    type: string | undefined;
+    properties: { [key: string] : any; } | undefined;
+}
+
+export class EntityDtoOfGuid implements IEntityDtoOfGuid {
+    id: string | undefined;
+
+    constructor(data?: IEntityDtoOfGuid) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.id = data["id"];
+        }
+    }
+
+    static fromJS(data: any): EntityDtoOfGuid {
+        data = typeof data === 'object' ? data : {};
+        let result = new EntityDtoOfGuid();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        return data; 
+    }
+}
+
+export interface IEntityDtoOfGuid {
+    id: string | undefined;
+}
+
+export class GetNotificationSettingsOutput implements IGetNotificationSettingsOutput {
+    receiveNotifications: boolean | undefined;
+    notifications: NotificationSubscriptionWithDisplayNameDto[] | undefined;
+
+    constructor(data?: IGetNotificationSettingsOutput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.receiveNotifications = data["receiveNotifications"];
+            if (data["notifications"] && data["notifications"].constructor === Array) {
+                this.notifications = [];
+                for (let item of data["notifications"])
+                    this.notifications.push(NotificationSubscriptionWithDisplayNameDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): GetNotificationSettingsOutput {
+        data = typeof data === 'object' ? data : {};
+        let result = new GetNotificationSettingsOutput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["receiveNotifications"] = this.receiveNotifications;
+        if (this.notifications && this.notifications.constructor === Array) {
+            data["notifications"] = [];
+            for (let item of this.notifications)
+                data["notifications"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IGetNotificationSettingsOutput {
+    receiveNotifications: boolean | undefined;
+    notifications: NotificationSubscriptionWithDisplayNameDto[] | undefined;
+}
+
+export class NotificationSubscriptionWithDisplayNameDto implements INotificationSubscriptionWithDisplayNameDto {
+    displayName: string | undefined;
+    description: string | undefined;
+    name: string;
+    isSubscribed: boolean | undefined;
+
+    constructor(data?: INotificationSubscriptionWithDisplayNameDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.displayName = data["displayName"];
+            this.description = data["description"];
+            this.name = data["name"];
+            this.isSubscribed = data["isSubscribed"];
+        }
+    }
+
+    static fromJS(data: any): NotificationSubscriptionWithDisplayNameDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new NotificationSubscriptionWithDisplayNameDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["displayName"] = this.displayName;
+        data["description"] = this.description;
+        data["name"] = this.name;
+        data["isSubscribed"] = this.isSubscribed;
+        return data; 
+    }
+}
+
+export interface INotificationSubscriptionWithDisplayNameDto {
+    displayName: string | undefined;
+    description: string | undefined;
+    name: string;
+    isSubscribed: boolean | undefined;
+}
+
+export class UpdateNotificationSettingsInput implements IUpdateNotificationSettingsInput {
+    receiveNotifications: boolean | undefined;
+    notifications: NotificationSubscriptionDto[] | undefined;
+
+    constructor(data?: IUpdateNotificationSettingsInput) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.receiveNotifications = data["receiveNotifications"];
+            if (data["notifications"] && data["notifications"].constructor === Array) {
+                this.notifications = [];
+                for (let item of data["notifications"])
+                    this.notifications.push(NotificationSubscriptionDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): UpdateNotificationSettingsInput {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateNotificationSettingsInput();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["receiveNotifications"] = this.receiveNotifications;
+        if (this.notifications && this.notifications.constructor === Array) {
+            data["notifications"] = [];
+            for (let item of this.notifications)
+                data["notifications"].push(item.toJSON());
+        }
+        return data; 
+    }
+}
+
+export interface IUpdateNotificationSettingsInput {
+    receiveNotifications: boolean | undefined;
+    notifications: NotificationSubscriptionDto[] | undefined;
+}
+
+export class NotificationSubscriptionDto implements INotificationSubscriptionDto {
+    name: string;
+    isSubscribed: boolean | undefined;
+
+    constructor(data?: INotificationSubscriptionDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.name = data["name"];
+            this.isSubscribed = data["isSubscribed"];
+        }
+    }
+
+    static fromJS(data: any): NotificationSubscriptionDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new NotificationSubscriptionDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["name"] = this.name;
+        data["isSubscribed"] = this.isSubscribed;
+        return data; 
+    }
+}
+
+export interface INotificationSubscriptionDto {
+    name: string;
+    isSubscribed: boolean | undefined;
+}
+
 export class ListResultDtoOfOrganizationUnitDto implements IListResultDtoOfOrganizationUnitDto {
-    items: OrganizationUnitDto[];
+    items: OrganizationUnitDto[] | undefined;
 
     constructor(data?: IListResultDtoOfOrganizationUnitDto) {
         if (data) {
@@ -11345,19 +12050,19 @@ export class ListResultDtoOfOrganizationUnitDto implements IListResultDtoOfOrgan
 }
 
 export interface IListResultDtoOfOrganizationUnitDto {
-    items: OrganizationUnitDto[];
+    items: OrganizationUnitDto[] | undefined;
 }
 
 export class OrganizationUnitDto implements IOrganizationUnitDto {
-    parentId: number;
-    code: string;
-    displayName: string;
-    memberCount: number;
-    lastModificationTime: moment.Moment;
-    lastModifierUserId: number;
-    creationTime: moment.Moment;
-    creatorUserId: number;
-    id: number;
+    parentId: number | undefined;
+    code: string | undefined;
+    displayName: string | undefined;
+    memberCount: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
 
     constructor(data?: IOrganizationUnitDto) {
         if (data) {
@@ -11405,20 +12110,20 @@ export class OrganizationUnitDto implements IOrganizationUnitDto {
 }
 
 export interface IOrganizationUnitDto {
-    parentId: number;
-    code: string;
-    displayName: string;
-    memberCount: number;
-    lastModificationTime: moment.Moment;
-    lastModifierUserId: number;
-    creationTime: moment.Moment;
-    creatorUserId: number;
-    id: number;
+    parentId: number | undefined;
+    code: string | undefined;
+    displayName: string | undefined;
+    memberCount: number | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
 }
 
 export class PagedResultDtoOfOrganizationUnitUserListDto implements IPagedResultDtoOfOrganizationUnitUserListDto {
-    totalCount: number;
-    items: OrganizationUnitUserListDto[];
+    totalCount: number | undefined;
+    items: OrganizationUnitUserListDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfOrganizationUnitUserListDto) {
         if (data) {
@@ -11460,18 +12165,18 @@ export class PagedResultDtoOfOrganizationUnitUserListDto implements IPagedResult
 }
 
 export interface IPagedResultDtoOfOrganizationUnitUserListDto {
-    totalCount: number;
-    items: OrganizationUnitUserListDto[];
+    totalCount: number | undefined;
+    items: OrganizationUnitUserListDto[] | undefined;
 }
 
 export class OrganizationUnitUserListDto implements IOrganizationUnitUserListDto {
-    name: string;
-    surname: string;
-    userName: string;
-    emailAddress: string;
-    profilePictureId: string;
-    addedTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    surname: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    profilePictureId: string | undefined;
+    addedTime: moment.Moment | undefined;
+    id: number | undefined;
 
     constructor(data?: IOrganizationUnitUserListDto) {
         if (data) {
@@ -11515,17 +12220,17 @@ export class OrganizationUnitUserListDto implements IOrganizationUnitUserListDto
 }
 
 export interface IOrganizationUnitUserListDto {
-    name: string;
-    surname: string;
-    userName: string;
-    emailAddress: string;
-    profilePictureId: string;
-    addedTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    surname: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    profilePictureId: string | undefined;
+    addedTime: moment.Moment | undefined;
+    id: number | undefined;
 }
 
 export class CreateOrganizationUnitInput implements ICreateOrganizationUnitInput {
-    parentId: number;
+    parentId: number | undefined;
     displayName: string;
 
     constructor(data?: ICreateOrganizationUnitInput) {
@@ -11560,12 +12265,12 @@ export class CreateOrganizationUnitInput implements ICreateOrganizationUnitInput
 }
 
 export interface ICreateOrganizationUnitInput {
-    parentId: number;
+    parentId: number | undefined;
     displayName: string;
 }
 
 export class UpdateOrganizationUnitInput implements IUpdateOrganizationUnitInput {
-    id: number;
+    id: number | undefined;
     displayName: string;
 
     constructor(data?: IUpdateOrganizationUnitInput) {
@@ -11600,13 +12305,13 @@ export class UpdateOrganizationUnitInput implements IUpdateOrganizationUnitInput
 }
 
 export interface IUpdateOrganizationUnitInput {
-    id: number;
+    id: number | undefined;
     displayName: string;
 }
 
 export class MoveOrganizationUnitInput implements IMoveOrganizationUnitInput {
-    id: number;
-    newParentId: number;
+    id: number | undefined;
+    newParentId: number | undefined;
 
     constructor(data?: IMoveOrganizationUnitInput) {
         if (data) {
@@ -11640,13 +12345,13 @@ export class MoveOrganizationUnitInput implements IMoveOrganizationUnitInput {
 }
 
 export interface IMoveOrganizationUnitInput {
-    id: number;
-    newParentId: number;
+    id: number | undefined;
+    newParentId: number | undefined;
 }
 
 export class UsersToOrganizationUnitInput implements IUsersToOrganizationUnitInput {
-    userIds: number[];
-    organizationUnitId: number;
+    userIds: number[] | undefined;
+    organizationUnitId: number | undefined;
 
     constructor(data?: IUsersToOrganizationUnitInput) {
         if (data) {
@@ -11688,15 +12393,15 @@ export class UsersToOrganizationUnitInput implements IUsersToOrganizationUnitInp
 }
 
 export interface IUsersToOrganizationUnitInput {
-    userIds: number[];
-    organizationUnitId: number;
+    userIds: number[] | undefined;
+    organizationUnitId: number | undefined;
 }
 
 export class FindOrganizationUnitUsersInput implements IFindOrganizationUnitUsersInput {
-    organizationUnitId: number;
-    maxResultCount: number;
-    skipCount: number;
-    filter: string;
+    organizationUnitId: number | undefined;
+    maxResultCount: number | undefined;
+    skipCount: number | undefined;
+    filter: string | undefined;
 
     constructor(data?: IFindOrganizationUnitUsersInput) {
         if (data) {
@@ -11734,15 +12439,15 @@ export class FindOrganizationUnitUsersInput implements IFindOrganizationUnitUser
 }
 
 export interface IFindOrganizationUnitUsersInput {
-    organizationUnitId: number;
-    maxResultCount: number;
-    skipCount: number;
-    filter: string;
+    organizationUnitId: number | undefined;
+    maxResultCount: number | undefined;
+    skipCount: number | undefined;
+    filter: string | undefined;
 }
 
 export class PaymentInfoDto implements IPaymentInfoDto {
-    edition: EditionSelectDto;
-    additionalPrice: number;
+    edition: EditionSelectDto | undefined;
+    additionalPrice: number | undefined;
 
     constructor(data?: IPaymentInfoDto) {
         if (data) {
@@ -11776,21 +12481,21 @@ export class PaymentInfoDto implements IPaymentInfoDto {
 }
 
 export interface IPaymentInfoDto {
-    edition: EditionSelectDto;
-    additionalPrice: number;
+    edition: EditionSelectDto | undefined;
+    additionalPrice: number | undefined;
 }
 
 export class EditionSelectDto implements IEditionSelectDto {
-    id: number;
-    name: string;
-    displayName: string;
-    expiringEditionId: number;
-    monthlyPrice: number;
-    annualPrice: number;
-    trialDayCount: number;
-    waitingDayAfterExpire: number;
-    isFree: boolean;
-    additionalData: AdditionalData;
+    id: number | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    expiringEditionId: number | undefined;
+    monthlyPrice: number | undefined;
+    annualPrice: number | undefined;
+    trialDayCount: number | undefined;
+    waitingDayAfterExpire: number | undefined;
+    isFree: boolean | undefined;
+    additionalData: AdditionalData | undefined;
 
     constructor(data?: IEditionSelectDto) {
         if (data) {
@@ -11840,23 +12545,23 @@ export class EditionSelectDto implements IEditionSelectDto {
 }
 
 export interface IEditionSelectDto {
-    id: number;
-    name: string;
-    displayName: string;
-    expiringEditionId: number;
-    monthlyPrice: number;
-    annualPrice: number;
-    trialDayCount: number;
-    waitingDayAfterExpire: number;
-    isFree: boolean;
-    additionalData: AdditionalData;
+    id: number | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    expiringEditionId: number | undefined;
+    monthlyPrice: number | undefined;
+    annualPrice: number | undefined;
+    trialDayCount: number | undefined;
+    waitingDayAfterExpire: number | undefined;
+    isFree: boolean | undefined;
+    additionalData: AdditionalData | undefined;
 }
 
 export class CreatePaymentDto implements ICreatePaymentDto {
-    editionId: number;
-    editionPaymentType: CreatePaymentDtoEditionPaymentType;
-    paymentPeriodType: CreatePaymentDtoPaymentPeriodType;
-    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType;
+    editionId: number | undefined;
+    editionPaymentType: CreatePaymentDtoEditionPaymentType | undefined;
+    paymentPeriodType: CreatePaymentDtoPaymentPeriodType | undefined;
+    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType | undefined;
 
     constructor(data?: ICreatePaymentDto) {
         if (data) {
@@ -11894,18 +12599,18 @@ export class CreatePaymentDto implements ICreatePaymentDto {
 }
 
 export interface ICreatePaymentDto {
-    editionId: number;
-    editionPaymentType: CreatePaymentDtoEditionPaymentType;
-    paymentPeriodType: CreatePaymentDtoPaymentPeriodType;
-    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType;
+    editionId: number | undefined;
+    editionPaymentType: CreatePaymentDtoEditionPaymentType | undefined;
+    paymentPeriodType: CreatePaymentDtoPaymentPeriodType | undefined;
+    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType | undefined;
 }
 
 export class ExecutePaymentDto implements IExecutePaymentDto {
-    gateway: ExecutePaymentDtoGateway;
-    editionPaymentType: ExecutePaymentDtoEditionPaymentType;
-    editionId: number;
-    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType;
-    additionalData: { [key: string] : string; };
+    gateway: ExecutePaymentDtoGateway | undefined;
+    editionPaymentType: ExecutePaymentDtoEditionPaymentType | undefined;
+    editionId: number | undefined;
+    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType | undefined;
+    additionalData: { [key: string] : string; } | undefined;
 
     constructor(data?: IExecutePaymentDto) {
         if (data) {
@@ -11957,16 +12662,16 @@ export class ExecutePaymentDto implements IExecutePaymentDto {
 }
 
 export interface IExecutePaymentDto {
-    gateway: ExecutePaymentDtoGateway;
-    editionPaymentType: ExecutePaymentDtoEditionPaymentType;
-    editionId: number;
-    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType;
-    additionalData: { [key: string] : string; };
+    gateway: ExecutePaymentDtoGateway | undefined;
+    editionPaymentType: ExecutePaymentDtoEditionPaymentType | undefined;
+    editionId: number | undefined;
+    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType | undefined;
+    additionalData: { [key: string] : string; } | undefined;
 }
 
 export class PagedResultDtoOfSubscriptionPaymentListDto implements IPagedResultDtoOfSubscriptionPaymentListDto {
-    totalCount: number;
-    items: SubscriptionPaymentListDto[];
+    totalCount: number | undefined;
+    items: SubscriptionPaymentListDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfSubscriptionPaymentListDto) {
         if (data) {
@@ -12008,27 +12713,27 @@ export class PagedResultDtoOfSubscriptionPaymentListDto implements IPagedResultD
 }
 
 export interface IPagedResultDtoOfSubscriptionPaymentListDto {
-    totalCount: number;
-    items: SubscriptionPaymentListDto[];
+    totalCount: number | undefined;
+    items: SubscriptionPaymentListDto[] | undefined;
 }
 
 export class SubscriptionPaymentListDto implements ISubscriptionPaymentListDto {
-    gateway: string;
-    amount: number;
-    editionId: number;
-    dayCount: number;
-    paymentPeriodType: string;
-    paymentId: string;
-    payerId: string;
-    status: string;
-    editionDisplayName: string;
-    tenantId: number;
-    invoiceNo: string;
-    lastModificationTime: moment.Moment;
-    lastModifierUserId: number;
-    creationTime: moment.Moment;
-    creatorUserId: number;
-    id: number;
+    gateway: string | undefined;
+    amount: number | undefined;
+    editionId: number | undefined;
+    dayCount: number | undefined;
+    paymentPeriodType: string | undefined;
+    paymentId: string | undefined;
+    payerId: string | undefined;
+    status: string | undefined;
+    editionDisplayName: string | undefined;
+    tenantId: number | undefined;
+    invoiceNo: string | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
 
     constructor(data?: ISubscriptionPaymentListDto) {
         if (data) {
@@ -12090,26 +12795,26 @@ export class SubscriptionPaymentListDto implements ISubscriptionPaymentListDto {
 }
 
 export interface ISubscriptionPaymentListDto {
-    gateway: string;
-    amount: number;
-    editionId: number;
-    dayCount: number;
-    paymentPeriodType: string;
-    paymentId: string;
-    payerId: string;
-    status: string;
-    editionDisplayName: string;
-    tenantId: number;
-    invoiceNo: string;
-    lastModificationTime: moment.Moment;
-    lastModifierUserId: number;
-    creationTime: moment.Moment;
-    creatorUserId: number;
-    id: number;
+    gateway: string | undefined;
+    amount: number | undefined;
+    editionId: number | undefined;
+    dayCount: number | undefined;
+    paymentPeriodType: string | undefined;
+    paymentId: string | undefined;
+    payerId: string | undefined;
+    status: string | undefined;
+    editionDisplayName: string | undefined;
+    tenantId: number | undefined;
+    invoiceNo: string | undefined;
+    lastModificationTime: moment.Moment | undefined;
+    lastModifierUserId: number | undefined;
+    creationTime: moment.Moment | undefined;
+    creatorUserId: number | undefined;
+    id: number | undefined;
 }
 
 export class ListResultDtoOfFlatPermissionWithLevelDto implements IListResultDtoOfFlatPermissionWithLevelDto {
-    items: FlatPermissionWithLevelDto[];
+    items: FlatPermissionWithLevelDto[] | undefined;
 
     constructor(data?: IListResultDtoOfFlatPermissionWithLevelDto) {
         if (data) {
@@ -12149,16 +12854,16 @@ export class ListResultDtoOfFlatPermissionWithLevelDto implements IListResultDto
 }
 
 export interface IListResultDtoOfFlatPermissionWithLevelDto {
-    items: FlatPermissionWithLevelDto[];
+    items: FlatPermissionWithLevelDto[] | undefined;
 }
 
 export class FlatPermissionWithLevelDto implements IFlatPermissionWithLevelDto {
-    level: number;
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    isGrantedByDefault: boolean;
+    level: number | undefined;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    isGrantedByDefault: boolean | undefined;
 
     constructor(data?: IFlatPermissionWithLevelDto) {
         if (data) {
@@ -12200,12 +12905,12 @@ export class FlatPermissionWithLevelDto implements IFlatPermissionWithLevelDto {
 }
 
 export interface IFlatPermissionWithLevelDto {
-    level: number;
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    isGrantedByDefault: boolean;
+    level: number | undefined;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    isGrantedByDefault: boolean | undefined;
 }
 
 export class CurrentUserProfileEditDto implements ICurrentUserProfileEditDto {
@@ -12213,11 +12918,11 @@ export class CurrentUserProfileEditDto implements ICurrentUserProfileEditDto {
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string;
-    isPhoneNumberConfirmed: boolean;
-    timezone: string;
-    qrCodeSetupImageUrl: string;
-    isGoogleAuthenticatorEnabled: boolean;
+    phoneNumber: string | undefined;
+    isPhoneNumberConfirmed: boolean | undefined;
+    timezone: string | undefined;
+    qrCodeSetupImageUrl: string | undefined;
+    isGoogleAuthenticatorEnabled: boolean | undefined;
 
     constructor(data?: ICurrentUserProfileEditDto) {
         if (data) {
@@ -12269,15 +12974,15 @@ export interface ICurrentUserProfileEditDto {
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string;
-    isPhoneNumberConfirmed: boolean;
-    timezone: string;
-    qrCodeSetupImageUrl: string;
-    isGoogleAuthenticatorEnabled: boolean;
+    phoneNumber: string | undefined;
+    isPhoneNumberConfirmed: boolean | undefined;
+    timezone: string | undefined;
+    qrCodeSetupImageUrl: string | undefined;
+    isGoogleAuthenticatorEnabled: boolean | undefined;
 }
 
 export class UpdateGoogleAuthenticatorKeyOutput implements IUpdateGoogleAuthenticatorKeyOutput {
-    qrCodeSetupImageUrl: string;
+    qrCodeSetupImageUrl: string | undefined;
 
     constructor(data?: IUpdateGoogleAuthenticatorKeyOutput) {
         if (data) {
@@ -12309,11 +13014,11 @@ export class UpdateGoogleAuthenticatorKeyOutput implements IUpdateGoogleAuthenti
 }
 
 export interface IUpdateGoogleAuthenticatorKeyOutput {
-    qrCodeSetupImageUrl: string;
+    qrCodeSetupImageUrl: string | undefined;
 }
 
 export class VerifySmsCodeInputDto implements IVerifySmsCodeInputDto {
-    code: string;
+    code: string | undefined;
 
     constructor(data?: IVerifySmsCodeInputDto) {
         if (data) {
@@ -12345,7 +13050,7 @@ export class VerifySmsCodeInputDto implements IVerifySmsCodeInputDto {
 }
 
 export interface IVerifySmsCodeInputDto {
-    code: string;
+    code: string | undefined;
 }
 
 export class ChangePasswordInput implements IChangePasswordInput {
@@ -12390,10 +13095,10 @@ export interface IChangePasswordInput {
 
 export class UpdateProfilePictureInput implements IUpdateProfilePictureInput {
     fileName: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+    x: number | undefined;
+    y: number | undefined;
+    width: number | undefined;
+    height: number | undefined;
 
     constructor(data?: IUpdateProfilePictureInput) {
         if (data) {
@@ -12434,14 +13139,14 @@ export class UpdateProfilePictureInput implements IUpdateProfilePictureInput {
 
 export interface IUpdateProfilePictureInput {
     fileName: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
+    x: number | undefined;
+    y: number | undefined;
+    width: number | undefined;
+    height: number | undefined;
 }
 
 export class GetPasswordComplexitySettingOutput implements IGetPasswordComplexitySettingOutput {
-    setting: PasswordComplexitySetting;
+    setting: PasswordComplexitySetting | undefined;
 
     constructor(data?: IGetPasswordComplexitySettingOutput) {
         if (data) {
@@ -12473,11 +13178,11 @@ export class GetPasswordComplexitySettingOutput implements IGetPasswordComplexit
 }
 
 export interface IGetPasswordComplexitySettingOutput {
-    setting: PasswordComplexitySetting;
+    setting: PasswordComplexitySetting | undefined;
 }
 
 export class GetProfilePictureOutput implements IGetProfilePictureOutput {
-    profilePicture: string;
+    profilePicture: string | undefined;
 
     constructor(data?: IGetProfilePictureOutput) {
         if (data) {
@@ -12509,7 +13214,7 @@ export class GetProfilePictureOutput implements IGetProfilePictureOutput {
 }
 
 export interface IGetProfilePictureOutput {
-    profilePicture: string;
+    profilePicture: string | undefined;
 }
 
 export class ChangeUserLanguageDto implements IChangeUserLanguageDto {
@@ -12549,7 +13254,7 @@ export interface IChangeUserLanguageDto {
 }
 
 export class ListResultDtoOfRoleListDto implements IListResultDtoOfRoleListDto {
-    items: RoleListDto[];
+    items: RoleListDto[] | undefined;
 
     constructor(data?: IListResultDtoOfRoleListDto) {
         if (data) {
@@ -12589,16 +13294,16 @@ export class ListResultDtoOfRoleListDto implements IListResultDtoOfRoleListDto {
 }
 
 export interface IListResultDtoOfRoleListDto {
-    items: RoleListDto[];
+    items: RoleListDto[] | undefined;
 }
 
 export class RoleListDto implements IRoleListDto {
-    name: string;
-    displayName: string;
-    isStatic: boolean;
-    isDefault: boolean;
-    creationTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    displayName: string | undefined;
+    isStatic: boolean | undefined;
+    isDefault: boolean | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 
     constructor(data?: IRoleListDto) {
         if (data) {
@@ -12640,18 +13345,18 @@ export class RoleListDto implements IRoleListDto {
 }
 
 export interface IRoleListDto {
-    name: string;
-    displayName: string;
-    isStatic: boolean;
-    isDefault: boolean;
-    creationTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    displayName: string | undefined;
+    isStatic: boolean | undefined;
+    isDefault: boolean | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 }
 
 export class GetRoleForEditOutput implements IGetRoleForEditOutput {
-    role: RoleEditDto;
-    permissions: FlatPermissionDto[];
-    grantedPermissionNames: string[];
+    role: RoleEditDto | undefined;
+    permissions: FlatPermissionDto[] | undefined;
+    grantedPermissionNames: string[] | undefined;
 
     constructor(data?: IGetRoleForEditOutput) {
         if (data) {
@@ -12703,15 +13408,15 @@ export class GetRoleForEditOutput implements IGetRoleForEditOutput {
 }
 
 export interface IGetRoleForEditOutput {
-    role: RoleEditDto;
-    permissions: FlatPermissionDto[];
-    grantedPermissionNames: string[];
+    role: RoleEditDto | undefined;
+    permissions: FlatPermissionDto[] | undefined;
+    grantedPermissionNames: string[] | undefined;
 }
 
 export class RoleEditDto implements IRoleEditDto {
-    id: number;
+    id: number | undefined;
     displayName: string;
-    isDefault: boolean;
+    isDefault: boolean | undefined;
 
     constructor(data?: IRoleEditDto) {
         if (data) {
@@ -12747,17 +13452,17 @@ export class RoleEditDto implements IRoleEditDto {
 }
 
 export interface IRoleEditDto {
-    id: number;
+    id: number | undefined;
     displayName: string;
-    isDefault: boolean;
+    isDefault: boolean | undefined;
 }
 
 export class FlatPermissionDto implements IFlatPermissionDto {
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    isGrantedByDefault: boolean;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    isGrantedByDefault: boolean | undefined;
 
     constructor(data?: IFlatPermissionDto) {
         if (data) {
@@ -12797,11 +13502,11 @@ export class FlatPermissionDto implements IFlatPermissionDto {
 }
 
 export interface IFlatPermissionDto {
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    isGrantedByDefault: boolean;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    isGrantedByDefault: boolean | undefined;
 }
 
 export class CreateOrUpdateRoleInput implements ICreateOrUpdateRoleInput {
@@ -12857,9 +13562,9 @@ export interface ICreateOrUpdateRoleInput {
 }
 
 export class GetCurrentLoginInformationsOutput implements IGetCurrentLoginInformationsOutput {
-    user: UserLoginInfoDto;
-    tenant: TenantLoginInfoDto;
-    application: ApplicationInfoDto;
+    user: UserLoginInfoDto | undefined;
+    tenant: TenantLoginInfoDto | undefined;
+    application: ApplicationInfoDto | undefined;
 
     constructor(data?: IGetCurrentLoginInformationsOutput) {
         if (data) {
@@ -12895,18 +13600,18 @@ export class GetCurrentLoginInformationsOutput implements IGetCurrentLoginInform
 }
 
 export interface IGetCurrentLoginInformationsOutput {
-    user: UserLoginInfoDto;
-    tenant: TenantLoginInfoDto;
-    application: ApplicationInfoDto;
+    user: UserLoginInfoDto | undefined;
+    tenant: TenantLoginInfoDto | undefined;
+    application: ApplicationInfoDto | undefined;
 }
 
 export class UserLoginInfoDto implements IUserLoginInfoDto {
-    name: string;
-    surname: string;
-    userName: string;
-    emailAddress: string;
-    profilePictureId: string;
-    id: number;
+    name: string | undefined;
+    surname: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    profilePictureId: string | undefined;
+    id: number | undefined;
 
     constructor(data?: IUserLoginInfoDto) {
         if (data) {
@@ -12948,28 +13653,28 @@ export class UserLoginInfoDto implements IUserLoginInfoDto {
 }
 
 export interface IUserLoginInfoDto {
-    name: string;
-    surname: string;
-    userName: string;
-    emailAddress: string;
-    profilePictureId: string;
-    id: number;
+    name: string | undefined;
+    surname: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    profilePictureId: string | undefined;
+    id: number | undefined;
 }
 
 export class TenantLoginInfoDto implements ITenantLoginInfoDto {
-    tenancyName: string;
-    name: string;
-    logoId: string;
-    logoFileType: string;
-    customCssId: string;
-    subscriptionEndDateUtc: moment.Moment;
-    isInTrialPeriod: boolean;
-    edition: EditionInfoDto;
-    creationTime: moment.Moment;
-    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType;
-    subscriptionDateString: string;
-    creationTimeString: string;
-    id: number;
+    tenancyName: string | undefined;
+    name: string | undefined;
+    logoId: string | undefined;
+    logoFileType: string | undefined;
+    customCssId: string | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    isInTrialPeriod: boolean | undefined;
+    edition: EditionInfoDto | undefined;
+    creationTime: moment.Moment | undefined;
+    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType | undefined;
+    subscriptionDateString: string | undefined;
+    creationTimeString: string | undefined;
+    id: number | undefined;
 
     constructor(data?: ITenantLoginInfoDto) {
         if (data) {
@@ -13025,25 +13730,25 @@ export class TenantLoginInfoDto implements ITenantLoginInfoDto {
 }
 
 export interface ITenantLoginInfoDto {
-    tenancyName: string;
-    name: string;
-    logoId: string;
-    logoFileType: string;
-    customCssId: string;
-    subscriptionEndDateUtc: moment.Moment;
-    isInTrialPeriod: boolean;
-    edition: EditionInfoDto;
-    creationTime: moment.Moment;
-    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType;
-    subscriptionDateString: string;
-    creationTimeString: string;
-    id: number;
+    tenancyName: string | undefined;
+    name: string | undefined;
+    logoId: string | undefined;
+    logoFileType: string | undefined;
+    customCssId: string | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    isInTrialPeriod: boolean | undefined;
+    edition: EditionInfoDto | undefined;
+    creationTime: moment.Moment | undefined;
+    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType | undefined;
+    subscriptionDateString: string | undefined;
+    creationTimeString: string | undefined;
+    id: number | undefined;
 }
 
 export class ApplicationInfoDto implements IApplicationInfoDto {
-    version: string;
-    releaseDate: moment.Moment;
-    features: { [key: string] : boolean; };
+    version: string | undefined;
+    releaseDate: moment.Moment | undefined;
+    features: { [key: string] : boolean; } | undefined;
 
     constructor(data?: IApplicationInfoDto) {
         if (data) {
@@ -13091,19 +13796,19 @@ export class ApplicationInfoDto implements IApplicationInfoDto {
 }
 
 export interface IApplicationInfoDto {
-    version: string;
-    releaseDate: moment.Moment;
-    features: { [key: string] : boolean; };
+    version: string | undefined;
+    releaseDate: moment.Moment | undefined;
+    features: { [key: string] : boolean; } | undefined;
 }
 
 export class EditionInfoDto implements IEditionInfoDto {
-    displayName: string;
-    trialDayCount: number;
-    monthlyPrice: number;
-    annualPrice: number;
-    isHighestEdition: boolean;
-    isFree: boolean;
-    id: number;
+    displayName: string | undefined;
+    trialDayCount: number | undefined;
+    monthlyPrice: number | undefined;
+    annualPrice: number | undefined;
+    isHighestEdition: boolean | undefined;
+    isFree: boolean | undefined;
+    id: number | undefined;
 
     constructor(data?: IEditionInfoDto) {
         if (data) {
@@ -13147,19 +13852,19 @@ export class EditionInfoDto implements IEditionInfoDto {
 }
 
 export interface IEditionInfoDto {
-    displayName: string;
-    trialDayCount: number;
-    monthlyPrice: number;
-    annualPrice: number;
-    isHighestEdition: boolean;
-    isFree: boolean;
-    id: number;
+    displayName: string | undefined;
+    trialDayCount: number | undefined;
+    monthlyPrice: number | undefined;
+    annualPrice: number | undefined;
+    isHighestEdition: boolean | undefined;
+    isFree: boolean | undefined;
+    id: number | undefined;
 }
 
 export class UpdateUserSignInTokenOutput implements IUpdateUserSignInTokenOutput {
-    signInToken: string;
-    encodedUserId: string;
-    encodedTenantId: string;
+    signInToken: string | undefined;
+    encodedUserId: string | undefined;
+    encodedTenantId: string | undefined;
 
     constructor(data?: IUpdateUserSignInTokenOutput) {
         if (data) {
@@ -13195,14 +13900,14 @@ export class UpdateUserSignInTokenOutput implements IUpdateUserSignInTokenOutput
 }
 
 export interface IUpdateUserSignInTokenOutput {
-    signInToken: string;
-    encodedUserId: string;
-    encodedTenantId: string;
+    signInToken: string | undefined;
+    encodedUserId: string | undefined;
+    encodedTenantId: string | undefined;
 }
 
 export class PagedResultDtoOfTenantListDto implements IPagedResultDtoOfTenantListDto {
-    totalCount: number;
-    items: TenantListDto[];
+    totalCount: number | undefined;
+    items: TenantListDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfTenantListDto) {
         if (data) {
@@ -13244,21 +13949,21 @@ export class PagedResultDtoOfTenantListDto implements IPagedResultDtoOfTenantLis
 }
 
 export interface IPagedResultDtoOfTenantListDto {
-    totalCount: number;
-    items: TenantListDto[];
+    totalCount: number | undefined;
+    items: TenantListDto[] | undefined;
 }
 
 export class TenantListDto implements ITenantListDto {
-    tenancyName: string;
-    name: string;
-    editionDisplayName: string;
-    connectionString: string;
-    isActive: boolean;
-    creationTime: moment.Moment;
-    subscriptionEndDateUtc: moment.Moment;
-    editionId: number;
-    isInTrialPeriod: boolean;
-    id: number;
+    tenancyName: string | undefined;
+    name: string | undefined;
+    editionDisplayName: string | undefined;
+    connectionString: string | undefined;
+    isActive: boolean | undefined;
+    creationTime: moment.Moment | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    editionId: number | undefined;
+    isInTrialPeriod: boolean | undefined;
+    id: number | undefined;
 
     constructor(data?: ITenantListDto) {
         if (data) {
@@ -13308,30 +14013,30 @@ export class TenantListDto implements ITenantListDto {
 }
 
 export interface ITenantListDto {
-    tenancyName: string;
-    name: string;
-    editionDisplayName: string;
-    connectionString: string;
-    isActive: boolean;
-    creationTime: moment.Moment;
-    subscriptionEndDateUtc: moment.Moment;
-    editionId: number;
-    isInTrialPeriod: boolean;
-    id: number;
+    tenancyName: string | undefined;
+    name: string | undefined;
+    editionDisplayName: string | undefined;
+    connectionString: string | undefined;
+    isActive: boolean | undefined;
+    creationTime: moment.Moment | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    editionId: number | undefined;
+    isInTrialPeriod: boolean | undefined;
+    id: number | undefined;
 }
 
 export class CreateTenantInput implements ICreateTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string;
-    connectionString: string;
-    shouldChangePasswordOnNextLogin: boolean;
-    sendActivationEmail: boolean;
-    editionId: number;
-    isActive: boolean;
-    subscriptionEndDateUtc: moment.Moment;
-    isInTrialPeriod: boolean;
+    adminPassword: string | undefined;
+    connectionString: string | undefined;
+    shouldChangePasswordOnNextLogin: boolean | undefined;
+    sendActivationEmail: boolean | undefined;
+    editionId: number | undefined;
+    isActive: boolean | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    isInTrialPeriod: boolean | undefined;
 
     constructor(data?: ICreateTenantInput) {
         if (data) {
@@ -13386,25 +14091,25 @@ export interface ICreateTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string;
-    connectionString: string;
-    shouldChangePasswordOnNextLogin: boolean;
-    sendActivationEmail: boolean;
-    editionId: number;
-    isActive: boolean;
-    subscriptionEndDateUtc: moment.Moment;
-    isInTrialPeriod: boolean;
+    adminPassword: string | undefined;
+    connectionString: string | undefined;
+    shouldChangePasswordOnNextLogin: boolean | undefined;
+    sendActivationEmail: boolean | undefined;
+    editionId: number | undefined;
+    isActive: boolean | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    isInTrialPeriod: boolean | undefined;
 }
 
 export class TenantEditDto implements ITenantEditDto {
     tenancyName: string;
     name: string;
-    connectionString: string;
-    editionId: number;
-    isActive: boolean;
-    subscriptionEndDateUtc: moment.Moment;
-    isInTrialPeriod: boolean;
-    id: number;
+    connectionString: string | undefined;
+    editionId: number | undefined;
+    isActive: boolean | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    isInTrialPeriod: boolean | undefined;
+    id: number | undefined;
 
     constructor(data?: ITenantEditDto) {
         if (data) {
@@ -13452,17 +14157,17 @@ export class TenantEditDto implements ITenantEditDto {
 export interface ITenantEditDto {
     tenancyName: string;
     name: string;
-    connectionString: string;
-    editionId: number;
-    isActive: boolean;
-    subscriptionEndDateUtc: moment.Moment;
-    isInTrialPeriod: boolean;
-    id: number;
+    connectionString: string | undefined;
+    editionId: number | undefined;
+    isActive: boolean | undefined;
+    subscriptionEndDateUtc: moment.Moment | undefined;
+    isInTrialPeriod: boolean | undefined;
+    id: number | undefined;
 }
 
 export class GetTenantFeaturesEditOutput implements IGetTenantFeaturesEditOutput {
-    featureValues: NameValueDto[];
-    features: FlatFeatureDto[];
+    featureValues: NameValueDto[] | undefined;
+    features: FlatFeatureDto[] | undefined;
 
     constructor(data?: IGetTenantFeaturesEditOutput) {
         if (data) {
@@ -13512,12 +14217,12 @@ export class GetTenantFeaturesEditOutput implements IGetTenantFeaturesEditOutput
 }
 
 export interface IGetTenantFeaturesEditOutput {
-    featureValues: NameValueDto[];
-    features: FlatFeatureDto[];
+    featureValues: NameValueDto[] | undefined;
+    features: FlatFeatureDto[] | undefined;
 }
 
 export class UpdateTenantFeaturesInput implements IUpdateTenantFeaturesInput {
-    id: number;
+    id: number | undefined;
     featureValues: NameValueDto[];
 
     constructor(data?: IUpdateTenantFeaturesInput) {
@@ -13563,12 +14268,12 @@ export class UpdateTenantFeaturesInput implements IUpdateTenantFeaturesInput {
 }
 
 export interface IUpdateTenantFeaturesInput {
-    id: number;
+    id: number | undefined;
     featureValues: NameValueDto[];
 }
 
 export class EntityDto implements IEntityDto {
-    id: number;
+    id: number | undefined;
 
     constructor(data?: IEntityDto) {
         if (data) {
@@ -13600,11 +14305,11 @@ export class EntityDto implements IEntityDto {
 }
 
 export interface IEntityDto {
-    id: number;
+    id: number | undefined;
 }
 
 export class GetMemberActivityOutput implements IGetMemberActivityOutput {
-    memberActivities: MemberActivity[];
+    memberActivities: MemberActivity[] | undefined;
 
     constructor(data?: IGetMemberActivityOutput) {
         if (data) {
@@ -13644,15 +14349,15 @@ export class GetMemberActivityOutput implements IGetMemberActivityOutput {
 }
 
 export interface IGetMemberActivityOutput {
-    memberActivities: MemberActivity[];
+    memberActivities: MemberActivity[] | undefined;
 }
 
 export class MemberActivity implements IMemberActivity {
-    name: string;
-    earnings: string;
-    cases: number;
-    closed: number;
-    rate: string;
+    name: string | undefined;
+    earnings: string | undefined;
+    cases: number | undefined;
+    closed: number | undefined;
+    rate: string | undefined;
 
     constructor(data?: IMemberActivity) {
         if (data) {
@@ -13692,28 +14397,28 @@ export class MemberActivity implements IMemberActivity {
 }
 
 export interface IMemberActivity {
-    name: string;
-    earnings: string;
-    cases: number;
-    closed: number;
-    rate: string;
+    name: string | undefined;
+    earnings: string | undefined;
+    cases: number | undefined;
+    closed: number | undefined;
+    rate: string | undefined;
 }
 
 export class GetDashboardDataOutput implements IGetDashboardDataOutput {
-    totalProfit: number;
-    newFeedbacks: number;
-    newOrders: number;
-    newUsers: number;
-    salesSummary: SalesSummaryData[];
-    totalSales: number;
-    revenue: number;
-    expenses: number;
-    growth: number;
-    transactionPercent: number;
-    newVisitPercent: number;
-    bouncePercent: number;
-    dailySales: number[];
-    profitShares: number[];
+    totalProfit: number | undefined;
+    newFeedbacks: number | undefined;
+    newOrders: number | undefined;
+    newUsers: number | undefined;
+    salesSummary: SalesSummaryData[] | undefined;
+    totalSales: number | undefined;
+    revenue: number | undefined;
+    expenses: number | undefined;
+    growth: number | undefined;
+    transactionPercent: number | undefined;
+    newVisitPercent: number | undefined;
+    bouncePercent: number | undefined;
+    dailySales: number[] | undefined;
+    profitShares: number[] | undefined;
 
     constructor(data?: IGetDashboardDataOutput) {
         if (data) {
@@ -13795,26 +14500,26 @@ export class GetDashboardDataOutput implements IGetDashboardDataOutput {
 }
 
 export interface IGetDashboardDataOutput {
-    totalProfit: number;
-    newFeedbacks: number;
-    newOrders: number;
-    newUsers: number;
-    salesSummary: SalesSummaryData[];
-    totalSales: number;
-    revenue: number;
-    expenses: number;
-    growth: number;
-    transactionPercent: number;
-    newVisitPercent: number;
-    bouncePercent: number;
-    dailySales: number[];
-    profitShares: number[];
+    totalProfit: number | undefined;
+    newFeedbacks: number | undefined;
+    newOrders: number | undefined;
+    newUsers: number | undefined;
+    salesSummary: SalesSummaryData[] | undefined;
+    totalSales: number | undefined;
+    revenue: number | undefined;
+    expenses: number | undefined;
+    growth: number | undefined;
+    transactionPercent: number | undefined;
+    newVisitPercent: number | undefined;
+    bouncePercent: number | undefined;
+    dailySales: number[] | undefined;
+    profitShares: number[] | undefined;
 }
 
 export class SalesSummaryData implements ISalesSummaryData {
-    period: string;
-    sales: number;
-    profit: number;
+    period: string | undefined;
+    sales: number | undefined;
+    profit: number | undefined;
 
     constructor(data?: ISalesSummaryData) {
         if (data) {
@@ -13850,13 +14555,13 @@ export class SalesSummaryData implements ISalesSummaryData {
 }
 
 export interface ISalesSummaryData {
-    period: string;
-    sales: number;
-    profit: number;
+    period: string | undefined;
+    sales: number | undefined;
+    profit: number | undefined;
 }
 
 export class GetSalesSummaryOutput implements IGetSalesSummaryOutput {
-    salesSummary: SalesSummaryData[];
+    salesSummary: SalesSummaryData[] | undefined;
 
     constructor(data?: IGetSalesSummaryOutput) {
         if (data) {
@@ -13896,11 +14601,11 @@ export class GetSalesSummaryOutput implements IGetSalesSummaryOutput {
 }
 
 export interface IGetSalesSummaryOutput {
-    salesSummary: SalesSummaryData[];
+    salesSummary: SalesSummaryData[] | undefined;
 }
 
 export class GetWorldMapOutput implements IGetWorldMapOutput {
-    countries: WorldMapCountry[];
+    countries: WorldMapCountry[] | undefined;
 
     constructor(data?: IGetWorldMapOutput) {
         if (data) {
@@ -13940,12 +14645,12 @@ export class GetWorldMapOutput implements IGetWorldMapOutput {
 }
 
 export interface IGetWorldMapOutput {
-    countries: WorldMapCountry[];
+    countries: WorldMapCountry[] | undefined;
 }
 
 export class WorldMapCountry implements IWorldMapCountry {
-    countryName: string;
-    color: number;
+    countryName: string | undefined;
+    color: number | undefined;
 
     constructor(data?: IWorldMapCountry) {
         if (data) {
@@ -13979,14 +14684,14 @@ export class WorldMapCountry implements IWorldMapCountry {
 }
 
 export interface IWorldMapCountry {
-    countryName: string;
-    color: number;
+    countryName: string | undefined;
+    color: number | undefined;
 }
 
 export class GetGeneralStatsOutput implements IGetGeneralStatsOutput {
-    transactionPercent: number;
-    newVisitPercent: number;
-    bouncePercent: number;
+    transactionPercent: number | undefined;
+    newVisitPercent: number | undefined;
+    bouncePercent: number | undefined;
 
     constructor(data?: IGetGeneralStatsOutput) {
         if (data) {
@@ -14022,21 +14727,21 @@ export class GetGeneralStatsOutput implements IGetGeneralStatsOutput {
 }
 
 export interface IGetGeneralStatsOutput {
-    transactionPercent: number;
-    newVisitPercent: number;
-    bouncePercent: number;
+    transactionPercent: number | undefined;
+    newVisitPercent: number | undefined;
+    bouncePercent: number | undefined;
 }
 
 export class RegisterTenantInput implements IRegisterTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string;
-    captchaResponse: string;
-    subscriptionStartType: RegisterTenantInputSubscriptionStartType;
-    gateway: RegisterTenantInputGateway;
-    editionId: number;
-    paymentId: string;
+    adminPassword: string | undefined;
+    captchaResponse: string | undefined;
+    subscriptionStartType: RegisterTenantInputSubscriptionStartType | undefined;
+    gateway: RegisterTenantInputGateway | undefined;
+    editionId: number | undefined;
+    paymentId: string | undefined;
 
     constructor(data?: IRegisterTenantInput) {
         if (data) {
@@ -14087,23 +14792,23 @@ export interface IRegisterTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string;
-    captchaResponse: string;
-    subscriptionStartType: RegisterTenantInputSubscriptionStartType;
-    gateway: RegisterTenantInputGateway;
-    editionId: number;
-    paymentId: string;
+    adminPassword: string | undefined;
+    captchaResponse: string | undefined;
+    subscriptionStartType: RegisterTenantInputSubscriptionStartType | undefined;
+    gateway: RegisterTenantInputGateway | undefined;
+    editionId: number | undefined;
+    paymentId: string | undefined;
 }
 
 export class RegisterTenantOutput implements IRegisterTenantOutput {
-    tenantId: number;
-    tenancyName: string;
-    name: string;
-    userName: string;
-    emailAddress: string;
-    isTenantActive: boolean;
-    isActive: boolean;
-    isEmailConfirmationRequired: boolean;
+    tenantId: number | undefined;
+    tenancyName: string | undefined;
+    name: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    isTenantActive: boolean | undefined;
+    isActive: boolean | undefined;
+    isEmailConfirmationRequired: boolean | undefined;
 
     constructor(data?: IRegisterTenantOutput) {
         if (data) {
@@ -14149,20 +14854,20 @@ export class RegisterTenantOutput implements IRegisterTenantOutput {
 }
 
 export interface IRegisterTenantOutput {
-    tenantId: number;
-    tenancyName: string;
-    name: string;
-    userName: string;
-    emailAddress: string;
-    isTenantActive: boolean;
-    isActive: boolean;
-    isEmailConfirmationRequired: boolean;
+    tenantId: number | undefined;
+    tenancyName: string | undefined;
+    name: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    isTenantActive: boolean | undefined;
+    isActive: boolean | undefined;
+    isEmailConfirmationRequired: boolean | undefined;
 }
 
 export class EditionsSelectOutput implements IEditionsSelectOutput {
-    allFeatures: FlatFeatureSelectDto[];
-    editionsWithFeatures: EditionWithFeaturesDto[];
-    tenantEditionId: number;
+    allFeatures: FlatFeatureSelectDto[] | undefined;
+    editionsWithFeatures: EditionWithFeaturesDto[] | undefined;
+    tenantEditionId: number | undefined;
 
     constructor(data?: IEditionsSelectOutput) {
         if (data) {
@@ -14214,19 +14919,19 @@ export class EditionsSelectOutput implements IEditionsSelectOutput {
 }
 
 export interface IEditionsSelectOutput {
-    allFeatures: FlatFeatureSelectDto[];
-    editionsWithFeatures: EditionWithFeaturesDto[];
-    tenantEditionId: number;
+    allFeatures: FlatFeatureSelectDto[] | undefined;
+    editionsWithFeatures: EditionWithFeaturesDto[] | undefined;
+    tenantEditionId: number | undefined;
 }
 
 export class FlatFeatureSelectDto implements IFlatFeatureSelectDto {
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    defaultValue: string;
-    inputType: IInputType;
-    textHtmlColor: string;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    defaultValue: string | undefined;
+    inputType: IInputType | undefined;
+    textHtmlColor: string | undefined;
 
     constructor(data?: IFlatFeatureSelectDto) {
         if (data) {
@@ -14270,18 +14975,18 @@ export class FlatFeatureSelectDto implements IFlatFeatureSelectDto {
 }
 
 export interface IFlatFeatureSelectDto {
-    parentName: string;
-    name: string;
-    displayName: string;
-    description: string;
-    defaultValue: string;
-    inputType: IInputType;
-    textHtmlColor: string;
+    parentName: string | undefined;
+    name: string | undefined;
+    displayName: string | undefined;
+    description: string | undefined;
+    defaultValue: string | undefined;
+    inputType: IInputType | undefined;
+    textHtmlColor: string | undefined;
 }
 
 export class EditionWithFeaturesDto implements IEditionWithFeaturesDto {
-    edition: EditionSelectDto;
-    featureValues: NameValueDto[];
+    edition: EditionSelectDto | undefined;
+    featureValues: NameValueDto[] | undefined;
 
     constructor(data?: IEditionWithFeaturesDto) {
         if (data) {
@@ -14323,14 +15028,14 @@ export class EditionWithFeaturesDto implements IEditionWithFeaturesDto {
 }
 
 export interface IEditionWithFeaturesDto {
-    edition: EditionSelectDto;
-    featureValues: NameValueDto[];
+    edition: EditionSelectDto | undefined;
+    featureValues: NameValueDto[] | undefined;
 }
 
 export class IInputType implements IIInputType {
-    name: string;
-    attributes: { [key: string] : any; };
-    validator: IValueValidator;
+    readonly name: string | undefined;
+    readonly attributes: { [key: string] : any; } | undefined;
+    validator: IValueValidator | undefined;
 
     constructor(data?: IIInputType) {
         if (data) {
@@ -14343,12 +15048,12 @@ export class IInputType implements IIInputType {
 
     init(data?: any) {
         if (data) {
-            this.name = data["name"];
+            (<any>this).name = data["name"];
             if (data["attributes"]) {
-                this.attributes = {};
+                (<any>this).attributes = {};
                 for (let key in data["attributes"]) {
                     if (data["attributes"].hasOwnProperty(key))
-                        this.attributes[key] = data["attributes"][key];
+                        (<any>this).attributes[key] = data["attributes"][key];
                 }
             }
             this.validator = data["validator"] ? IValueValidator.fromJS(data["validator"]) : <any>undefined;
@@ -14378,18 +15083,18 @@ export class IInputType implements IIInputType {
 }
 
 export interface IIInputType {
-    name: string;
-    attributes: { [key: string] : any; };
-    validator: IValueValidator;
+    name: string | undefined;
+    attributes: { [key: string] : any; } | undefined;
+    validator: IValueValidator | undefined;
 }
 
 export class TenantSettingsEditDto implements ITenantSettingsEditDto {
-    general: GeneralSettingsEditDto;
+    general: GeneralSettingsEditDto | undefined;
     userManagement: TenantUserManagementSettingsEditDto;
-    email: EmailSettingsEditDto;
-    ldap: LdapSettingsEditDto;
+    email: EmailSettingsEditDto | undefined;
+    ldap: LdapSettingsEditDto | undefined;
     security: SecuritySettingsEditDto;
-    billing: TenantBillingSettingsEditDto;
+    billing: TenantBillingSettingsEditDto | undefined;
 
     constructor(data?: ITenantSettingsEditDto) {
         if (data) {
@@ -14435,19 +15140,19 @@ export class TenantSettingsEditDto implements ITenantSettingsEditDto {
 }
 
 export interface ITenantSettingsEditDto {
-    general: GeneralSettingsEditDto;
+    general: GeneralSettingsEditDto | undefined;
     userManagement: TenantUserManagementSettingsEditDto;
-    email: EmailSettingsEditDto;
-    ldap: LdapSettingsEditDto;
+    email: EmailSettingsEditDto | undefined;
+    ldap: LdapSettingsEditDto | undefined;
     security: SecuritySettingsEditDto;
-    billing: TenantBillingSettingsEditDto;
+    billing: TenantBillingSettingsEditDto | undefined;
 }
 
 export class TenantUserManagementSettingsEditDto implements ITenantUserManagementSettingsEditDto {
-    allowSelfRegistration: boolean;
-    isNewRegisteredUserActiveByDefault: boolean;
-    isEmailConfirmationRequiredForLogin: boolean;
-    useCaptchaOnRegistration: boolean;
+    allowSelfRegistration: boolean | undefined;
+    isNewRegisteredUserActiveByDefault: boolean | undefined;
+    isEmailConfirmationRequiredForLogin: boolean | undefined;
+    useCaptchaOnRegistration: boolean | undefined;
 
     constructor(data?: ITenantUserManagementSettingsEditDto) {
         if (data) {
@@ -14485,18 +15190,18 @@ export class TenantUserManagementSettingsEditDto implements ITenantUserManagemen
 }
 
 export interface ITenantUserManagementSettingsEditDto {
-    allowSelfRegistration: boolean;
-    isNewRegisteredUserActiveByDefault: boolean;
-    isEmailConfirmationRequiredForLogin: boolean;
-    useCaptchaOnRegistration: boolean;
+    allowSelfRegistration: boolean | undefined;
+    isNewRegisteredUserActiveByDefault: boolean | undefined;
+    isEmailConfirmationRequiredForLogin: boolean | undefined;
+    useCaptchaOnRegistration: boolean | undefined;
 }
 
 export class LdapSettingsEditDto implements ILdapSettingsEditDto {
-    isModuleEnabled: boolean;
-    isEnabled: boolean;
-    domain: string;
-    userName: string;
-    password: string;
+    isModuleEnabled: boolean | undefined;
+    isEnabled: boolean | undefined;
+    domain: string | undefined;
+    userName: string | undefined;
+    password: string | undefined;
 
     constructor(data?: ILdapSettingsEditDto) {
         if (data) {
@@ -14536,17 +15241,17 @@ export class LdapSettingsEditDto implements ILdapSettingsEditDto {
 }
 
 export interface ILdapSettingsEditDto {
-    isModuleEnabled: boolean;
-    isEnabled: boolean;
-    domain: string;
-    userName: string;
-    password: string;
+    isModuleEnabled: boolean | undefined;
+    isEnabled: boolean | undefined;
+    domain: string | undefined;
+    userName: string | undefined;
+    password: string | undefined;
 }
 
 export class TenantBillingSettingsEditDto implements ITenantBillingSettingsEditDto {
-    legalName: string;
-    address: string;
-    taxVatNo: string;
+    legalName: string | undefined;
+    address: string | undefined;
+    taxVatNo: string | undefined;
 
     constructor(data?: ITenantBillingSettingsEditDto) {
         if (data) {
@@ -14582,15 +15287,15 @@ export class TenantBillingSettingsEditDto implements ITenantBillingSettingsEditD
 }
 
 export interface ITenantBillingSettingsEditDto {
-    legalName: string;
-    address: string;
-    taxVatNo: string;
+    legalName: string | undefined;
+    address: string | undefined;
+    taxVatNo: string | undefined;
 }
 
 export class AuthenticateModel implements IAuthenticateModel {
     userNameOrEmailAddress: string;
     password: string;
-    rememberClient: boolean;
+    rememberClient: boolean | undefined;
 
     constructor(data?: IAuthenticateModel) {
         if (data) {
@@ -14628,14 +15333,14 @@ export class AuthenticateModel implements IAuthenticateModel {
 export interface IAuthenticateModel {
     userNameOrEmailAddress: string;
     password: string;
-    rememberClient: boolean;
+    rememberClient: boolean | undefined;
 }
 
 export class AuthenticateResultModel implements IAuthenticateResultModel {
-    accessToken: string;
-    encryptedAccessToken: string;
-    expireInSeconds: number;
-    userId: number;
+    accessToken: string | undefined;
+    encryptedAccessToken: string | undefined;
+    expireInSeconds: number | undefined;
+    userId: number | undefined;
 
     constructor(data?: IAuthenticateResultModel) {
         if (data) {
@@ -14673,15 +15378,15 @@ export class AuthenticateResultModel implements IAuthenticateResultModel {
 }
 
 export interface IAuthenticateResultModel {
-    accessToken: string;
-    encryptedAccessToken: string;
-    expireInSeconds: number;
-    userId: number;
+    accessToken: string | undefined;
+    encryptedAccessToken: string | undefined;
+    expireInSeconds: number | undefined;
+    userId: number | undefined;
 }
 
 export class ExternalLoginProviderInfoModel implements IExternalLoginProviderInfoModel {
-    name: string;
-    clientId: string;
+    name: string | undefined;
+    clientId: string | undefined;
 
     constructor(data?: IExternalLoginProviderInfoModel) {
         if (data) {
@@ -14715,8 +15420,8 @@ export class ExternalLoginProviderInfoModel implements IExternalLoginProviderInf
 }
 
 export interface IExternalLoginProviderInfoModel {
-    name: string;
-    clientId: string;
+    name: string | undefined;
+    clientId: string | undefined;
 }
 
 export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
@@ -14764,10 +15469,10 @@ export interface IExternalAuthenticateModel {
 }
 
 export class ExternalAuthenticateResultModel implements IExternalAuthenticateResultModel {
-    accessToken: string;
-    encryptedAccessToken: string;
-    expireInSeconds: number;
-    waitingForActivation: boolean;
+    accessToken: string | undefined;
+    encryptedAccessToken: string | undefined;
+    expireInSeconds: number | undefined;
+    waitingForActivation: boolean | undefined;
 
     constructor(data?: IExternalAuthenticateResultModel) {
         if (data) {
@@ -14805,17 +15510,17 @@ export class ExternalAuthenticateResultModel implements IExternalAuthenticateRes
 }
 
 export interface IExternalAuthenticateResultModel {
-    accessToken: string;
-    encryptedAccessToken: string;
-    expireInSeconds: number;
-    waitingForActivation: boolean;
+    accessToken: string | undefined;
+    encryptedAccessToken: string | undefined;
+    expireInSeconds: number | undefined;
+    waitingForActivation: boolean | undefined;
 }
 
 export class UiCustomizationSettingsEditDto implements IUiCustomizationSettingsEditDto {
-    layout: UiCustomizationLayoutSettingsEditDto;
-    header: UiCustomizationHeaderSettingsEditDto;
-    menu: UiCustomizationMenuSettingsEditDto;
-    footer: UiCustomizationFooterSettingsEditDto;
+    layout: UiCustomizationLayoutSettingsEditDto | undefined;
+    header: UiCustomizationHeaderSettingsEditDto | undefined;
+    menu: UiCustomizationMenuSettingsEditDto | undefined;
+    footer: UiCustomizationFooterSettingsEditDto | undefined;
 
     constructor(data?: IUiCustomizationSettingsEditDto) {
         if (data) {
@@ -14853,16 +15558,16 @@ export class UiCustomizationSettingsEditDto implements IUiCustomizationSettingsE
 }
 
 export interface IUiCustomizationSettingsEditDto {
-    layout: UiCustomizationLayoutSettingsEditDto;
-    header: UiCustomizationHeaderSettingsEditDto;
-    menu: UiCustomizationMenuSettingsEditDto;
-    footer: UiCustomizationFooterSettingsEditDto;
+    layout: UiCustomizationLayoutSettingsEditDto | undefined;
+    header: UiCustomizationHeaderSettingsEditDto | undefined;
+    menu: UiCustomizationMenuSettingsEditDto | undefined;
+    footer: UiCustomizationFooterSettingsEditDto | undefined;
 }
 
 export class UiCustomizationLayoutSettingsEditDto implements IUiCustomizationLayoutSettingsEditDto {
-    layoutType: string;
-    pageLoader: string;
-    contentSkin: string;
+    layoutType: string | undefined;
+    pageLoader: string | undefined;
+    contentSkin: string | undefined;
 
     constructor(data?: IUiCustomizationLayoutSettingsEditDto) {
         if (data) {
@@ -14898,18 +15603,18 @@ export class UiCustomizationLayoutSettingsEditDto implements IUiCustomizationLay
 }
 
 export interface IUiCustomizationLayoutSettingsEditDto {
-    layoutType: string;
-    pageLoader: string;
-    contentSkin: string;
+    layoutType: string | undefined;
+    pageLoader: string | undefined;
+    contentSkin: string | undefined;
 }
 
 export class UiCustomizationHeaderSettingsEditDto implements IUiCustomizationHeaderSettingsEditDto {
-    desktopFixedHeader: boolean;
-    desktopMinimizeMode: string;
-    mobileFixedHeader: boolean;
-    dropdownSkinDesktop: string;
-    displaySubmenuArrowDesktop: boolean;
-    dropdownSkin: string;
+    desktopFixedHeader: boolean | undefined;
+    desktopMinimizeMode: string | undefined;
+    mobileFixedHeader: boolean | undefined;
+    dropdownSkinDesktop: string | undefined;
+    displaySubmenuArrowDesktop: boolean | undefined;
+    dropdownSkin: string | undefined;
 
     constructor(data?: IUiCustomizationHeaderSettingsEditDto) {
         if (data) {
@@ -14951,25 +15656,25 @@ export class UiCustomizationHeaderSettingsEditDto implements IUiCustomizationHea
 }
 
 export interface IUiCustomizationHeaderSettingsEditDto {
-    desktopFixedHeader: boolean;
-    desktopMinimizeMode: string;
-    mobileFixedHeader: boolean;
-    dropdownSkinDesktop: string;
-    displaySubmenuArrowDesktop: boolean;
-    dropdownSkin: string;
+    desktopFixedHeader: boolean | undefined;
+    desktopMinimizeMode: string | undefined;
+    mobileFixedHeader: boolean | undefined;
+    dropdownSkinDesktop: string | undefined;
+    displaySubmenuArrowDesktop: boolean | undefined;
+    dropdownSkin: string | undefined;
 }
 
 export class UiCustomizationMenuSettingsEditDto implements IUiCustomizationMenuSettingsEditDto {
-    position: string;
-    asideSkin: string;
-    fixedAside: boolean;
-    allowAsideMinimizing: boolean;
-    defaultMinimizedAside: boolean;
-    allowAsideHiding: boolean;
-    defaultHiddenAside: boolean;
-    submenuToggle: string;
-    dropdownSubmenuSkin: string;
-    dropdownSubmenuArrow: boolean;
+    position: string | undefined;
+    asideSkin: string | undefined;
+    fixedAside: boolean | undefined;
+    allowAsideMinimizing: boolean | undefined;
+    defaultMinimizedAside: boolean | undefined;
+    allowAsideHiding: boolean | undefined;
+    defaultHiddenAside: boolean | undefined;
+    submenuToggle: string | undefined;
+    dropdownSubmenuSkin: string | undefined;
+    dropdownSubmenuArrow: boolean | undefined;
 
     constructor(data?: IUiCustomizationMenuSettingsEditDto) {
         if (data) {
@@ -15019,20 +15724,20 @@ export class UiCustomizationMenuSettingsEditDto implements IUiCustomizationMenuS
 }
 
 export interface IUiCustomizationMenuSettingsEditDto {
-    position: string;
-    asideSkin: string;
-    fixedAside: boolean;
-    allowAsideMinimizing: boolean;
-    defaultMinimizedAside: boolean;
-    allowAsideHiding: boolean;
-    defaultHiddenAside: boolean;
-    submenuToggle: string;
-    dropdownSubmenuSkin: string;
-    dropdownSubmenuArrow: boolean;
+    position: string | undefined;
+    asideSkin: string | undefined;
+    fixedAside: boolean | undefined;
+    allowAsideMinimizing: boolean | undefined;
+    defaultMinimizedAside: boolean | undefined;
+    allowAsideHiding: boolean | undefined;
+    defaultHiddenAside: boolean | undefined;
+    submenuToggle: string | undefined;
+    dropdownSubmenuSkin: string | undefined;
+    dropdownSubmenuArrow: boolean | undefined;
 }
 
 export class UiCustomizationFooterSettingsEditDto implements IUiCustomizationFooterSettingsEditDto {
-    fixedFooter: boolean;
+    fixedFooter: boolean | undefined;
 
     constructor(data?: IUiCustomizationFooterSettingsEditDto) {
         if (data) {
@@ -15064,12 +15769,12 @@ export class UiCustomizationFooterSettingsEditDto implements IUiCustomizationFoo
 }
 
 export interface IUiCustomizationFooterSettingsEditDto {
-    fixedFooter: boolean;
+    fixedFooter: boolean | undefined;
 }
 
 export class PagedResultDtoOfUserListDto implements IPagedResultDtoOfUserListDto {
-    totalCount: number;
-    items: UserListDto[];
+    totalCount: number | undefined;
+    items: UserListDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfUserListDto) {
         if (data) {
@@ -15111,23 +15816,23 @@ export class PagedResultDtoOfUserListDto implements IPagedResultDtoOfUserListDto
 }
 
 export interface IPagedResultDtoOfUserListDto {
-    totalCount: number;
-    items: UserListDto[];
+    totalCount: number | undefined;
+    items: UserListDto[] | undefined;
 }
 
 export class UserListDto implements IUserListDto {
-    name: string;
-    surname: string;
-    userName: string;
-    emailAddress: string;
-    phoneNumber: string;
-    profilePictureId: string;
-    isEmailConfirmed: boolean;
-    roles: UserListRoleDto[];
-    lastLoginTime: moment.Moment;
-    isActive: boolean;
-    creationTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    surname: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    phoneNumber: string | undefined;
+    profilePictureId: string | undefined;
+    isEmailConfirmed: boolean | undefined;
+    roles: UserListRoleDto[] | undefined;
+    lastLoginTime: moment.Moment | undefined;
+    isActive: boolean | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 
     constructor(data?: IUserListDto) {
         if (data) {
@@ -15189,23 +15894,23 @@ export class UserListDto implements IUserListDto {
 }
 
 export interface IUserListDto {
-    name: string;
-    surname: string;
-    userName: string;
-    emailAddress: string;
-    phoneNumber: string;
-    profilePictureId: string;
-    isEmailConfirmed: boolean;
-    roles: UserListRoleDto[];
-    lastLoginTime: moment.Moment;
-    isActive: boolean;
-    creationTime: moment.Moment;
-    id: number;
+    name: string | undefined;
+    surname: string | undefined;
+    userName: string | undefined;
+    emailAddress: string | undefined;
+    phoneNumber: string | undefined;
+    profilePictureId: string | undefined;
+    isEmailConfirmed: boolean | undefined;
+    roles: UserListRoleDto[] | undefined;
+    lastLoginTime: moment.Moment | undefined;
+    isActive: boolean | undefined;
+    creationTime: moment.Moment | undefined;
+    id: number | undefined;
 }
 
 export class UserListRoleDto implements IUserListRoleDto {
-    roleId: number;
-    roleName: string;
+    roleId: number | undefined;
+    roleName: string | undefined;
 
     constructor(data?: IUserListRoleDto) {
         if (data) {
@@ -15239,16 +15944,16 @@ export class UserListRoleDto implements IUserListRoleDto {
 }
 
 export interface IUserListRoleDto {
-    roleId: number;
-    roleName: string;
+    roleId: number | undefined;
+    roleName: string | undefined;
 }
 
 export class GetUserForEditOutput implements IGetUserForEditOutput {
-    profilePictureId: string;
-    user: UserEditDto;
-    roles: UserRoleDto[];
-    allOrganizationUnits: OrganizationUnitDto[];
-    memberedOrganizationUnits: string[];
+    profilePictureId: string | undefined;
+    user: UserEditDto | undefined;
+    roles: UserRoleDto[] | undefined;
+    allOrganizationUnits: OrganizationUnitDto[] | undefined;
+    memberedOrganizationUnits: string[] | undefined;
 
     constructor(data?: IGetUserForEditOutput) {
         if (data) {
@@ -15312,25 +16017,25 @@ export class GetUserForEditOutput implements IGetUserForEditOutput {
 }
 
 export interface IGetUserForEditOutput {
-    profilePictureId: string;
-    user: UserEditDto;
-    roles: UserRoleDto[];
-    allOrganizationUnits: OrganizationUnitDto[];
-    memberedOrganizationUnits: string[];
+    profilePictureId: string | undefined;
+    user: UserEditDto | undefined;
+    roles: UserRoleDto[] | undefined;
+    allOrganizationUnits: OrganizationUnitDto[] | undefined;
+    memberedOrganizationUnits: string[] | undefined;
 }
 
 export class UserEditDto implements IUserEditDto {
-    id: number;
+    id: number | undefined;
     name: string;
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string;
-    password: string;
-    isActive: boolean;
-    shouldChangePasswordOnNextLogin: boolean;
-    isTwoFactorEnabled: boolean;
-    isLockoutEnabled: boolean;
+    phoneNumber: string | undefined;
+    password: string | undefined;
+    isActive: boolean | undefined;
+    shouldChangePasswordOnNextLogin: boolean | undefined;
+    isTwoFactorEnabled: boolean | undefined;
+    isLockoutEnabled: boolean | undefined;
 
     constructor(data?: IUserEditDto) {
         if (data) {
@@ -15382,24 +16087,24 @@ export class UserEditDto implements IUserEditDto {
 }
 
 export interface IUserEditDto {
-    id: number;
+    id: number | undefined;
     name: string;
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string;
-    password: string;
-    isActive: boolean;
-    shouldChangePasswordOnNextLogin: boolean;
-    isTwoFactorEnabled: boolean;
-    isLockoutEnabled: boolean;
+    phoneNumber: string | undefined;
+    password: string | undefined;
+    isActive: boolean | undefined;
+    shouldChangePasswordOnNextLogin: boolean | undefined;
+    isTwoFactorEnabled: boolean | undefined;
+    isLockoutEnabled: boolean | undefined;
 }
 
 export class UserRoleDto implements IUserRoleDto {
-    roleId: number;
-    roleName: string;
-    roleDisplayName: string;
-    isAssigned: boolean;
+    roleId: number | undefined;
+    roleName: string | undefined;
+    roleDisplayName: string | undefined;
+    isAssigned: boolean | undefined;
 
     constructor(data?: IUserRoleDto) {
         if (data) {
@@ -15437,15 +16142,15 @@ export class UserRoleDto implements IUserRoleDto {
 }
 
 export interface IUserRoleDto {
-    roleId: number;
-    roleName: string;
-    roleDisplayName: string;
-    isAssigned: boolean;
+    roleId: number | undefined;
+    roleName: string | undefined;
+    roleDisplayName: string | undefined;
+    isAssigned: boolean | undefined;
 }
 
 export class GetUserPermissionsForEditOutput implements IGetUserPermissionsForEditOutput {
-    permissions: FlatPermissionDto[];
-    grantedPermissionNames: string[];
+    permissions: FlatPermissionDto[] | undefined;
+    grantedPermissionNames: string[] | undefined;
 
     constructor(data?: IGetUserPermissionsForEditOutput) {
         if (data) {
@@ -15495,12 +16200,12 @@ export class GetUserPermissionsForEditOutput implements IGetUserPermissionsForEd
 }
 
 export interface IGetUserPermissionsForEditOutput {
-    permissions: FlatPermissionDto[];
-    grantedPermissionNames: string[];
+    permissions: FlatPermissionDto[] | undefined;
+    grantedPermissionNames: string[] | undefined;
 }
 
 export class EntityDtoOfInt64 implements IEntityDtoOfInt64 {
-    id: number;
+    id: number | undefined;
 
     constructor(data?: IEntityDtoOfInt64) {
         if (data) {
@@ -15532,11 +16237,11 @@ export class EntityDtoOfInt64 implements IEntityDtoOfInt64 {
 }
 
 export interface IEntityDtoOfInt64 {
-    id: number;
+    id: number | undefined;
 }
 
 export class UpdateUserPermissionsInput implements IUpdateUserPermissionsInput {
-    id: number;
+    id: number | undefined;
     grantedPermissionNames: string[];
 
     constructor(data?: IUpdateUserPermissionsInput) {
@@ -15582,16 +16287,16 @@ export class UpdateUserPermissionsInput implements IUpdateUserPermissionsInput {
 }
 
 export interface IUpdateUserPermissionsInput {
-    id: number;
+    id: number | undefined;
     grantedPermissionNames: string[];
 }
 
 export class CreateOrUpdateUserInput implements ICreateOrUpdateUserInput {
     user: UserEditDto;
     assignedRoleNames: string[];
-    sendActivationEmail: boolean;
-    setRandomPassword: boolean;
-    organizationUnits: number[];
+    sendActivationEmail: boolean | undefined;
+    setRandomPassword: boolean | undefined;
+    organizationUnits: number[] | undefined;
 
     constructor(data?: ICreateOrUpdateUserInput) {
         if (data) {
@@ -15653,13 +16358,13 @@ export class CreateOrUpdateUserInput implements ICreateOrUpdateUserInput {
 export interface ICreateOrUpdateUserInput {
     user: UserEditDto;
     assignedRoleNames: string[];
-    sendActivationEmail: boolean;
-    setRandomPassword: boolean;
-    organizationUnits: number[];
+    sendActivationEmail: boolean | undefined;
+    setRandomPassword: boolean | undefined;
+    organizationUnits: number[] | undefined;
 }
 
 export class LinkToUserInput implements ILinkToUserInput {
-    tenancyName: string;
+    tenancyName: string | undefined;
     usernameOrEmailAddress: string;
     password: string;
 
@@ -15697,14 +16402,14 @@ export class LinkToUserInput implements ILinkToUserInput {
 }
 
 export interface ILinkToUserInput {
-    tenancyName: string;
+    tenancyName: string | undefined;
     usernameOrEmailAddress: string;
     password: string;
 }
 
 export class PagedResultDtoOfLinkedUserDto implements IPagedResultDtoOfLinkedUserDto {
-    totalCount: number;
-    items: LinkedUserDto[];
+    totalCount: number | undefined;
+    items: LinkedUserDto[] | undefined;
 
     constructor(data?: IPagedResultDtoOfLinkedUserDto) {
         if (data) {
@@ -15746,16 +16451,16 @@ export class PagedResultDtoOfLinkedUserDto implements IPagedResultDtoOfLinkedUse
 }
 
 export interface IPagedResultDtoOfLinkedUserDto {
-    totalCount: number;
-    items: LinkedUserDto[];
+    totalCount: number | undefined;
+    items: LinkedUserDto[] | undefined;
 }
 
 export class LinkedUserDto implements ILinkedUserDto {
-    tenantId: number;
-    tenancyName: string;
-    username: string;
-    lastLoginTime: moment.Moment;
-    id: number;
+    tenantId: number | undefined;
+    tenancyName: string | undefined;
+    username: string | undefined;
+    lastLoginTime: moment.Moment | undefined;
+    id: number | undefined;
 
     constructor(data?: ILinkedUserDto) {
         if (data) {
@@ -15795,15 +16500,15 @@ export class LinkedUserDto implements ILinkedUserDto {
 }
 
 export interface ILinkedUserDto {
-    tenantId: number;
-    tenancyName: string;
-    username: string;
-    lastLoginTime: moment.Moment;
-    id: number;
+    tenantId: number | undefined;
+    tenancyName: string | undefined;
+    username: string | undefined;
+    lastLoginTime: moment.Moment | undefined;
+    id: number | undefined;
 }
 
 export class ListResultDtoOfLinkedUserDto implements IListResultDtoOfLinkedUserDto {
-    items: LinkedUserDto[];
+    items: LinkedUserDto[] | undefined;
 
     constructor(data?: IListResultDtoOfLinkedUserDto) {
         if (data) {
@@ -15843,12 +16548,12 @@ export class ListResultDtoOfLinkedUserDto implements IListResultDtoOfLinkedUserD
 }
 
 export interface IListResultDtoOfLinkedUserDto {
-    items: LinkedUserDto[];
+    items: LinkedUserDto[] | undefined;
 }
 
 export class UnlinkUserInput implements IUnlinkUserInput {
-    tenantId: number;
-    userId: number;
+    tenantId: number | undefined;
+    userId: number | undefined;
 
     constructor(data?: IUnlinkUserInput) {
         if (data) {
@@ -15882,12 +16587,12 @@ export class UnlinkUserInput implements IUnlinkUserInput {
 }
 
 export interface IUnlinkUserInput {
-    tenantId: number;
-    userId: number;
+    tenantId: number | undefined;
+    userId: number | undefined;
 }
 
 export class ListResultDtoOfUserLoginAttemptDto implements IListResultDtoOfUserLoginAttemptDto {
-    items: UserLoginAttemptDto[];
+    items: UserLoginAttemptDto[] | undefined;
 
     constructor(data?: IListResultDtoOfUserLoginAttemptDto) {
         if (data) {
@@ -15927,17 +16632,17 @@ export class ListResultDtoOfUserLoginAttemptDto implements IListResultDtoOfUserL
 }
 
 export interface IListResultDtoOfUserLoginAttemptDto {
-    items: UserLoginAttemptDto[];
+    items: UserLoginAttemptDto[] | undefined;
 }
 
 export class UserLoginAttemptDto implements IUserLoginAttemptDto {
-    tenancyName: string;
-    userNameOrEmail: string;
-    clientIpAddress: string;
-    clientName: string;
-    browserInfo: string;
-    result: string;
-    creationTime: moment.Moment;
+    tenancyName: string | undefined;
+    userNameOrEmail: string | undefined;
+    clientIpAddress: string | undefined;
+    clientName: string | undefined;
+    browserInfo: string | undefined;
+    result: string | undefined;
+    creationTime: moment.Moment | undefined;
 
     constructor(data?: IUserLoginAttemptDto) {
         if (data) {
@@ -15981,17 +16686,17 @@ export class UserLoginAttemptDto implements IUserLoginAttemptDto {
 }
 
 export interface IUserLoginAttemptDto {
-    tenancyName: string;
-    userNameOrEmail: string;
-    clientIpAddress: string;
-    clientName: string;
-    browserInfo: string;
-    result: string;
-    creationTime: moment.Moment;
+    tenancyName: string | undefined;
+    userNameOrEmail: string | undefined;
+    clientIpAddress: string | undefined;
+    clientName: string | undefined;
+    browserInfo: string | undefined;
+    result: string | undefined;
+    creationTime: moment.Moment | undefined;
 }
 
 export class GetLatestWebLogsOutput implements IGetLatestWebLogsOutput {
-    latestWebLogLines: string[];
+    latestWebLogLines: string[] | undefined;
 
     constructor(data?: IGetLatestWebLogsOutput) {
         if (data) {
@@ -16031,7 +16736,7 @@ export class GetLatestWebLogsOutput implements IGetLatestWebLogsOutput {
 }
 
 export interface IGetLatestWebLogsOutput {
-    latestWebLogLines: string[];
+    latestWebLogLines: string[] | undefined;
 }
 
 export enum IncomeStatisticsDateInterval {
@@ -16044,6 +16749,11 @@ export enum IncomeStatisticsDateInterval2 {
     _1 = 1, 
     _2 = 2, 
     _3 = 3, 
+}
+
+export enum State {
+    _0 = 0, 
+    _1 = 1, 
 }
 
 export enum SalesSummaryDatePeriod {
@@ -16084,8 +16794,21 @@ export enum ChatMessageDtoReceiverReadState {
     _2 = 2, 
 }
 
+export enum UserNotificationState {
+    _0 = 0, 
+    _1 = 1, 
+}
+
+export enum TenantNotificationSeverity {
+    _0 = 0, 
+    _1 = 1, 
+    _2 = 2, 
+    _3 = 3, 
+    _4 = 4, 
+}
+
 export class AdditionalData implements IAdditionalData {
-    paypal: { [key: string] : string; };
+    paypal: { [key: string] : string; } | undefined;
 
     constructor(data?: IAdditionalData) {
         if (data) {
@@ -16129,7 +16852,7 @@ export class AdditionalData implements IAdditionalData {
 }
 
 export interface IAdditionalData {
-    paypal: { [key: string] : string; };
+    paypal: { [key: string] : string; } | undefined;
 }
 
 export enum CreatePaymentDtoEditionPaymentType {

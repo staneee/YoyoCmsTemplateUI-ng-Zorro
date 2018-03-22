@@ -1,7 +1,7 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { ModalHelper } from '@shared/helpers/modal.helper';
 import { PagedListingComponentBase, PagedRequestDto } from "shared/component-base";
-import { RoleServiceProxy, RoleDto, PagedResultDtoOfRoleDto } from "shared/service-proxies/service-proxies";
+import { RoleServiceProxy, RoleListDto,  ListResultDtoOfRoleListDto} from "shared/service-proxies/service-proxies";
 
 import { CreateRoleComponent } from "./create-role/create-role.component";
 import { EditRoleComponent } from "./edit-role/edit-role.component";
@@ -11,10 +11,10 @@ import { EditRoleComponent } from "./edit-role/edit-role.component";
 	templateUrl: './roles.component.html',
 	styleUrls: ['./roles.component.less']
 })
-export class RolesComponent extends PagedListingComponentBase<RoleDto> {
+export class RolesComponent extends PagedListingComponentBase<RoleListDto> {
 
 	loading = false;
-	dataItems: RoleDto[] = [];
+	dataItems: RoleListDto[] = [];
 
 	constructor(
 		private injector: Injector,
@@ -27,24 +27,25 @@ export class RolesComponent extends PagedListingComponentBase<RoleDto> {
 	list(request: PagedRequestDto, pageNumber: number, finishedCallback: Function): void {
 		this.loading = true;
 
-		this.roleService.getAll(request.skipCount, request.maxResultCount)
+
+		this.roleService.getRoles('')
 			.finally(() => {
 				finishedCallback();
 				this.loading = false;
 			})
-			.subscribe((result: PagedResultDtoOfRoleDto) => {
+			.subscribe((result: ListResultDtoOfRoleListDto) => {
 				this.dataItems = result.items;
 				this.showPaging(result, pageNumber);
 			});
 	}
 
-	delete(role: RoleDto): void {
+	delete(role: RoleListDto): void {
 		this.message.confirm(
 			"Remove Users from Role and delete Role '" + role.displayName + "'?",
 			"Permanently delete this Role",
 			(result: boolean) => {
 				if (result) {
-					this.roleService.delete(role.id)
+					this.roleService.deleteRole(role.id)
 						.finally(() => {
 							this.notify.info("Deleted Role: " + role.displayName);
 							this.refresh();
@@ -59,7 +60,7 @@ export class RolesComponent extends PagedListingComponentBase<RoleDto> {
 		this.modalHelper.open(CreateRoleComponent).subscribe(res => this.refresh());
 	}
 
-	edit(role: RoleDto): void {
+	edit(role: RoleListDto): void {
 		this.modalHelper.open(EditRoleComponent, { id: role.id }).subscribe(res => this.refresh());
 	}
 }

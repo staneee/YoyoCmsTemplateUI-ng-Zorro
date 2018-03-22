@@ -1,26 +1,33 @@
 import { Component, Injector, Input, OnInit } from '@angular/core';
 import { NzModalSubject } from 'ng-zorro-antd';
-
-import { RoleServiceProxy, CreateRoleDto, ListResultDtoOfPermissionDto } from '@shared/service-proxies/service-proxies';
 import { ModalComponentBase, ModalSubjectEvent } from '@shared/component-base';
 import { FormGroup, FormBuilder, Validators, FormControl, AsyncValidatorFn, AbstractControl } from '@angular/forms';
+import {
+	PermissionServiceProxy, RoleServiceProxy,
+	RoleEditDto, CreateOrUpdateRoleInput,
+	ListResultDtoOfFlatPermissionWithLevelDto
+} from '@shared/service-proxies/service-proxies';
+
+
 
 @Component({
+	selector: 'creae-role-modal',
 	templateUrl: './create-role.component.html',
 	styles: []
 })
 export class CreateRoleComponent extends ModalComponentBase implements OnInit, ModalSubjectEvent.OnShow {
 	saving: boolean = false;
 
-	permissions: ListResultDtoOfPermissionDto = null;
-	role: CreateRoleDto = null;
+	permissions: ListResultDtoOfFlatPermissionWithLevelDto = null;
+	input: CreateOrUpdateRoleInput = null;
 	permissionOptions: { label: string, value: string, checked: boolean }[];
 
 	validateForm: FormGroup;
 
 	constructor(
 		injector: Injector,
-		private roleService: RoleServiceProxy,
+		private _permissionService: PermissionServiceProxy,
+		private _roleService: RoleServiceProxy,
 		private formBuilder: FormBuilder
 	) {
 		super(injector);
@@ -28,9 +35,12 @@ export class CreateRoleComponent extends ModalComponentBase implements OnInit, M
 
 	ngOnInit(): void {
 		this.saving = true;
-		this.roleService.getAllPermissions()
-			.finally(() => { this.saving = false; })
-			.subscribe((permissions: ListResultDtoOfPermissionDto) => {
+
+		this._permissionService.getAllPermissions()
+			.finally(() => {
+				this.saving = false;
+			})
+			.subscribe((permissions: ListResultDtoOfFlatPermissionWithLevelDto) => {
 				this.permissions = permissions;
 
 				this.permissionOptions = [];
@@ -47,8 +57,8 @@ export class CreateRoleComponent extends ModalComponentBase implements OnInit, M
 		});
 
 		this.resetForm();
-		this.role = new CreateRoleDto();
-		this.role.init({ isStatic: false });
+		this.input = new CreateOrUpdateRoleInput();
+		//this.role.init({ isStatic: false });
 	}
 
 	onShow(): void {
@@ -56,11 +66,11 @@ export class CreateRoleComponent extends ModalComponentBase implements OnInit, M
 	}
 
 	getFormControl(name: string) {
-        return this.validateForm.controls[name];
+		return this.validateForm.controls[name];
 	}
-	
+
 	resetForm($event?: MouseEvent) {
-		if($event) $event.preventDefault();
+		if ($event) $event.preventDefault();
 
 		this.validateForm.reset();
 		for (const key in this.validateForm.controls) {
@@ -72,14 +82,15 @@ export class CreateRoleComponent extends ModalComponentBase implements OnInit, M
 		var permissions = [];
 
 		this.permissionOptions.forEach(element => {
-			if(element.checked)
+			if (element.checked)
 				permissions.push(element.value);
 		});
 
-		this.role.permissions = permissions;
+		this.input.grantedPermissionNames = permissions;
 
 		this.saving = true;
-		this.roleService.create(this.role)
+
+		this._roleService.createOrUpdateRole(this.input)
 			.finally(() => { this.saving = false; })
 			.subscribe(() => {
 				this.notify.success(this.l('SavedSuccessfully'));

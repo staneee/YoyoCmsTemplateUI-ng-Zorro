@@ -1,27 +1,33 @@
 import { Component, ViewChild, Injector, Output, EventEmitter, ElementRef, OnInit } from '@angular/core';
 import { NzModalSubject } from 'ng-zorro-antd';
 
-import { UserServiceProxy, CreateUserDto, RoleDto, ListResultDtoOfRoleDto } from '@shared/service-proxies/service-proxies';
 import { ModalComponentBase, ModalSubjectEvent } from '@shared/component-base';
 import { FormGroup, FormBuilder, Validators, FormControl, AsyncValidatorFn, AbstractControl } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 
+
+import {
+    UserServiceProxy, CreateOrUpdateUserInput,
+    RoleServiceProxy, RoleListDto,ListResultDtoOfRoleListDto
+} from '@shared/service-proxies/service-proxies';
+
 @Component({
     templateUrl: './create-user.component.html'
 })
 export class CreateUserComponent extends ModalComponentBase implements OnInit {
-	saving: boolean = false;
+    saving: boolean = false;
 
-    user: CreateUserDto = null;
+    input: CreateOrUpdateUserInput = null;
     validateForm: FormGroup;
 
-    roles: ListResultDtoOfRoleDto = null;
+    roles: ListResultDtoOfRoleListDto = null;
     roleOptions: { label: string, value: string, checked: boolean }[];
 
     constructor(
         injector: Injector,
-        private userService: UserServiceProxy,
+        private _roleService:RoleServiceProxy,
+        private _userService: UserServiceProxy,
         private formBuilder: FormBuilder
     ) {
         super(injector);
@@ -29,16 +35,16 @@ export class CreateUserComponent extends ModalComponentBase implements OnInit {
 
     ngOnInit(): void {
         this.saving = true;
-        this.userService.getRoles()
-            .finally(() => { this.saving = false; })
-			.subscribe((roles: ListResultDtoOfRoleDto) => {
-				this.roles = roles;
 
-				this.roleOptions = [];
-				roles.items.forEach(item => {
-					this.roleOptions.push({ label: this.l(item.displayName), value: item.normalizedName, checked: true });
-				});
-			});
+      this._roleService.getRoles('')
+        .finally(()=>{})
+        .subscribe((roles)=>{
+            this.roles=roles;
+            this.roleOptions = [];
+            roles.items.forEach(item => {
+                this.roleOptions.push({ label: this.l(item.displayName), value: item.name, checked: true });
+            });
+        });
 
         this.validateForm = this.formBuilder.group({
             email: [null, [Validators.email]],
@@ -53,8 +59,7 @@ export class CreateUserComponent extends ModalComponentBase implements OnInit {
         });
 
         this.resetForm();
-        this.user = new CreateUserDto();
-        this.user.init({ isActive: true });
+        this.input = new CreateOrUpdateUserInput();
     }
 
     nicknameValidator = (control: FormControl): Observable<any> => {
@@ -80,34 +85,34 @@ export class CreateUserComponent extends ModalComponentBase implements OnInit {
 
     getFormControl(name: string) {
         return this.validateForm.controls[name];
-	}
-	
-	resetForm($event?: MouseEvent) {
-		if($event) $event.preventDefault();
+    }
 
-		this.validateForm.reset();
-		for (const key in this.validateForm.controls) {
-			this.validateForm.controls[key].markAsPristine();
-		}
-	}
+    resetForm($event?: MouseEvent) {
+        if ($event) $event.preventDefault();
 
-	save(e): void {
-		var roles = [];
+        this.validateForm.reset();
+        for (const key in this.validateForm.controls) {
+            this.validateForm.controls[key].markAsPristine();
+        }
+    }
 
-		this.roleOptions.forEach(element => {
-			if(element.checked)
-				roles.push(element.value);
-		});
+    save(e): void {
+        var roles = [];
 
-		this.user.roleNames = roles;
+        this.roleOptions.forEach(element => {
+            if (element.checked)
+                roles.push(element.value);
+        });
 
-		this.saving = true;
-		this.userService.create(this.user)
-			.finally(() => { this.saving = false; })
-			.subscribe(() => {
-				this.notify.success(this.l('SavedSuccessfully'));
-				this.success();
-			});
-	}
+        this.input.assignedRoleNames = roles;
+
+        this.saving = true;
+        this._userService.createOrUpdateUser(this.input)
+            .finally(() => { this.saving = false; })
+            .subscribe(() => {
+                this.notify.success(this.l('SavedSuccessfully'));
+                this.success();
+            });
+    }
 
 }

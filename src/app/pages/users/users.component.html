@@ -44,7 +44,7 @@
         <tbody nz-tbody>
             <tr nz-tbody-tr *ngFor="let item of nzTable.data">
                 <td nz-td>{{item.userName}}</td>
-                <td nz-td>{{item.fullName}}</td>
+                <td nz-td>{{item.surname}}{{item.name}}</td>
                 <td nz-td>{{item.emailAddress}}</td>
                 <td nz-td>
                     <nz-badge *ngIf="item.isActive" [nzStatus]="'success'" [nzText]="l('Active')"></nz-badge>

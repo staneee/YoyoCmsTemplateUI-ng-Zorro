@@ -8,7 +8,7 @@
 						<label for="roleName" nz-form-item-required>{{l("RoleName")}}</label>
 					</div>
 					<div nz-form-control nz-col [nzSm]="8" nzHasFeedback [nzValidateStatus]="getFormControl('roleName')">
-						<nz-input formControlName="roleName" [(ngModel)]="role.name" nzPlaceHolder="请输入小于等于32的字符" [nzId]="'roleName'"></nz-input>
+						<nz-input formControlName="roleName" [(ngModel)]="input.role.name" nzPlaceHolder="请输入小于等于32的字符" [nzId]="'roleName'"></nz-input>
 						<div nz-form-explain *ngIf="getFormControl('roleName').dirty&&getFormControl('roleName').hasError('maxlength')">字符长度小于等于32</div>
 						<div nz-form-explain *ngIf="getFormControl('roleName').dirty&&getFormControl('roleName').hasError('required')">请输入姓</div>
 					</div>
@@ -17,13 +17,13 @@
 						<label for="displayName" nz-form-item-required>{{l("DisplayName")}}</label>
 					</div>
 					<div nz-form-control nz-col [nzSm]="8" nzHasFeedback [nzValidateStatus]="getFormControl('displayName')">
-						<nz-input formControlName="displayName" [(ngModel)]="role.displayName" nzPlaceHolder="请输入小于等于32的字符" [nzId]="'displayName'"></nz-input>
+						<nz-input formControlName="displayName" [(ngModel)]="input.role.displayName" nzPlaceHolder="请输入小于等于32的字符" [nzId]="'displayName'"></nz-input>
 						<div nz-form-explain *ngIf="getFormControl('displayName').dirty&&getFormControl('displayName').hasError('maxlength')">字符长度小于等于32</div>
 						<div nz-form-explain *ngIf="getFormControl('displayName').dirty&&getFormControl('displayName').hasError('required')">请输入名</div>
 					</div>
 				</div>
 
-				<div nz-form-item nz-row>
+				<!-- <div nz-form-item nz-row>
 					<div nz-form-label nz-col [nzSm]="4">
 						<label for="description" nz-form-item-required>{{l("RoleDescription")}}</label>
 					</div>
@@ -32,7 +32,7 @@
 						<div nz-form-explain *ngIf="getFormControl('description').dirty&&getFormControl('description').hasError('maxlength')">字符长度小于等于32</div>
 						<div nz-form-explain *ngIf="getFormControl('description').dirty&&getFormControl('description').hasError('required')">请输入名</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div nz-form-item nz-row>
 					<div nz-form-label nz-col [nzSm]="4">
