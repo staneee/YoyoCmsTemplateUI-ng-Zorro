@@ -12,8 +12,6 @@ import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
 import {CreateOrEditRoleComponent} from './roles/create-or-edit-role.component'
-import { CreateRoleComponent } from "./roles/create-role/create-role.component";
-import { EditRoleComponent } from "./roles/edit-role/edit-role.component";
 import { TenantsComponent } from './tenants/tenants.component';
 import { AboutComponent } from './about/about.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
@@ -32,8 +30,6 @@ import { PermissionTreeComponent } from '@shared/permission-tree.component';
         HomeComponent,
         UsersComponent,
         RolesComponent,
-        CreateRoleComponent,
-        EditRoleComponent,
         TenantsComponent,
         AboutComponent,
         EditUserComponent,
@@ -42,8 +38,6 @@ import { PermissionTreeComponent } from '@shared/permission-tree.component';
         PermissionTreeComponent
     ],
     entryComponents: [
-        CreateRoleComponent,
-        EditRoleComponent,
         CreateUserComponent,
         EditUserComponent,
         CreateOrEditRoleComponent
