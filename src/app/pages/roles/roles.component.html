@@ -51,7 +51,11 @@
                         </ul>
                     </nz-dropdown>
                 </td>
-                <td nz-td>{{item.displayName}}</td>
+                <td nz-td>
+                    {{item.displayName}}
+                    <nz-tag *ngIf="item.isStatic"  [nzColor]="'#108ee9'">{{l('system')}}</nz-tag>
+                    <nz-tag *ngIf="item.isDefault" [nzColor]="'#2db7f5'">{{l('default')}}</nz-tag>
+                </td>
                 <td nz-td>{{item.creationTime}}</td>
             </tr>
         </tbody>
