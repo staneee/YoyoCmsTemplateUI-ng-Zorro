@@ -18,7 +18,7 @@ export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 export class AccountServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -29,22 +29,22 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    isTenantAvailable(input: IsTenantAvailableInput | null | undefined): Observable<IsTenantAvailableOutput> {
+    isTenantAvailable(input: IsTenantAvailableInput): Observable<IsTenantAvailableOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/IsTenantAvailable";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processIsTenantAvailable(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -79,22 +79,22 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    register(input: RegisterInput | null | undefined): Observable<RegisterOutput> {
+    register(input: RegisterInput): Observable<RegisterOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/Register";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processRegister(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -129,21 +129,21 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendPasswordResetCode(input: SendPasswordResetCodeInput | null | undefined): Observable<void> {
+    sendPasswordResetCode(input: SendPasswordResetCodeInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Account/SendPasswordResetCode";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendPasswordResetCode(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -175,22 +175,22 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    resetPassword(input: ResetPasswordInput | null | undefined): Observable<ResetPasswordOutput> {
+    resetPassword(input: ResetPasswordInput): Observable<ResetPasswordOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/ResetPassword";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processResetPassword(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -225,21 +225,21 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendEmailActivationLink(input: SendEmailActivationLinkInput | null | undefined): Observable<void> {
+    sendEmailActivationLink(input: SendEmailActivationLinkInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Account/SendEmailActivationLink";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendEmailActivationLink(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -271,21 +271,21 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    activateEmail(input: ActivateEmailInput | null | undefined): Observable<void> {
+    activateEmail(input: ActivateEmailInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Account/ActivateEmail";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processActivateEmail(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -317,22 +317,22 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    impersonate(input: ImpersonateInput | null | undefined): Observable<ImpersonateOutput> {
+    impersonate(input: ImpersonateInput): Observable<ImpersonateOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/Impersonate";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processImpersonate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -376,15 +376,15 @@ export class AccountServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Account/BackToImpersonator";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processBackToImpersonator(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -419,22 +419,22 @@ export class AccountServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    switchToLinkedAccount(input: SwitchToLinkedAccountInput | null | undefined): Observable<SwitchToLinkedAccountOutput> {
+    switchToLinkedAccount(input: SwitchToLinkedAccountInput): Observable<SwitchToLinkedAccountOutput> {
         let url_ = this.baseUrl + "/api/services/app/Account/SwitchToLinkedAccount";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSwitchToLinkedAccount(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -470,7 +470,7 @@ export class AccountServiceProxy {
 export class AuditLogServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -488,51 +488,51 @@ export class AuditLogServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getAuditLogs(startDate: moment.Moment, endDate: moment.Moment, userName: string | null | undefined, serviceName: string | null | undefined, methodName: string | null | undefined, browserInfo: string | null | undefined, hasException: boolean | null | undefined, minExecutionDuration: number | null | undefined, maxExecutionDuration: number | null | undefined, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfAuditLogListDto> {
+    getAuditLogs(startDate: moment.Moment, endDate: moment.Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfAuditLogListDto> {
         let url_ = this.baseUrl + "/api/services/app/AuditLog/GetAuditLogs?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
         else
-            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
+            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&";
         if (endDate === undefined || endDate === null)
             throw new Error("The parameter 'endDate' must be defined and cannot be null.");
         else
-            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&"; 
+            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&";
         if (userName !== undefined)
-            url_ += "UserName=" + encodeURIComponent("" + userName) + "&"; 
+            url_ += "UserName=" + encodeURIComponent("" + userName) + "&";
         if (serviceName !== undefined)
-            url_ += "ServiceName=" + encodeURIComponent("" + serviceName) + "&"; 
+            url_ += "ServiceName=" + encodeURIComponent("" + serviceName) + "&";
         if (methodName !== undefined)
-            url_ += "MethodName=" + encodeURIComponent("" + methodName) + "&"; 
+            url_ += "MethodName=" + encodeURIComponent("" + methodName) + "&";
         if (browserInfo !== undefined)
-            url_ += "BrowserInfo=" + encodeURIComponent("" + browserInfo) + "&"; 
+            url_ += "BrowserInfo=" + encodeURIComponent("" + browserInfo) + "&";
         if (hasException !== undefined)
-            url_ += "HasException=" + encodeURIComponent("" + hasException) + "&"; 
+            url_ += "HasException=" + encodeURIComponent("" + hasException) + "&";
         if (minExecutionDuration !== undefined)
-            url_ += "MinExecutionDuration=" + encodeURIComponent("" + minExecutionDuration) + "&"; 
+            url_ += "MinExecutionDuration=" + encodeURIComponent("" + minExecutionDuration) + "&";
         if (maxExecutionDuration !== undefined)
-            url_ += "MaxExecutionDuration=" + encodeURIComponent("" + maxExecutionDuration) + "&"; 
+            url_ += "MaxExecutionDuration=" + encodeURIComponent("" + maxExecutionDuration) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAuditLogs(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -580,51 +580,51 @@ export class AuditLogServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getAuditLogsToExcel(startDate: moment.Moment, endDate: moment.Moment, userName: string | null | undefined, serviceName: string | null | undefined, methodName: string | null | undefined, browserInfo: string | null | undefined, hasException: boolean | null | undefined, minExecutionDuration: number | null | undefined, maxExecutionDuration: number | null | undefined, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<FileDto> {
+    getAuditLogsToExcel(startDate: moment.Moment, endDate: moment.Moment, userName: string, serviceName: string, methodName: string, browserInfo: string, hasException: boolean, minExecutionDuration: number, maxExecutionDuration: number, sorting: string, maxResultCount: number, skipCount: number): Observable<FileDto> {
         let url_ = this.baseUrl + "/api/services/app/AuditLog/GetAuditLogsToExcel?";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
         else
-            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
+            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&";
         if (endDate === undefined || endDate === null)
             throw new Error("The parameter 'endDate' must be defined and cannot be null.");
         else
-            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&"; 
+            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&";
         if (userName !== undefined)
-            url_ += "UserName=" + encodeURIComponent("" + userName) + "&"; 
+            url_ += "UserName=" + encodeURIComponent("" + userName) + "&";
         if (serviceName !== undefined)
-            url_ += "ServiceName=" + encodeURIComponent("" + serviceName) + "&"; 
+            url_ += "ServiceName=" + encodeURIComponent("" + serviceName) + "&";
         if (methodName !== undefined)
-            url_ += "MethodName=" + encodeURIComponent("" + methodName) + "&"; 
+            url_ += "MethodName=" + encodeURIComponent("" + methodName) + "&";
         if (browserInfo !== undefined)
-            url_ += "BrowserInfo=" + encodeURIComponent("" + browserInfo) + "&"; 
+            url_ += "BrowserInfo=" + encodeURIComponent("" + browserInfo) + "&";
         if (hasException !== undefined)
-            url_ += "HasException=" + encodeURIComponent("" + hasException) + "&"; 
+            url_ += "HasException=" + encodeURIComponent("" + hasException) + "&";
         if (minExecutionDuration !== undefined)
-            url_ += "MinExecutionDuration=" + encodeURIComponent("" + minExecutionDuration) + "&"; 
+            url_ += "MinExecutionDuration=" + encodeURIComponent("" + minExecutionDuration) + "&";
         if (maxExecutionDuration !== undefined)
-            url_ += "MaxExecutionDuration=" + encodeURIComponent("" + maxExecutionDuration) + "&"; 
+            url_ += "MaxExecutionDuration=" + encodeURIComponent("" + maxExecutionDuration) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAuditLogsToExcel(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -666,7 +666,7 @@ export class AuditLogServiceProxy {
 export class CachingServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -680,15 +680,15 @@ export class CachingServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Caching/GetAllCaches";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAllCaches(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -729,21 +729,21 @@ export class CachingServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    clearCache(input: EntityDtoOfString | null | undefined): Observable<void> {
+    clearCache(input: EntityDtoOfString): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Caching/ClearCache";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processClearCache(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -784,14 +784,14 @@ export class CachingServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Caching/ClearAllCaches";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processClearAllCaches(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -830,7 +830,7 @@ export class CachingServiceProxy {
 export class ChatServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -844,15 +844,15 @@ export class ChatServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Chat/GetUserChatFriendsWithSettings";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUserChatFriendsWithSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -888,27 +888,27 @@ export class ChatServiceProxy {
      * @minMessageId (optional) 
      * @return Success
      */
-    getUserChatMessages(tenantId: number | null | undefined, userId: number, minMessageId: number | null | undefined): Observable<ListResultDtoOfChatMessageDto> {
+    getUserChatMessages(tenantId: number, userId: number, minMessageId: number): Observable<ListResultDtoOfChatMessageDto> {
         let url_ = this.baseUrl + "/api/services/app/Chat/GetUserChatMessages?";
         if (tenantId !== undefined)
-            url_ += "TenantId=" + encodeURIComponent("" + tenantId) + "&"; 
+            url_ += "TenantId=" + encodeURIComponent("" + tenantId) + "&";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined and cannot be null.");
         else
-            url_ += "UserId=" + encodeURIComponent("" + userId) + "&"; 
+            url_ += "UserId=" + encodeURIComponent("" + userId) + "&";
         if (minMessageId !== undefined)
-            url_ += "MinMessageId=" + encodeURIComponent("" + minMessageId) + "&"; 
+            url_ += "MinMessageId=" + encodeURIComponent("" + minMessageId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUserChatMessages(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -943,21 +943,21 @@ export class ChatServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    markAllUnreadMessagesOfUserAsRead(input: MarkAllUnreadMessagesOfUserAsReadInput | null | undefined): Observable<void> {
+    markAllUnreadMessagesOfUserAsRead(input: MarkAllUnreadMessagesOfUserAsReadInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Chat/MarkAllUnreadMessagesOfUserAsRead";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processMarkAllUnreadMessagesOfUserAsRead(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -990,7 +990,7 @@ export class ChatServiceProxy {
 export class CommonLookupServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1005,18 +1005,18 @@ export class CommonLookupServiceProxy {
         if (onlyFreeItems === undefined || onlyFreeItems === null)
             throw new Error("The parameter 'onlyFreeItems' must be defined and cannot be null.");
         else
-            url_ += "onlyFreeItems=" + encodeURIComponent("" + onlyFreeItems) + "&"; 
+            url_ += "onlyFreeItems=" + encodeURIComponent("" + onlyFreeItems) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEditionsForCombobox(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1051,22 +1051,22 @@ export class CommonLookupServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    findUsers(input: FindUsersInput | null | undefined): Observable<PagedResultDtoOfNameValueDto> {
+    findUsers(input: FindUsersInput): Observable<PagedResultDtoOfNameValueDto> {
         let url_ = this.baseUrl + "/api/services/app/CommonLookup/FindUsers";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processFindUsers(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1104,15 +1104,15 @@ export class CommonLookupServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/CommonLookup/GetDefaultEditionName";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetDefaultEditionName(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1148,7 +1148,7 @@ export class CommonLookupServiceProxy {
 export class DemoUiComponentsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1159,21 +1159,21 @@ export class DemoUiComponentsServiceProxy {
      * @date (optional) 
      * @return Success
      */
-    sendAndGetDate(date: moment.Moment | null | undefined): Observable<DateToStringOutput> {
+    sendAndGetDate(date: moment.Moment): Observable<DateToStringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetDate?";
         if (date !== undefined)
-            url_ += "date=" + encodeURIComponent(date ? "" + date.toJSON() : "") + "&"; 
+            url_ += "date=" + encodeURIComponent(date ? "" + date.toJSON() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendAndGetDate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1214,21 +1214,21 @@ export class DemoUiComponentsServiceProxy {
      * @date (optional) 
      * @return Success
      */
-    sendAndGetDateTime(date: moment.Moment | null | undefined): Observable<DateToStringOutput> {
+    sendAndGetDateTime(date: moment.Moment): Observable<DateToStringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetDateTime?";
         if (date !== undefined)
-            url_ += "date=" + encodeURIComponent(date ? "" + date.toJSON() : "") + "&"; 
+            url_ += "date=" + encodeURIComponent(date ? "" + date.toJSON() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendAndGetDateTime(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1270,23 +1270,23 @@ export class DemoUiComponentsServiceProxy {
      * @endDate (optional) 
      * @return Success
      */
-    sendAndGetDateRange(startDate: moment.Moment | null | undefined, endDate: moment.Moment | null | undefined): Observable<DateToStringOutput> {
+    sendAndGetDateRange(startDate: moment.Moment, endDate: moment.Moment): Observable<DateToStringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetDateRange?";
         if (startDate !== undefined)
-            url_ += "startDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
+            url_ += "startDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&";
         if (endDate !== undefined)
-            url_ += "endDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&"; 
+            url_ += "endDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendAndGetDateRange(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1327,21 +1327,21 @@ export class DemoUiComponentsServiceProxy {
      * @searchTerm (optional) 
      * @return Success
      */
-    getCountries(searchTerm: string | null | undefined): Observable<NameValueOfString[]> {
+    getCountries(searchTerm: string): Observable<NameValueOfString[]> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/GetCountries?";
         if (searchTerm !== undefined)
-            url_ += "searchTerm=" + encodeURIComponent("" + searchTerm) + "&"; 
+            url_ += "searchTerm=" + encodeURIComponent("" + searchTerm) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetCountries(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1386,22 +1386,22 @@ export class DemoUiComponentsServiceProxy {
      * @selectedCountries (optional) 
      * @return Success
      */
-    sendAndGetSelectedCountries(selectedCountries: NameValueOfString[] | null | undefined): Observable<NameValueOfString[]> {
+    sendAndGetSelectedCountries(selectedCountries: NameValueOfString[]): Observable<NameValueOfString[]> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetSelectedCountries";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(selectedCountries);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendAndGetSelectedCountries(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1446,21 +1446,21 @@ export class DemoUiComponentsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendAndGetValue(input: string | null | undefined): Observable<StringOutput> {
+    sendAndGetValue(input: string): Observable<StringOutput> {
         let url_ = this.baseUrl + "/api/services/app/DemoUiComponents/SendAndGetValue?";
         if (input !== undefined)
-            url_ += "input=" + encodeURIComponent("" + input) + "&"; 
+            url_ += "input=" + encodeURIComponent("" + input) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendAndGetValue(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1502,7 +1502,7 @@ export class DemoUiComponentsServiceProxy {
 export class EditionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1516,15 +1516,15 @@ export class EditionServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Edition/GetEditions";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEditions(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1565,21 +1565,21 @@ export class EditionServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getEditionForEdit(id: number | null | undefined): Observable<GetEditionEditOutput> {
+    getEditionForEdit(id: number): Observable<GetEditionEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/Edition/GetEditionForEdit?";
         if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEditionForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1620,21 +1620,21 @@ export class EditionServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateEdition(input: CreateOrUpdateEditionDto | null | undefined): Observable<void> {
+    createOrUpdateEdition(input: CreateOrUpdateEditionDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Edition/CreateOrUpdateEdition";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateOrUpdateEdition(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1676,17 +1676,17 @@ export class EditionServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDeleteEdition(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1724,29 +1724,29 @@ export class EditionServiceProxy {
      * @selectedEditionId (optional) 
      * @return Success
      */
-    getEditionComboboxItems(selectedEditionId: number | null | undefined, addAllItem: boolean, onlyFreeItems: boolean): Observable<SubscribableEditionComboboxItemDto[]> {
+    getEditionComboboxItems(selectedEditionId: number, addAllItem: boolean, onlyFreeItems: boolean): Observable<SubscribableEditionComboboxItemDto[]> {
         let url_ = this.baseUrl + "/api/services/app/Edition/GetEditionComboboxItems?";
         if (selectedEditionId !== undefined)
-            url_ += "selectedEditionId=" + encodeURIComponent("" + selectedEditionId) + "&"; 
+            url_ += "selectedEditionId=" + encodeURIComponent("" + selectedEditionId) + "&";
         if (addAllItem === undefined || addAllItem === null)
             throw new Error("The parameter 'addAllItem' must be defined and cannot be null.");
         else
-            url_ += "addAllItem=" + encodeURIComponent("" + addAllItem) + "&"; 
+            url_ += "addAllItem=" + encodeURIComponent("" + addAllItem) + "&";
         if (onlyFreeItems === undefined || onlyFreeItems === null)
             throw new Error("The parameter 'onlyFreeItems' must be defined and cannot be null.");
         else
-            url_ += "onlyFreeItems=" + encodeURIComponent("" + onlyFreeItems) + "&"; 
+            url_ += "onlyFreeItems=" + encodeURIComponent("" + onlyFreeItems) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEditionComboboxItems(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1792,7 +1792,7 @@ export class EditionServiceProxy {
 export class FriendshipServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -1803,22 +1803,22 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createFriendshipRequest(input: CreateFriendshipRequestInput | null | undefined): Observable<FriendDto> {
+    createFriendshipRequest(input: CreateFriendshipRequestInput): Observable<FriendDto> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/CreateFriendshipRequest";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateFriendshipRequest(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1853,22 +1853,22 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createFriendshipRequestByUserName(input: CreateFriendshipRequestByUserNameInput | null | undefined): Observable<FriendDto> {
+    createFriendshipRequestByUserName(input: CreateFriendshipRequestByUserNameInput): Observable<FriendDto> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/CreateFriendshipRequestByUserName";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateFriendshipRequestByUserName(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1903,21 +1903,21 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    blockUser(input: BlockUserInput | null | undefined): Observable<void> {
+    blockUser(input: BlockUserInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/BlockUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processBlockUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1949,21 +1949,21 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unblockUser(input: UnblockUserInput | null | undefined): Observable<void> {
+    unblockUser(input: UnblockUserInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/UnblockUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUnblockUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -1995,21 +1995,21 @@ export class FriendshipServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    acceptFriendshipRequest(input: AcceptFriendshipRequestInput | null | undefined): Observable<void> {
+    acceptFriendshipRequest(input: AcceptFriendshipRequestInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Friendship/AcceptFriendshipRequest";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processAcceptFriendshipRequest(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2042,7 +2042,7 @@ export class FriendshipServiceProxy {
 export class HostDashboardServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2057,26 +2057,26 @@ export class HostDashboardServiceProxy {
         if (incomeStatisticsDateInterval === undefined || incomeStatisticsDateInterval === null)
             throw new Error("The parameter 'incomeStatisticsDateInterval' must be defined and cannot be null.");
         else
-            url_ += "IncomeStatisticsDateInterval=" + encodeURIComponent("" + incomeStatisticsDateInterval) + "&"; 
+            url_ += "IncomeStatisticsDateInterval=" + encodeURIComponent("" + incomeStatisticsDateInterval) + "&";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
         else
-            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
+            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&";
         if (endDate === undefined || endDate === null)
             throw new Error("The parameter 'endDate' must be defined and cannot be null.");
         else
-            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&"; 
+            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetDashboardStatisticsData(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2121,26 +2121,26 @@ export class HostDashboardServiceProxy {
         if (incomeStatisticsDateInterval === undefined || incomeStatisticsDateInterval === null)
             throw new Error("The parameter 'incomeStatisticsDateInterval' must be defined and cannot be null.");
         else
-            url_ += "IncomeStatisticsDateInterval=" + encodeURIComponent("" + incomeStatisticsDateInterval) + "&"; 
+            url_ += "IncomeStatisticsDateInterval=" + encodeURIComponent("" + incomeStatisticsDateInterval) + "&";
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
         else
-            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
+            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&";
         if (endDate === undefined || endDate === null)
             throw new Error("The parameter 'endDate' must be defined and cannot be null.");
         else
-            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&"; 
+            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetIncomeStatistics(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2185,22 +2185,22 @@ export class HostDashboardServiceProxy {
         if (startDate === undefined || startDate === null)
             throw new Error("The parameter 'startDate' must be defined and cannot be null.");
         else
-            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&"; 
+            url_ += "StartDate=" + encodeURIComponent(startDate ? "" + startDate.toJSON() : "") + "&";
         if (endDate === undefined || endDate === null)
             throw new Error("The parameter 'endDate' must be defined and cannot be null.");
         else
-            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&"; 
+            url_ += "EndDate=" + encodeURIComponent(endDate ? "" + endDate.toJSON() : "") + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEditionTenantStatistics(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2242,7 +2242,7 @@ export class HostDashboardServiceProxy {
 export class HostSettingsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2256,15 +2256,15 @@ export class HostSettingsServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/HostSettings/GetAllSettings";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAllSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2305,21 +2305,21 @@ export class HostSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateAllSettings(input: HostSettingsEditDto | null | undefined): Observable<void> {
+    updateAllSettings(input: HostSettingsEditDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/HostSettings/UpdateAllSettings";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateAllSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2357,21 +2357,21 @@ export class HostSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendTestEmail(input: SendTestEmailInput | null | undefined): Observable<void> {
+    sendTestEmail(input: SendTestEmailInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/HostSettings/SendTestEmail";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendTestEmail(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2410,7 +2410,7 @@ export class HostSettingsServiceProxy {
 export class InstallServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2421,21 +2421,21 @@ export class InstallServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    setup(input: InstallDto | null | undefined): Observable<void> {
+    setup(input: InstallDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Install/Setup";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSetup(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2470,15 +2470,15 @@ export class InstallServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Install/GetAppSettingsJson";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAppSettingsJson(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2516,15 +2516,15 @@ export class InstallServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Install/CheckDatabase";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCheckDatabase(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2560,7 +2560,7 @@ export class InstallServiceProxy {
 export class InvoiceServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2575,18 +2575,18 @@ export class InvoiceServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetInvoiceInfo(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2621,21 +2621,21 @@ export class InvoiceServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createInvoice(input: CreateInvoiceDto | null | undefined): Observable<void> {
+    createInvoice(input: CreateInvoiceDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Invoice/CreateInvoice";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateInvoice(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2668,7 +2668,7 @@ export class InvoiceServiceProxy {
 export class LanguageServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -2682,15 +2682,15 @@ export class LanguageServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Language/GetLanguages";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetLanguages(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2731,21 +2731,21 @@ export class LanguageServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getLanguageForEdit(id: number | null | undefined): Observable<GetLanguageForEditOutput> {
+    getLanguageForEdit(id: number): Observable<GetLanguageForEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/Language/GetLanguageForEdit?";
         if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetLanguageForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2786,21 +2786,21 @@ export class LanguageServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateLanguage(input: CreateOrUpdateLanguageInput | null | undefined): Observable<void> {
+    createOrUpdateLanguage(input: CreateOrUpdateLanguageInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Language/CreateOrUpdateLanguage";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateOrUpdateLanguage(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2842,17 +2842,17 @@ export class LanguageServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDeleteLanguage(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2890,21 +2890,21 @@ export class LanguageServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    setDefaultLanguage(input: SetDefaultLanguageInput | null | undefined): Observable<void> {
+    setDefaultLanguage(input: SetDefaultLanguageInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Language/SetDefaultLanguage";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSetDefaultLanguage(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -2945,43 +2945,43 @@ export class LanguageServiceProxy {
      * @filterText (optional) 
      * @return Success
      */
-    getLanguageTexts(maxResultCount: number, skipCount: number, sorting: string | null | undefined, sourceName: string, baseLanguageName: string | null | undefined, targetLanguageName: string, targetValueFilter: string | null | undefined, filterText: string | null | undefined): Observable<PagedResultDtoOfLanguageTextListDto> {
+    getLanguageTexts(maxResultCount: number, skipCount: number, sorting: string, sourceName: string, baseLanguageName: string, targetLanguageName: string, targetValueFilter: string, filterText: string): Observable<PagedResultDtoOfLanguageTextListDto> {
         let url_ = this.baseUrl + "/api/services/app/Language/GetLanguageTexts?";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (sourceName === undefined || sourceName === null)
             throw new Error("The parameter 'sourceName' must be defined and cannot be null.");
         else
-            url_ += "SourceName=" + encodeURIComponent("" + sourceName) + "&"; 
+            url_ += "SourceName=" + encodeURIComponent("" + sourceName) + "&";
         if (baseLanguageName !== undefined)
-            url_ += "BaseLanguageName=" + encodeURIComponent("" + baseLanguageName) + "&"; 
+            url_ += "BaseLanguageName=" + encodeURIComponent("" + baseLanguageName) + "&";
         if (targetLanguageName === undefined || targetLanguageName === null)
             throw new Error("The parameter 'targetLanguageName' must be defined and cannot be null.");
         else
-            url_ += "TargetLanguageName=" + encodeURIComponent("" + targetLanguageName) + "&"; 
+            url_ += "TargetLanguageName=" + encodeURIComponent("" + targetLanguageName) + "&";
         if (targetValueFilter !== undefined)
-            url_ += "TargetValueFilter=" + encodeURIComponent("" + targetValueFilter) + "&"; 
+            url_ += "TargetValueFilter=" + encodeURIComponent("" + targetValueFilter) + "&";
         if (filterText !== undefined)
-            url_ += "FilterText=" + encodeURIComponent("" + filterText) + "&"; 
+            url_ += "FilterText=" + encodeURIComponent("" + filterText) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetLanguageTexts(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3022,21 +3022,21 @@ export class LanguageServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateLanguageText(input: UpdateLanguageTextInput | null | undefined): Observable<void> {
+    updateLanguageText(input: UpdateLanguageTextInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Language/UpdateLanguageText";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateLanguageText(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3075,7 +3075,7 @@ export class LanguageServiceProxy {
 export class LogServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3086,21 +3086,21 @@ export class LogServiceProxy {
      * @data (optional) 
      * @return Success
      */
-    test(data: string | null | undefined): Observable<string> {
+    test(data: string): Observable<string> {
         let url_ = this.baseUrl + "/api/services/app/Log/Test?";
         if (data !== undefined)
-            url_ += "data=" + encodeURIComponent("" + data) + "&"; 
+            url_ += "data=" + encodeURIComponent("" + data) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processTest(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3136,7 +3136,7 @@ export class LogServiceProxy {
 export class NotificationServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3147,29 +3147,29 @@ export class NotificationServiceProxy {
      * @state (optional) 
      * @return Success
      */
-    getUserNotifications(state: State | null | undefined, maxResultCount: number, skipCount: number): Observable<GetNotificationsOutput> {
+    getUserNotifications(state: State, maxResultCount: number, skipCount: number): Observable<GetNotificationsOutput> {
         let url_ = this.baseUrl + "/api/services/app/Notification/GetUserNotifications?";
         if (state !== undefined)
-            url_ += "State=" + encodeURIComponent("" + state) + "&"; 
+            url_ += "State=" + encodeURIComponent("" + state) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUserNotifications(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3207,14 +3207,14 @@ export class NotificationServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Notification/SetAllNotificationsAsRead";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSetAllNotificationsAsRead(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3246,21 +3246,21 @@ export class NotificationServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    setNotificationAsRead(input: EntityDtoOfGuid | null | undefined): Observable<void> {
+    setNotificationAsRead(input: EntityDtoOfGuid): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Notification/SetNotificationAsRead";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSetNotificationAsRead(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3295,15 +3295,15 @@ export class NotificationServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Notification/GetNotificationSettings";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetNotificationSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3338,21 +3338,21 @@ export class NotificationServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateNotificationSettings(input: UpdateNotificationSettingsInput | null | undefined): Observable<void> {
+    updateNotificationSettings(input: UpdateNotificationSettingsInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Notification/UpdateNotificationSettings";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateNotificationSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3385,7 +3385,7 @@ export class NotificationServiceProxy {
 export class OrganizationUnitServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3399,15 +3399,15 @@ export class OrganizationUnitServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/GetOrganizationUnits";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetOrganizationUnits(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3448,33 +3448,33 @@ export class OrganizationUnitServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getOrganizationUnitUsers(id: number, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfOrganizationUnitUserListDto> {
+    getOrganizationUnitUsers(id: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfOrganizationUnitUserListDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/GetOrganizationUnitUsers?";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetOrganizationUnitUsers(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3515,22 +3515,22 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrganizationUnit(input: CreateOrganizationUnitInput | null | undefined): Observable<OrganizationUnitDto> {
+    createOrganizationUnit(input: CreateOrganizationUnitInput): Observable<OrganizationUnitDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/CreateOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateOrganizationUnit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3571,22 +3571,22 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateOrganizationUnit(input: UpdateOrganizationUnitInput | null | undefined): Observable<OrganizationUnitDto> {
+    updateOrganizationUnit(input: UpdateOrganizationUnitInput): Observable<OrganizationUnitDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/UpdateOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateOrganizationUnit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3627,22 +3627,22 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    moveOrganizationUnit(input: MoveOrganizationUnitInput | null | undefined): Observable<OrganizationUnitDto> {
+    moveOrganizationUnit(input: MoveOrganizationUnitInput): Observable<OrganizationUnitDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/MoveOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processMoveOrganizationUnit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3687,17 +3687,17 @@ export class OrganizationUnitServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDeleteOrganizationUnit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3739,21 +3739,21 @@ export class OrganizationUnitServiceProxy {
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined and cannot be null.");
         else
-            url_ += "UserId=" + encodeURIComponent("" + userId) + "&"; 
+            url_ += "UserId=" + encodeURIComponent("" + userId) + "&";
         if (organizationUnitId === undefined || organizationUnitId === null)
             throw new Error("The parameter 'organizationUnitId' must be defined and cannot be null.");
         else
-            url_ += "OrganizationUnitId=" + encodeURIComponent("" + organizationUnitId) + "&"; 
+            url_ += "OrganizationUnitId=" + encodeURIComponent("" + organizationUnitId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processRemoveUserFromOrganizationUnit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3791,21 +3791,21 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    addUsersToOrganizationUnit(input: UsersToOrganizationUnitInput | null | undefined): Observable<void> {
+    addUsersToOrganizationUnit(input: UsersToOrganizationUnitInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/AddUsersToOrganizationUnit";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processAddUsersToOrganizationUnit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3843,22 +3843,22 @@ export class OrganizationUnitServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    findUsers(input: FindOrganizationUnitUsersInput | null | undefined): Observable<PagedResultDtoOfNameValueDto> {
+    findUsers(input: FindOrganizationUnitUsersInput): Observable<PagedResultDtoOfNameValueDto> {
         let url_ = this.baseUrl + "/api/services/app/OrganizationUnit/FindUsers";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processFindUsers(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3900,7 +3900,7 @@ export class OrganizationUnitServiceProxy {
 export class PaymentServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -3911,21 +3911,21 @@ export class PaymentServiceProxy {
      * @upgradeEditionId (optional) 
      * @return Success
      */
-    getPaymentInfo(upgradeEditionId: number | null | undefined): Observable<PaymentInfoDto> {
+    getPaymentInfo(upgradeEditionId: number): Observable<PaymentInfoDto> {
         let url_ = this.baseUrl + "/api/services/app/Payment/GetPaymentInfo?";
         if (upgradeEditionId !== undefined)
-            url_ += "UpgradeEditionId=" + encodeURIComponent("" + upgradeEditionId) + "&"; 
+            url_ += "UpgradeEditionId=" + encodeURIComponent("" + upgradeEditionId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetPaymentInfo(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -3966,22 +3966,22 @@ export class PaymentServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createPayment(input: CreatePaymentDto | null | undefined): Observable<any> {
+    createPayment(input: CreatePaymentDto): Observable<any> {
         let url_ = this.baseUrl + "/api/services/app/Payment/CreatePayment";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreatePayment(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4022,22 +4022,22 @@ export class PaymentServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    executePayment(input: ExecutePaymentDto | null | undefined): Observable<any> {
+    executePayment(input: ExecutePaymentDto): Observable<any> {
         let url_ = this.baseUrl + "/api/services/app/Payment/ExecutePayment";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processExecutePayment(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4078,29 +4078,29 @@ export class PaymentServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getPaymentHistory(sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfSubscriptionPaymentListDto> {
+    getPaymentHistory(sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfSubscriptionPaymentListDto> {
         let url_ = this.baseUrl + "/api/services/app/Payment/GetPaymentHistory?";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetPaymentHistory(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4136,7 +4136,7 @@ export class PaymentServiceProxy {
 export class PermissionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4146,19 +4146,65 @@ export class PermissionServiceProxy {
     /**
      * @return Success
      */
-    getAllPermissions(): Observable<ListResultDtoOfFlatPermissionWithLevelDto> {
-        let url_ = this.baseUrl + "/api/services/app/Permission/GetAllPermissions";
+    getAllPermissionsTree(): Observable<ListResultDtoOfTreePermissionDto> {
+        let url_ = this.baseUrl + "/api/services/app/Permission/GetAllPermissionsTree";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
+            return this.processGetAllPermissionsTree(response_);
+        }).catch((response_: any) => {
+            if (response_ instanceof Response) {
+                try {
+                    return this.processGetAllPermissionsTree(<any>response_);
+                } catch (e) {
+                    return <Observable<ListResultDtoOfTreePermissionDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfTreePermissionDto>><any>Observable.throw(response_);
+        });
+    }
+
+    protected processGetAllPermissionsTree(response: Response): Observable<ListResultDtoOfTreePermissionDto> {
+        const status = response.status;
+
+        let _headers: any = response.headers ? response.headers.toJSON() : {};
+        if (status === 200) {
+            const _responseText = response.text();
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfTreePermissionDto.fromJS(resultData200) : new ListResultDtoOfTreePermissionDto();
+            return Observable.of(result200);
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.text();
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Observable.of<ListResultDtoOfTreePermissionDto>(<any>null);
+    }
+
+    /**
+     * @return Success
+     */
+    getAllPermissions(): Observable<ListResultDtoOfFlatPermissionWithLevelDto> {
+        let url_ = this.baseUrl + "/api/services/app/Permission/GetAllPermissions";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: any = {
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            })
+        };
+
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAllPermissions(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4194,7 +4240,7 @@ export class PermissionServiceProxy {
 export class ProfileServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4208,15 +4254,15 @@ export class ProfileServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Profile/GetCurrentUserProfileForEdit";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetCurrentUserProfileForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4254,15 +4300,15 @@ export class ProfileServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Profile/UpdateGoogleAuthenticatorKey";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateGoogleAuthenticatorKey(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4300,14 +4346,14 @@ export class ProfileServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Profile/SendVerificationSms";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendVerificationSms(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4339,21 +4385,21 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    verifySmsCode(input: VerifySmsCodeInputDto | null | undefined): Observable<void> {
+    verifySmsCode(input: VerifySmsCodeInputDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/VerifySmsCode";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processVerifySmsCode(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4385,21 +4431,21 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateCurrentUserProfile(input: CurrentUserProfileEditDto | null | undefined): Observable<void> {
+    updateCurrentUserProfile(input: CurrentUserProfileEditDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/UpdateCurrentUserProfile";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateCurrentUserProfile(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4431,21 +4477,21 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    changePassword(input: ChangePasswordInput | null | undefined): Observable<void> {
+    changePassword(input: ChangePasswordInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/ChangePassword";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processChangePassword(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4477,21 +4523,21 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateProfilePicture(input: UpdateProfilePictureInput | null | undefined): Observable<void> {
+    updateProfilePicture(input: UpdateProfilePictureInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/UpdateProfilePicture";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateProfilePicture(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4526,15 +4572,15 @@ export class ProfileServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Profile/GetPasswordComplexitySetting";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetPasswordComplexitySetting(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4572,15 +4618,15 @@ export class ProfileServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Profile/GetProfilePicture";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetProfilePicture(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4616,27 +4662,27 @@ export class ProfileServiceProxy {
      * @tenantId (optional) 
      * @return Success
      */
-    getFriendProfilePictureById(profilePictureId: string | null | undefined, userId: number, tenantId: number | null | undefined): Observable<GetProfilePictureOutput> {
+    getFriendProfilePictureById(profilePictureId: string, userId: number, tenantId: number): Observable<GetProfilePictureOutput> {
         let url_ = this.baseUrl + "/api/services/app/Profile/GetFriendProfilePictureById?";
         if (profilePictureId !== undefined)
-            url_ += "ProfilePictureId=" + encodeURIComponent("" + profilePictureId) + "&"; 
+            url_ += "ProfilePictureId=" + encodeURIComponent("" + profilePictureId) + "&";
         if (userId === undefined || userId === null)
             throw new Error("The parameter 'userId' must be defined and cannot be null.");
         else
-            url_ += "UserId=" + encodeURIComponent("" + userId) + "&"; 
+            url_ += "UserId=" + encodeURIComponent("" + userId) + "&";
         if (tenantId !== undefined)
-            url_ += "TenantId=" + encodeURIComponent("" + tenantId) + "&"; 
+            url_ += "TenantId=" + encodeURIComponent("" + tenantId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetFriendProfilePictureById(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4675,18 +4721,18 @@ export class ProfileServiceProxy {
         if (profilePictureId === undefined || profilePictureId === null)
             throw new Error("The parameter 'profilePictureId' must be defined and cannot be null.");
         else
-            url_ += "profilePictureId=" + encodeURIComponent("" + profilePictureId) + "&"; 
+            url_ += "profilePictureId=" + encodeURIComponent("" + profilePictureId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetProfilePictureById(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4721,21 +4767,21 @@ export class ProfileServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    changeLanguage(input: ChangeUserLanguageDto | null | undefined): Observable<void> {
+    changeLanguage(input: ChangeUserLanguageDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Profile/ChangeLanguage";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processChangeLanguage(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4768,7 +4814,7 @@ export class ProfileServiceProxy {
 export class RoleServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -4779,21 +4825,21 @@ export class RoleServiceProxy {
      * @permission (optional) 
      * @return Success
      */
-    getRoles(permission: string | null | undefined): Observable<ListResultDtoOfRoleListDto> {
+    getRoles(permission: string): Observable<ListResultDtoOfRoleListDto> {
         let url_ = this.baseUrl + "/api/services/app/Role/GetRoles?";
         if (permission !== undefined)
-            url_ += "Permission=" + encodeURIComponent("" + permission) + "&"; 
+            url_ += "Permission=" + encodeURIComponent("" + permission) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetRoles(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4834,21 +4880,21 @@ export class RoleServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getRoleForEdit(id: number | null | undefined): Observable<GetRoleForEditOutput> {
+    getRoleForEdit(id: number): Observable<GetRoleForEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/Role/GetRoleForEdit?";
         if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetRoleForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4889,21 +4935,21 @@ export class RoleServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateRole(input: CreateOrUpdateRoleInput | null | undefined): Observable<void> {
+    createOrUpdateRole(input: CreateOrUpdateRoleInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Role/CreateOrUpdateRole";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateOrUpdateRole(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4945,17 +4991,17 @@ export class RoleServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDeleteRole(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -4994,7 +5040,7 @@ export class RoleServiceProxy {
 export class SessionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5008,15 +5054,15 @@ export class SessionServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Session/GetCurrentLoginInformations";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetCurrentLoginInformations(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5054,15 +5100,15 @@ export class SessionServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/Session/UpdateUserSignInToken";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateUserSignInToken(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5098,7 +5144,7 @@ export class SessionServiceProxy {
 export class SubscriptionServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5113,17 +5159,17 @@ export class SubscriptionServiceProxy {
         if (upgradeEditionId === undefined || upgradeEditionId === null)
             throw new Error("The parameter 'upgradeEditionId' must be defined and cannot be null.");
         else
-            url_ += "upgradeEditionId=" + encodeURIComponent("" + upgradeEditionId) + "&"; 
+            url_ += "upgradeEditionId=" + encodeURIComponent("" + upgradeEditionId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpgradeTenantToEquivalentEdition(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5156,7 +5202,7 @@ export class SubscriptionServiceProxy {
 export class TenantServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5173,45 +5219,45 @@ export class TenantServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getTenants(filter: string | null | undefined, subscriptionEndDateStart: moment.Moment | null | undefined, subscriptionEndDateEnd: moment.Moment | null | undefined, creationDateStart: moment.Moment | null | undefined, creationDateEnd: moment.Moment | null | undefined, editionId: number | null | undefined, editionIdSpecified: boolean, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfTenantListDto> {
+    getTenants(filter: string, subscriptionEndDateStart: moment.Moment, subscriptionEndDateEnd: moment.Moment, creationDateStart: moment.Moment, creationDateEnd: moment.Moment, editionId: number, editionIdSpecified: boolean, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfTenantListDto> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/GetTenants?";
         if (filter !== undefined)
-            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
         if (subscriptionEndDateStart !== undefined)
-            url_ += "SubscriptionEndDateStart=" + encodeURIComponent(subscriptionEndDateStart ? "" + subscriptionEndDateStart.toJSON() : "") + "&"; 
+            url_ += "SubscriptionEndDateStart=" + encodeURIComponent(subscriptionEndDateStart ? "" + subscriptionEndDateStart.toJSON() : "") + "&";
         if (subscriptionEndDateEnd !== undefined)
-            url_ += "SubscriptionEndDateEnd=" + encodeURIComponent(subscriptionEndDateEnd ? "" + subscriptionEndDateEnd.toJSON() : "") + "&"; 
+            url_ += "SubscriptionEndDateEnd=" + encodeURIComponent(subscriptionEndDateEnd ? "" + subscriptionEndDateEnd.toJSON() : "") + "&";
         if (creationDateStart !== undefined)
-            url_ += "CreationDateStart=" + encodeURIComponent(creationDateStart ? "" + creationDateStart.toJSON() : "") + "&"; 
+            url_ += "CreationDateStart=" + encodeURIComponent(creationDateStart ? "" + creationDateStart.toJSON() : "") + "&";
         if (creationDateEnd !== undefined)
-            url_ += "CreationDateEnd=" + encodeURIComponent(creationDateEnd ? "" + creationDateEnd.toJSON() : "") + "&"; 
+            url_ += "CreationDateEnd=" + encodeURIComponent(creationDateEnd ? "" + creationDateEnd.toJSON() : "") + "&";
         if (editionId !== undefined)
-            url_ += "EditionId=" + encodeURIComponent("" + editionId) + "&"; 
+            url_ += "EditionId=" + encodeURIComponent("" + editionId) + "&";
         if (editionIdSpecified === undefined || editionIdSpecified === null)
             throw new Error("The parameter 'editionIdSpecified' must be defined and cannot be null.");
         else
-            url_ += "EditionIdSpecified=" + encodeURIComponent("" + editionIdSpecified) + "&"; 
+            url_ += "EditionIdSpecified=" + encodeURIComponent("" + editionIdSpecified) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetTenants(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5252,21 +5298,21 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createTenant(input: CreateTenantInput | null | undefined): Observable<void> {
+    createTenant(input: CreateTenantInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/CreateTenant";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateTenant(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5308,18 +5354,18 @@ export class TenantServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetTenantForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5360,21 +5406,21 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateTenant(input: TenantEditDto | null | undefined): Observable<void> {
+    updateTenant(input: TenantEditDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/UpdateTenant";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateTenant(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5416,17 +5462,17 @@ export class TenantServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDeleteTenant(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5468,18 +5514,18 @@ export class TenantServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetTenantFeaturesForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5520,21 +5566,21 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateTenantFeatures(input: UpdateTenantFeaturesInput | null | undefined): Observable<void> {
+    updateTenantFeatures(input: UpdateTenantFeaturesInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/UpdateTenantFeatures";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateTenantFeatures(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5572,21 +5618,21 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    resetTenantSpecificFeatures(input: EntityDto | null | undefined): Observable<void> {
+    resetTenantSpecificFeatures(input: EntityDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/ResetTenantSpecificFeatures";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processResetTenantSpecificFeatures(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5624,21 +5670,21 @@ export class TenantServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unlockTenantAdmin(input: EntityDto | null | undefined): Observable<void> {
+    unlockTenantAdmin(input: EntityDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/Tenant/UnlockTenantAdmin";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUnlockTenantAdmin(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5677,7 +5723,7 @@ export class TenantServiceProxy {
 export class TenantDashboardServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5691,15 +5737,15 @@ export class TenantDashboardServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/TenantDashboard/GetMemberActivity";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetMemberActivity(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5744,18 +5790,18 @@ export class TenantDashboardServiceProxy {
         if (salesSummaryDatePeriod === undefined || salesSummaryDatePeriod === null)
             throw new Error("The parameter 'salesSummaryDatePeriod' must be defined and cannot be null.");
         else
-            url_ += "SalesSummaryDatePeriod=" + encodeURIComponent("" + salesSummaryDatePeriod) + "&"; 
+            url_ += "SalesSummaryDatePeriod=" + encodeURIComponent("" + salesSummaryDatePeriod) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetDashboardData(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5800,18 +5846,18 @@ export class TenantDashboardServiceProxy {
         if (salesSummaryDatePeriod === undefined || salesSummaryDatePeriod === null)
             throw new Error("The parameter 'salesSummaryDatePeriod' must be defined and cannot be null.");
         else
-            url_ += "SalesSummaryDatePeriod=" + encodeURIComponent("" + salesSummaryDatePeriod) + "&"; 
+            url_ += "SalesSummaryDatePeriod=" + encodeURIComponent("" + salesSummaryDatePeriod) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetSalesSummary(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5852,21 +5898,21 @@ export class TenantDashboardServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    getWorldMap(input: any | null | undefined): Observable<GetWorldMapOutput> {
+    getWorldMap(input: any): Observable<GetWorldMapOutput> {
         let url_ = this.baseUrl + "/api/services/app/TenantDashboard/GetWorldMap?";
         if (input !== undefined)
-            url_ += "input=" + encodeURIComponent("" + input) + "&"; 
+            url_ += "input=" + encodeURIComponent("" + input) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetWorldMap(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5907,21 +5953,21 @@ export class TenantDashboardServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    getGeneralStats(input: any | null | undefined): Observable<GetGeneralStatsOutput> {
+    getGeneralStats(input: any): Observable<GetGeneralStatsOutput> {
         let url_ = this.baseUrl + "/api/services/app/TenantDashboard/GetGeneralStats?";
         if (input !== undefined)
-            url_ += "input=" + encodeURIComponent("" + input) + "&"; 
+            url_ += "input=" + encodeURIComponent("" + input) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetGeneralStats(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -5963,7 +6009,7 @@ export class TenantDashboardServiceProxy {
 export class TenantRegistrationServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -5974,22 +6020,22 @@ export class TenantRegistrationServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    registerTenant(input: RegisterTenantInput | null | undefined): Observable<RegisterTenantOutput> {
+    registerTenant(input: RegisterTenantInput): Observable<RegisterTenantOutput> {
         let url_ = this.baseUrl + "/api/services/app/TenantRegistration/RegisterTenant";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processRegisterTenant(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6027,15 +6073,15 @@ export class TenantRegistrationServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/TenantRegistration/GetEditionsForSelect";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEditionsForSelect(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6074,18 +6120,18 @@ export class TenantRegistrationServiceProxy {
         if (editionId === undefined || editionId === null)
             throw new Error("The parameter 'editionId' must be defined and cannot be null.");
         else
-            url_ += "editionId=" + encodeURIComponent("" + editionId) + "&"; 
+            url_ += "editionId=" + encodeURIComponent("" + editionId) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetEdition(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6121,7 +6167,7 @@ export class TenantRegistrationServiceProxy {
 export class TenantSettingsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6135,15 +6181,15 @@ export class TenantSettingsServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/GetAllSettings";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetAllSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6184,21 +6230,21 @@ export class TenantSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateAllSettings(input: TenantSettingsEditDto | null | undefined): Observable<void> {
+    updateAllSettings(input: TenantSettingsEditDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/UpdateAllSettings";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateAllSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6239,14 +6285,14 @@ export class TenantSettingsServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/ClearLogo";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processClearLogo(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6287,14 +6333,14 @@ export class TenantSettingsServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/ClearCustomCss";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processClearCustomCss(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6332,21 +6378,21 @@ export class TenantSettingsServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    sendTestEmail(input: SendTestEmailInput | null | undefined): Observable<void> {
+    sendTestEmail(input: SendTestEmailInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/TenantSettings/SendTestEmail";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processSendTestEmail(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6385,7 +6431,7 @@ export class TenantSettingsServiceProxy {
 export class TokenAuthServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6396,22 +6442,22 @@ export class TokenAuthServiceProxy {
      * @model (optional) 
      * @return Success
      */
-    authenticate(model: AuthenticateModel | null | undefined): Observable<AuthenticateResultModel> {
+    authenticate(model: AuthenticateModel): Observable<AuthenticateResultModel> {
         let url_ = this.baseUrl + "/api/TokenAuth/Authenticate";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(model);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processAuthenticate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6449,15 +6495,15 @@ export class TokenAuthServiceProxy {
         let url_ = this.baseUrl + "/api/TokenAuth/GetExternalAuthenticationProviders";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetExternalAuthenticationProviders(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6496,22 +6542,22 @@ export class TokenAuthServiceProxy {
      * @model (optional) 
      * @return Success
      */
-    externalAuthenticate(model: ExternalAuthenticateModel | null | undefined): Observable<ExternalAuthenticateResultModel> {
+    externalAuthenticate(model: ExternalAuthenticateModel): Observable<ExternalAuthenticateResultModel> {
         let url_ = this.baseUrl + "/api/TokenAuth/ExternalAuthenticate";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(model);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processExternalAuthenticate(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6547,7 +6593,7 @@ export class TokenAuthServiceProxy {
 export class UiCustomizationSettingsServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6561,15 +6607,15 @@ export class UiCustomizationSettingsServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/UiCustomizationSettings/GetUiManagementSettings";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUiManagementSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6604,21 +6650,21 @@ export class UiCustomizationSettingsServiceProxy {
      * @settings (optional) 
      * @return Success
      */
-    updateUiManagementSettings(settings: UiCustomizationSettingsEditDto | null | undefined): Observable<void> {
+    updateUiManagementSettings(settings: UiCustomizationSettingsEditDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UiCustomizationSettings/UpdateUiManagementSettings";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(settings);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateUiManagementSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6650,21 +6696,21 @@ export class UiCustomizationSettingsServiceProxy {
      * @settings (optional) 
      * @return Success
      */
-    updateDefaultUiManagementSettings(settings: UiCustomizationSettingsEditDto | null | undefined): Observable<void> {
+    updateDefaultUiManagementSettings(settings: UiCustomizationSettingsEditDto): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UiCustomizationSettings/UpdateDefaultUiManagementSettings";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(settings);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateDefaultUiManagementSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6699,14 +6745,14 @@ export class UiCustomizationSettingsServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/UiCustomizationSettings/UseSystemDefaultSettings";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUseSystemDefaultSettings(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6739,7 +6785,7 @@ export class UiCustomizationSettingsServiceProxy {
 export class UserServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -6753,35 +6799,35 @@ export class UserServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getUsers(filter: string | null | undefined, permission: string | null | undefined, role: number | null | undefined, sorting: string | null | undefined, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfUserListDto> {
+    getUsers(filter: string, permission: string, role: number, sorting: string, maxResultCount: number, skipCount: number): Observable<PagedResultDtoOfUserListDto> {
         let url_ = this.baseUrl + "/api/services/app/User/GetUsers?";
         if (filter !== undefined)
-            url_ += "Filter=" + encodeURIComponent("" + filter) + "&"; 
+            url_ += "Filter=" + encodeURIComponent("" + filter) + "&";
         if (permission !== undefined)
-            url_ += "Permission=" + encodeURIComponent("" + permission) + "&"; 
+            url_ += "Permission=" + encodeURIComponent("" + permission) + "&";
         if (role !== undefined)
-            url_ += "Role=" + encodeURIComponent("" + role) + "&"; 
+            url_ += "Role=" + encodeURIComponent("" + role) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUsers(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6825,15 +6871,15 @@ export class UserServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/User/GetUsersToExcel";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUsersToExcel(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6874,21 +6920,21 @@ export class UserServiceProxy {
      * @id (optional) 
      * @return Success
      */
-    getUserForEdit(id: number | null | undefined): Observable<GetUserForEditOutput> {
+    getUserForEdit(id: number): Observable<GetUserForEditOutput> {
         let url_ = this.baseUrl + "/api/services/app/User/GetUserForEdit?";
         if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUserForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6933,18 +6979,18 @@ export class UserServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetUserPermissionsForEdit(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -6985,21 +7031,21 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    resetUserSpecificPermissions(input: EntityDtoOfInt64 | null | undefined): Observable<void> {
+    resetUserSpecificPermissions(input: EntityDtoOfInt64): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/ResetUserSpecificPermissions";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processResetUserSpecificPermissions(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7037,21 +7083,21 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    updateUserPermissions(input: UpdateUserPermissionsInput | null | undefined): Observable<void> {
+    updateUserPermissions(input: UpdateUserPermissionsInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/UpdateUserPermissions";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "put",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUpdateUserPermissions(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7089,21 +7135,21 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    createOrUpdateUser(input: CreateOrUpdateUserInput | null | undefined): Observable<void> {
+    createOrUpdateUser(input: CreateOrUpdateUserInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/CreateOrUpdateUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processCreateOrUpdateUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7145,17 +7191,17 @@ export class UserServiceProxy {
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined and cannot be null.");
         else
-            url_ += "Id=" + encodeURIComponent("" + id) + "&"; 
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "delete",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDeleteUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7193,21 +7239,21 @@ export class UserServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unlockUser(input: EntityDtoOfInt64 | null | undefined): Observable<void> {
+    unlockUser(input: EntityDtoOfInt64): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/User/UnlockUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUnlockUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7246,7 +7292,7 @@ export class UserServiceProxy {
 export class UserLinkServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -7257,21 +7303,21 @@ export class UserLinkServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    linkToUser(input: LinkToUserInput | null | undefined): Observable<void> {
+    linkToUser(input: LinkToUserInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UserLink/LinkToUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processLinkToUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7303,29 +7349,29 @@ export class UserLinkServiceProxy {
      * @sorting (optional) 
      * @return Success
      */
-    getLinkedUsers(maxResultCount: number, skipCount: number, sorting: string | null | undefined): Observable<PagedResultDtoOfLinkedUserDto> {
+    getLinkedUsers(maxResultCount: number, skipCount: number, sorting: string): Observable<PagedResultDtoOfLinkedUserDto> {
         let url_ = this.baseUrl + "/api/services/app/UserLink/GetLinkedUsers?";
         if (maxResultCount === undefined || maxResultCount === null)
             throw new Error("The parameter 'maxResultCount' must be defined and cannot be null.");
         else
-            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&"; 
+            url_ += "MaxResultCount=" + encodeURIComponent("" + maxResultCount) + "&";
         if (skipCount === undefined || skipCount === null)
             throw new Error("The parameter 'skipCount' must be defined and cannot be null.");
         else
-            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&"; 
+            url_ += "SkipCount=" + encodeURIComponent("" + skipCount) + "&";
         if (sorting !== undefined)
-            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&"; 
+            url_ += "Sorting=" + encodeURIComponent("" + sorting) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetLinkedUsers(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7363,15 +7409,15 @@ export class UserLinkServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/UserLink/GetRecentlyUsedLinkedUsers";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetRecentlyUsedLinkedUsers(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7406,21 +7452,21 @@ export class UserLinkServiceProxy {
      * @input (optional) 
      * @return Success
      */
-    unlinkUser(input: UnlinkUserInput | null | undefined): Observable<void> {
+    unlinkUser(input: UnlinkUserInput): Observable<void> {
         let url_ = this.baseUrl + "/api/services/app/UserLink/UnlinkUser";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(input);
 
-        let options_ : any = {
+        let options_: any = {
             body: content_,
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processUnlinkUser(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7453,7 +7499,7 @@ export class UserLinkServiceProxy {
 export class UserLoginServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -7467,15 +7513,15 @@ export class UserLoginServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/UserLogin/GetRecentUserLoginAttempts";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetRecentUserLoginAttempts(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7511,7 +7557,7 @@ export class UserLoginServiceProxy {
 export class WebLogServiceProxy {
     private http: Http;
     private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
 
     constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
         this.http = http;
@@ -7525,15 +7571,15 @@ export class WebLogServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/WebLog/GetLatestWebLogs";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "get",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processGetLatestWebLogs(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7577,15 +7623,15 @@ export class WebLogServiceProxy {
         let url_ = this.baseUrl + "/api/services/app/WebLog/DownloadWebLogs";
         url_ = url_.replace(/[?&]$/, "");
 
-        let options_ : any = {
+        let options_: any = {
             method: "post",
             headers: new Headers({
-                "Content-Type": "application/json", 
+                "Content-Type": "application/json",
                 "Accept": "application/json"
             })
         };
 
-        return this.http.request(url_, options_).flatMap((response_ : any) => {
+        return this.http.request(url_, options_).flatMap((response_: any) => {
             return this.processDownloadWebLogs(response_);
         }).catch((response_: any) => {
             if (response_ instanceof Response) {
@@ -7651,7 +7697,7 @@ export class IsTenantAvailableInput implements IIsTenantAvailableInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["tenancyName"] = this.tenancyName;
-        return data; 
+        return data;
     }
 }
 
@@ -7660,9 +7706,9 @@ export interface IIsTenantAvailableInput {
 }
 
 export class IsTenantAvailableOutput implements IIsTenantAvailableOutput {
-    state: IsTenantAvailableOutputState | undefined;
-    tenantId: number | undefined;
-    serverRootAddress: string | undefined;
+    state: IsTenantAvailableOutputState;
+    tenantId: number;
+    serverRootAddress: string;
 
     constructor(data?: IIsTenantAvailableOutput) {
         if (data) {
@@ -7693,14 +7739,14 @@ export class IsTenantAvailableOutput implements IIsTenantAvailableOutput {
         data["state"] = this.state;
         data["tenantId"] = this.tenantId;
         data["serverRootAddress"] = this.serverRootAddress;
-        return data; 
+        return data;
     }
 }
 
 export interface IIsTenantAvailableOutput {
-    state: IsTenantAvailableOutputState | undefined;
-    tenantId: number | undefined;
-    serverRootAddress: string | undefined;
+    state: IsTenantAvailableOutputState;
+    tenantId: number;
+    serverRootAddress: string;
 }
 
 export class RegisterInput implements IRegisterInput {
@@ -7709,7 +7755,7 @@ export class RegisterInput implements IRegisterInput {
     userName: string;
     emailAddress: string;
     password: string;
-    captchaResponse: string | undefined;
+    captchaResponse: string;
 
     constructor(data?: IRegisterInput) {
         if (data) {
@@ -7746,7 +7792,7 @@ export class RegisterInput implements IRegisterInput {
         data["emailAddress"] = this.emailAddress;
         data["password"] = this.password;
         data["captchaResponse"] = this.captchaResponse;
-        return data; 
+        return data;
     }
 }
 
@@ -7756,11 +7802,11 @@ export interface IRegisterInput {
     userName: string;
     emailAddress: string;
     password: string;
-    captchaResponse: string | undefined;
+    captchaResponse: string;
 }
 
 export class RegisterOutput implements IRegisterOutput {
-    canLogin: boolean | undefined;
+    canLogin: boolean;
 
     constructor(data?: IRegisterOutput) {
         if (data) {
@@ -7787,12 +7833,12 @@ export class RegisterOutput implements IRegisterOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["canLogin"] = this.canLogin;
-        return data; 
+        return data;
     }
 }
 
 export interface IRegisterOutput {
-    canLogin: boolean | undefined;
+    canLogin: boolean;
 }
 
 export class SendPasswordResetCodeInput implements ISendPasswordResetCodeInput {
@@ -7823,7 +7869,7 @@ export class SendPasswordResetCodeInput implements ISendPasswordResetCodeInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["emailAddress"] = this.emailAddress;
-        return data; 
+        return data;
     }
 }
 
@@ -7832,11 +7878,11 @@ export interface ISendPasswordResetCodeInput {
 }
 
 export class ResetPasswordInput implements IResetPasswordInput {
-    userId: number | undefined;
+    userId: number;
     resetCode: string;
     password: string;
-    returnUrl: string | undefined;
-    singleSignIn: string | undefined;
+    returnUrl: string;
+    singleSignIn: string;
 
     constructor(data?: IResetPasswordInput) {
         if (data) {
@@ -7871,21 +7917,21 @@ export class ResetPasswordInput implements IResetPasswordInput {
         data["password"] = this.password;
         data["returnUrl"] = this.returnUrl;
         data["singleSignIn"] = this.singleSignIn;
-        return data; 
+        return data;
     }
 }
 
 export interface IResetPasswordInput {
-    userId: number | undefined;
+    userId: number;
     resetCode: string;
     password: string;
-    returnUrl: string | undefined;
-    singleSignIn: string | undefined;
+    returnUrl: string;
+    singleSignIn: string;
 }
 
 export class ResetPasswordOutput implements IResetPasswordOutput {
-    canLogin: boolean | undefined;
-    userName: string | undefined;
+    canLogin: boolean;
+    userName: string;
 
     constructor(data?: IResetPasswordOutput) {
         if (data) {
@@ -7914,13 +7960,13 @@ export class ResetPasswordOutput implements IResetPasswordOutput {
         data = typeof data === 'object' ? data : {};
         data["canLogin"] = this.canLogin;
         data["userName"] = this.userName;
-        return data; 
+        return data;
     }
 }
 
 export interface IResetPasswordOutput {
-    canLogin: boolean | undefined;
-    userName: string | undefined;
+    canLogin: boolean;
+    userName: string;
 }
 
 export class SendEmailActivationLinkInput implements ISendEmailActivationLinkInput {
@@ -7951,7 +7997,7 @@ export class SendEmailActivationLinkInput implements ISendEmailActivationLinkInp
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["emailAddress"] = this.emailAddress;
-        return data; 
+        return data;
     }
 }
 
@@ -7990,7 +8036,7 @@ export class ActivateEmailInput implements IActivateEmailInput {
         data = typeof data === 'object' ? data : {};
         data["userId"] = this.userId;
         data["confirmationCode"] = this.confirmationCode;
-        return data; 
+        return data;
     }
 }
 
@@ -8000,8 +8046,8 @@ export interface IActivateEmailInput {
 }
 
 export class ImpersonateInput implements IImpersonateInput {
-    tenantId: number | undefined;
-    userId: number | undefined;
+    tenantId: number;
+    userId: number;
 
     constructor(data?: IImpersonateInput) {
         if (data) {
@@ -8030,18 +8076,18 @@ export class ImpersonateInput implements IImpersonateInput {
         data = typeof data === 'object' ? data : {};
         data["tenantId"] = this.tenantId;
         data["userId"] = this.userId;
-        return data; 
+        return data;
     }
 }
 
 export interface IImpersonateInput {
-    tenantId: number | undefined;
-    userId: number | undefined;
+    tenantId: number;
+    userId: number;
 }
 
 export class ImpersonateOutput implements IImpersonateOutput {
-    impersonationToken: string | undefined;
-    tenancyName: string | undefined;
+    impersonationToken: string;
+    tenancyName: string;
 
     constructor(data?: IImpersonateOutput) {
         if (data) {
@@ -8070,18 +8116,18 @@ export class ImpersonateOutput implements IImpersonateOutput {
         data = typeof data === 'object' ? data : {};
         data["impersonationToken"] = this.impersonationToken;
         data["tenancyName"] = this.tenancyName;
-        return data; 
+        return data;
     }
 }
 
 export interface IImpersonateOutput {
-    impersonationToken: string | undefined;
-    tenancyName: string | undefined;
+    impersonationToken: string;
+    tenancyName: string;
 }
 
 export class SwitchToLinkedAccountInput implements ISwitchToLinkedAccountInput {
-    targetTenantId: number | undefined;
-    targetUserId: number | undefined;
+    targetTenantId: number;
+    targetUserId: number;
 
     constructor(data?: ISwitchToLinkedAccountInput) {
         if (data) {
@@ -8110,18 +8156,18 @@ export class SwitchToLinkedAccountInput implements ISwitchToLinkedAccountInput {
         data = typeof data === 'object' ? data : {};
         data["targetTenantId"] = this.targetTenantId;
         data["targetUserId"] = this.targetUserId;
-        return data; 
+        return data;
     }
 }
 
 export interface ISwitchToLinkedAccountInput {
-    targetTenantId: number | undefined;
-    targetUserId: number | undefined;
+    targetTenantId: number;
+    targetUserId: number;
 }
 
 export class SwitchToLinkedAccountOutput implements ISwitchToLinkedAccountOutput {
-    switchAccountToken: string | undefined;
-    tenancyName: string | undefined;
+    switchAccountToken: string;
+    tenancyName: string;
 
     constructor(data?: ISwitchToLinkedAccountOutput) {
         if (data) {
@@ -8150,18 +8196,18 @@ export class SwitchToLinkedAccountOutput implements ISwitchToLinkedAccountOutput
         data = typeof data === 'object' ? data : {};
         data["switchAccountToken"] = this.switchAccountToken;
         data["tenancyName"] = this.tenancyName;
-        return data; 
+        return data;
     }
 }
 
 export interface ISwitchToLinkedAccountOutput {
-    switchAccountToken: string | undefined;
-    tenancyName: string | undefined;
+    switchAccountToken: string;
+    tenancyName: string;
 }
 
 export class PagedResultDtoOfAuditLogListDto implements IPagedResultDtoOfAuditLogListDto {
-    totalCount: number | undefined;
-    items: AuditLogListDto[] | undefined;
+    totalCount: number;
+    items: AuditLogListDto[];
 
     constructor(data?: IPagedResultDtoOfAuditLogListDto) {
         if (data) {
@@ -8198,31 +8244,31 @@ export class PagedResultDtoOfAuditLogListDto implements IPagedResultDtoOfAuditLo
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfAuditLogListDto {
-    totalCount: number | undefined;
-    items: AuditLogListDto[] | undefined;
+    totalCount: number;
+    items: AuditLogListDto[];
 }
 
 export class AuditLogListDto implements IAuditLogListDto {
-    userId: number | undefined;
-    userName: string | undefined;
-    impersonatorTenantId: number | undefined;
-    impersonatorUserId: number | undefined;
-    serviceName: string | undefined;
-    methodName: string | undefined;
-    parameters: string | undefined;
-    executionTime: moment.Moment | undefined;
-    executionDuration: number | undefined;
-    clientIpAddress: string | undefined;
-    clientName: string | undefined;
-    browserInfo: string | undefined;
-    exception: string | undefined;
-    customData: string | undefined;
-    id: number | undefined;
+    userId: number;
+    userName: string;
+    impersonatorTenantId: number;
+    impersonatorUserId: number;
+    serviceName: string;
+    methodName: string;
+    parameters: string;
+    executionTime: moment.Moment;
+    executionDuration: number;
+    clientIpAddress: string;
+    clientName: string;
+    browserInfo: string;
+    exception: string;
+    customData: string;
+    id: number;
 
     constructor(data?: IAuditLogListDto) {
         if (data) {
@@ -8277,26 +8323,26 @@ export class AuditLogListDto implements IAuditLogListDto {
         data["exception"] = this.exception;
         data["customData"] = this.customData;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IAuditLogListDto {
-    userId: number | undefined;
-    userName: string | undefined;
-    impersonatorTenantId: number | undefined;
-    impersonatorUserId: number | undefined;
-    serviceName: string | undefined;
-    methodName: string | undefined;
-    parameters: string | undefined;
-    executionTime: moment.Moment | undefined;
-    executionDuration: number | undefined;
-    clientIpAddress: string | undefined;
-    clientName: string | undefined;
-    browserInfo: string | undefined;
-    exception: string | undefined;
-    customData: string | undefined;
-    id: number | undefined;
+    userId: number;
+    userName: string;
+    impersonatorTenantId: number;
+    impersonatorUserId: number;
+    serviceName: string;
+    methodName: string;
+    parameters: string;
+    executionTime: moment.Moment;
+    executionDuration: number;
+    clientIpAddress: string;
+    clientName: string;
+    browserInfo: string;
+    exception: string;
+    customData: string;
+    id: number;
 }
 
 export class FileDto implements IFileDto {
@@ -8333,7 +8379,7 @@ export class FileDto implements IFileDto {
         data["fileName"] = this.fileName;
         data["fileType"] = this.fileType;
         data["fileToken"] = this.fileToken;
-        return data; 
+        return data;
     }
 }
 
@@ -8344,7 +8390,7 @@ export interface IFileDto {
 }
 
 export class ListResultDtoOfCacheDto implements IListResultDtoOfCacheDto {
-    items: CacheDto[] | undefined;
+    items: CacheDto[];
 
     constructor(data?: IListResultDtoOfCacheDto) {
         if (data) {
@@ -8379,16 +8425,16 @@ export class ListResultDtoOfCacheDto implements IListResultDtoOfCacheDto {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfCacheDto {
-    items: CacheDto[] | undefined;
+    items: CacheDto[];
 }
 
 export class CacheDto implements ICacheDto {
-    name: string | undefined;
+    name: string;
 
     constructor(data?: ICacheDto) {
         if (data) {
@@ -8415,16 +8461,16 @@ export class CacheDto implements ICacheDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
-        return data; 
+        return data;
     }
 }
 
 export interface ICacheDto {
-    name: string | undefined;
+    name: string;
 }
 
 export class EntityDtoOfString implements IEntityDtoOfString {
-    id: string | undefined;
+    id: string;
 
     constructor(data?: IEntityDtoOfString) {
         if (data) {
@@ -8451,17 +8497,17 @@ export class EntityDtoOfString implements IEntityDtoOfString {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IEntityDtoOfString {
-    id: string | undefined;
+    id: string;
 }
 
 export class GetUserChatFriendsWithSettingsOutput implements IGetUserChatFriendsWithSettingsOutput {
-    serverTime: moment.Moment | undefined;
-    friends: FriendDto[] | undefined;
+    serverTime: moment.Moment;
+    friends: FriendDto[];
 
     constructor(data?: IGetUserChatFriendsWithSettingsOutput) {
         if (data) {
@@ -8498,24 +8544,24 @@ export class GetUserChatFriendsWithSettingsOutput implements IGetUserChatFriends
             for (let item of this.friends)
                 data["friends"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetUserChatFriendsWithSettingsOutput {
-    serverTime: moment.Moment | undefined;
-    friends: FriendDto[] | undefined;
+    serverTime: moment.Moment;
+    friends: FriendDto[];
 }
 
 export class FriendDto implements IFriendDto {
-    friendUserId: number | undefined;
-    friendTenantId: number | undefined;
-    friendUserName: string | undefined;
-    friendTenancyName: string | undefined;
-    friendProfilePictureId: string | undefined;
-    unreadMessageCount: number | undefined;
-    isOnline: boolean | undefined;
-    state: FriendDtoState | undefined;
+    friendUserId: number;
+    friendTenantId: number;
+    friendUserName: string;
+    friendTenancyName: string;
+    friendProfilePictureId: string;
+    unreadMessageCount: number;
+    isOnline: boolean;
+    state: FriendDtoState;
 
     constructor(data?: IFriendDto) {
         if (data) {
@@ -8556,23 +8602,23 @@ export class FriendDto implements IFriendDto {
         data["unreadMessageCount"] = this.unreadMessageCount;
         data["isOnline"] = this.isOnline;
         data["state"] = this.state;
-        return data; 
+        return data;
     }
 }
 
 export interface IFriendDto {
-    friendUserId: number | undefined;
-    friendTenantId: number | undefined;
-    friendUserName: string | undefined;
-    friendTenancyName: string | undefined;
-    friendProfilePictureId: string | undefined;
-    unreadMessageCount: number | undefined;
-    isOnline: boolean | undefined;
-    state: FriendDtoState | undefined;
+    friendUserId: number;
+    friendTenantId: number;
+    friendUserName: string;
+    friendTenancyName: string;
+    friendProfilePictureId: string;
+    unreadMessageCount: number;
+    isOnline: boolean;
+    state: FriendDtoState;
 }
 
 export class ListResultDtoOfChatMessageDto implements IListResultDtoOfChatMessageDto {
-    items: ChatMessageDto[] | undefined;
+    items: ChatMessageDto[];
 
     constructor(data?: IListResultDtoOfChatMessageDto) {
         if (data) {
@@ -8607,26 +8653,26 @@ export class ListResultDtoOfChatMessageDto implements IListResultDtoOfChatMessag
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfChatMessageDto {
-    items: ChatMessageDto[] | undefined;
+    items: ChatMessageDto[];
 }
 
 export class ChatMessageDto implements IChatMessageDto {
-    userId: number | undefined;
-    tenantId: number | undefined;
-    targetUserId: number | undefined;
-    targetTenantId: number | undefined;
-    side: ChatMessageDtoSide | undefined;
-    readState: ChatMessageDtoReadState | undefined;
-    receiverReadState: ChatMessageDtoReceiverReadState | undefined;
-    message: string | undefined;
-    creationTime: moment.Moment | undefined;
-    sharedMessageId: string | undefined;
-    id: number | undefined;
+    userId: number;
+    tenantId: number;
+    targetUserId: number;
+    targetTenantId: number;
+    side: ChatMessageDtoSide;
+    readState: ChatMessageDtoReadState;
+    receiverReadState: ChatMessageDtoReceiverReadState;
+    message: string;
+    creationTime: moment.Moment;
+    sharedMessageId: string;
+    id: number;
 
     constructor(data?: IChatMessageDto) {
         if (data) {
@@ -8673,27 +8719,27 @@ export class ChatMessageDto implements IChatMessageDto {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["sharedMessageId"] = this.sharedMessageId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IChatMessageDto {
-    userId: number | undefined;
-    tenantId: number | undefined;
-    targetUserId: number | undefined;
-    targetTenantId: number | undefined;
-    side: ChatMessageDtoSide | undefined;
-    readState: ChatMessageDtoReadState | undefined;
-    receiverReadState: ChatMessageDtoReceiverReadState | undefined;
-    message: string | undefined;
-    creationTime: moment.Moment | undefined;
-    sharedMessageId: string | undefined;
-    id: number | undefined;
+    userId: number;
+    tenantId: number;
+    targetUserId: number;
+    targetTenantId: number;
+    side: ChatMessageDtoSide;
+    readState: ChatMessageDtoReadState;
+    receiverReadState: ChatMessageDtoReceiverReadState;
+    message: string;
+    creationTime: moment.Moment;
+    sharedMessageId: string;
+    id: number;
 }
 
 export class MarkAllUnreadMessagesOfUserAsReadInput implements IMarkAllUnreadMessagesOfUserAsReadInput {
-    tenantId: number | undefined;
-    userId: number | undefined;
+    tenantId: number;
+    userId: number;
 
     constructor(data?: IMarkAllUnreadMessagesOfUserAsReadInput) {
         if (data) {
@@ -8722,17 +8768,17 @@ export class MarkAllUnreadMessagesOfUserAsReadInput implements IMarkAllUnreadMes
         data = typeof data === 'object' ? data : {};
         data["tenantId"] = this.tenantId;
         data["userId"] = this.userId;
-        return data; 
+        return data;
     }
 }
 
 export interface IMarkAllUnreadMessagesOfUserAsReadInput {
-    tenantId: number | undefined;
-    userId: number | undefined;
+    tenantId: number;
+    userId: number;
 }
 
 export class ListResultDtoOfSubscribableEditionComboboxItemDto implements IListResultDtoOfSubscribableEditionComboboxItemDto {
-    items: SubscribableEditionComboboxItemDto[] | undefined;
+    items: SubscribableEditionComboboxItemDto[];
 
     constructor(data?: IListResultDtoOfSubscribableEditionComboboxItemDto) {
         if (data) {
@@ -8767,19 +8813,19 @@ export class ListResultDtoOfSubscribableEditionComboboxItemDto implements IListR
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfSubscribableEditionComboboxItemDto {
-    items: SubscribableEditionComboboxItemDto[] | undefined;
+    items: SubscribableEditionComboboxItemDto[];
 }
 
 export class SubscribableEditionComboboxItemDto implements ISubscribableEditionComboboxItemDto {
-    isFree: boolean | undefined;
-    value: string | undefined;
-    displayText: string | undefined;
-    isSelected: boolean | undefined;
+    isFree: boolean;
+    value: string;
+    displayText: string;
+    isSelected: boolean;
 
     constructor(data?: ISubscribableEditionComboboxItemDto) {
         if (data) {
@@ -8812,22 +8858,22 @@ export class SubscribableEditionComboboxItemDto implements ISubscribableEditionC
         data["value"] = this.value;
         data["displayText"] = this.displayText;
         data["isSelected"] = this.isSelected;
-        return data; 
+        return data;
     }
 }
 
 export interface ISubscribableEditionComboboxItemDto {
-    isFree: boolean | undefined;
-    value: string | undefined;
-    displayText: string | undefined;
-    isSelected: boolean | undefined;
+    isFree: boolean;
+    value: string;
+    displayText: string;
+    isSelected: boolean;
 }
 
 export class FindUsersInput implements IFindUsersInput {
-    tenantId: number | undefined;
-    maxResultCount: number | undefined;
-    skipCount: number | undefined;
-    filter: string | undefined;
+    tenantId: number;
+    maxResultCount: number;
+    skipCount: number;
+    filter: string;
 
     constructor(data?: IFindUsersInput) {
         if (data) {
@@ -8860,20 +8906,20 @@ export class FindUsersInput implements IFindUsersInput {
         data["maxResultCount"] = this.maxResultCount;
         data["skipCount"] = this.skipCount;
         data["filter"] = this.filter;
-        return data; 
+        return data;
     }
 }
 
 export interface IFindUsersInput {
-    tenantId: number | undefined;
-    maxResultCount: number | undefined;
-    skipCount: number | undefined;
-    filter: string | undefined;
+    tenantId: number;
+    maxResultCount: number;
+    skipCount: number;
+    filter: string;
 }
 
 export class PagedResultDtoOfNameValueDto implements IPagedResultDtoOfNameValueDto {
-    totalCount: number | undefined;
-    items: NameValueDto[] | undefined;
+    totalCount: number;
+    items: NameValueDto[];
 
     constructor(data?: IPagedResultDtoOfNameValueDto) {
         if (data) {
@@ -8910,18 +8956,18 @@ export class PagedResultDtoOfNameValueDto implements IPagedResultDtoOfNameValueD
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfNameValueDto {
-    totalCount: number | undefined;
-    items: NameValueDto[] | undefined;
+    totalCount: number;
+    items: NameValueDto[];
 }
 
 export class NameValueDto implements INameValueDto {
-    name: string | undefined;
-    value: string | undefined;
+    name: string;
+    value: string;
 
     constructor(data?: INameValueDto) {
         if (data) {
@@ -8950,17 +8996,17 @@ export class NameValueDto implements INameValueDto {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["value"] = this.value;
-        return data; 
+        return data;
     }
 }
 
 export interface INameValueDto {
-    name: string | undefined;
-    value: string | undefined;
+    name: string;
+    value: string;
 }
 
 export class GetDefaultEditionNameOutput implements IGetDefaultEditionNameOutput {
-    name: string | undefined;
+    name: string;
 
     constructor(data?: IGetDefaultEditionNameOutput) {
         if (data) {
@@ -8987,16 +9033,16 @@ export class GetDefaultEditionNameOutput implements IGetDefaultEditionNameOutput
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
-        return data; 
+        return data;
     }
 }
 
 export interface IGetDefaultEditionNameOutput {
-    name: string | undefined;
+    name: string;
 }
 
 export class DateToStringOutput implements IDateToStringOutput {
-    dateString: string | undefined;
+    dateString: string;
 
     constructor(data?: IDateToStringOutput) {
         if (data) {
@@ -9023,17 +9069,17 @@ export class DateToStringOutput implements IDateToStringOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["dateString"] = this.dateString;
-        return data; 
+        return data;
     }
 }
 
 export interface IDateToStringOutput {
-    dateString: string | undefined;
+    dateString: string;
 }
 
 export class NameValueOfString implements INameValueOfString {
-    name: string | undefined;
-    value: string | undefined;
+    name: string;
+    value: string;
 
     constructor(data?: INameValueOfString) {
         if (data) {
@@ -9062,17 +9108,17 @@ export class NameValueOfString implements INameValueOfString {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["value"] = this.value;
-        return data; 
+        return data;
     }
 }
 
 export interface INameValueOfString {
-    name: string | undefined;
-    value: string | undefined;
+    name: string;
+    value: string;
 }
 
 export class StringOutput implements IStringOutput {
-    output: string | undefined;
+    output: string;
 
     constructor(data?: IStringOutput) {
         if (data) {
@@ -9099,16 +9145,16 @@ export class StringOutput implements IStringOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["output"] = this.output;
-        return data; 
+        return data;
     }
 }
 
 export interface IStringOutput {
-    output: string | undefined;
+    output: string;
 }
 
 export class ListResultDtoOfEditionListDto implements IListResultDtoOfEditionListDto {
-    items: EditionListDto[] | undefined;
+    items: EditionListDto[];
 
     constructor(data?: IListResultDtoOfEditionListDto) {
         if (data) {
@@ -9143,19 +9189,19 @@ export class ListResultDtoOfEditionListDto implements IListResultDtoOfEditionLis
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfEditionListDto {
-    items: EditionListDto[] | undefined;
+    items: EditionListDto[];
 }
 
 export class EditionListDto implements IEditionListDto {
-    name: string | undefined;
-    displayName: string | undefined;
-    creationTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    displayName: string;
+    creationTime: moment.Moment;
+    id: number;
 
     constructor(data?: IEditionListDto) {
         if (data) {
@@ -9188,21 +9234,21 @@ export class EditionListDto implements IEditionListDto {
         data["displayName"] = this.displayName;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IEditionListDto {
-    name: string | undefined;
-    displayName: string | undefined;
-    creationTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    displayName: string;
+    creationTime: moment.Moment;
+    id: number;
 }
 
 export class GetEditionEditOutput implements IGetEditionEditOutput {
-    edition: EditionEditDto | undefined;
-    featureValues: NameValueDto[] | undefined;
-    features: FlatFeatureDto[] | undefined;
+    edition: EditionEditDto;
+    featureValues: NameValueDto[];
+    features: FlatFeatureDto[];
 
     constructor(data?: IGetEditionEditOutput) {
         if (data) {
@@ -9249,24 +9295,24 @@ export class GetEditionEditOutput implements IGetEditionEditOutput {
             for (let item of this.features)
                 data["features"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetEditionEditOutput {
-    edition: EditionEditDto | undefined;
-    featureValues: NameValueDto[] | undefined;
-    features: FlatFeatureDto[] | undefined;
+    edition: EditionEditDto;
+    featureValues: NameValueDto[];
+    features: FlatFeatureDto[];
 }
 
 export class EditionEditDto implements IEditionEditDto {
-    id: number | undefined;
+    id: number;
     displayName: string;
-    monthlyPrice: number | undefined;
-    annualPrice: number | undefined;
-    trialDayCount: number | undefined;
-    waitingDayAfterExpire: number | undefined;
-    expiringEditionId: number | undefined;
+    monthlyPrice: number;
+    annualPrice: number;
+    trialDayCount: number;
+    waitingDayAfterExpire: number;
+    expiringEditionId: number;
 
     constructor(data?: IEditionEditDto) {
         if (data) {
@@ -9305,27 +9351,27 @@ export class EditionEditDto implements IEditionEditDto {
         data["trialDayCount"] = this.trialDayCount;
         data["waitingDayAfterExpire"] = this.waitingDayAfterExpire;
         data["expiringEditionId"] = this.expiringEditionId;
-        return data; 
+        return data;
     }
 }
 
 export interface IEditionEditDto {
-    id: number | undefined;
+    id: number;
     displayName: string;
-    monthlyPrice: number | undefined;
-    annualPrice: number | undefined;
-    trialDayCount: number | undefined;
-    waitingDayAfterExpire: number | undefined;
-    expiringEditionId: number | undefined;
+    monthlyPrice: number;
+    annualPrice: number;
+    trialDayCount: number;
+    waitingDayAfterExpire: number;
+    expiringEditionId: number;
 }
 
 export class FlatFeatureDto implements IFlatFeatureDto {
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    defaultValue: string | undefined;
-    inputType: FeatureInputTypeDto | undefined;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    defaultValue: string;
+    inputType: FeatureInputTypeDto;
 
     constructor(data?: IFlatFeatureDto) {
         if (data) {
@@ -9362,24 +9408,24 @@ export class FlatFeatureDto implements IFlatFeatureDto {
         data["description"] = this.description;
         data["defaultValue"] = this.defaultValue;
         data["inputType"] = this.inputType ? this.inputType.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IFlatFeatureDto {
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    defaultValue: string | undefined;
-    inputType: FeatureInputTypeDto | undefined;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    defaultValue: string;
+    inputType: FeatureInputTypeDto;
 }
 
 export class FeatureInputTypeDto implements IFeatureInputTypeDto {
-    name: string | undefined;
-    attributes: { [key: string] : any; } | undefined;
-    validator: IValueValidator | undefined;
-    itemSource: LocalizableComboboxItemSourceDto | undefined;
+    name: string;
+    attributes: { [key: string]: any; };
+    validator: IValueValidator;
+    itemSource: LocalizableComboboxItemSourceDto;
 
     constructor(data?: IFeatureInputTypeDto) {
         if (data) {
@@ -9424,20 +9470,20 @@ export class FeatureInputTypeDto implements IFeatureInputTypeDto {
         }
         data["validator"] = this.validator ? this.validator.toJSON() : <any>undefined;
         data["itemSource"] = this.itemSource ? this.itemSource.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IFeatureInputTypeDto {
-    name: string | undefined;
-    attributes: { [key: string] : any; } | undefined;
-    validator: IValueValidator | undefined;
-    itemSource: LocalizableComboboxItemSourceDto | undefined;
+    name: string;
+    attributes: { [key: string]: any; };
+    validator: IValueValidator;
+    itemSource: LocalizableComboboxItemSourceDto;
 }
 
 export class IValueValidator implements IIValueValidator {
-    readonly name: string | undefined;
-    readonly attributes: { [key: string] : any; } | undefined;
+    name: string;
+    attributes: { [key: string]: any; };
 
     constructor(data?: IIValueValidator) {
         if (data) {
@@ -9450,12 +9496,12 @@ export class IValueValidator implements IIValueValidator {
 
     init(data?: any) {
         if (data) {
-            (<any>this).name = data["name"];
+            this.name = data["name"];
             if (data["attributes"]) {
-                (<any>this).attributes = {};
+                this.attributes = {};
                 for (let key in data["attributes"]) {
                     if (data["attributes"].hasOwnProperty(key))
-                        (<any>this).attributes[key] = data["attributes"][key];
+                        this.attributes[key] = data["attributes"][key];
                 }
             }
         }
@@ -9478,17 +9524,17 @@ export class IValueValidator implements IIValueValidator {
                     data["attributes"][key] = this.attributes[key];
             }
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IIValueValidator {
-    name: string | undefined;
-    attributes: { [key: string] : any; } | undefined;
+    name: string;
+    attributes: { [key: string]: any; };
 }
 
 export class LocalizableComboboxItemSourceDto implements ILocalizableComboboxItemSourceDto {
-    items: LocalizableComboboxItemDto[] | undefined;
+    items: LocalizableComboboxItemDto[];
 
     constructor(data?: ILocalizableComboboxItemSourceDto) {
         if (data) {
@@ -9523,17 +9569,17 @@ export class LocalizableComboboxItemSourceDto implements ILocalizableComboboxIte
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface ILocalizableComboboxItemSourceDto {
-    items: LocalizableComboboxItemDto[] | undefined;
+    items: LocalizableComboboxItemDto[];
 }
 
 export class LocalizableComboboxItemDto implements ILocalizableComboboxItemDto {
-    value: string | undefined;
-    displayText: string | undefined;
+    value: string;
+    displayText: string;
 
     constructor(data?: ILocalizableComboboxItemDto) {
         if (data) {
@@ -9562,13 +9608,13 @@ export class LocalizableComboboxItemDto implements ILocalizableComboboxItemDto {
         data = typeof data === 'object' ? data : {};
         data["value"] = this.value;
         data["displayText"] = this.displayText;
-        return data; 
+        return data;
     }
 }
 
 export interface ILocalizableComboboxItemDto {
-    value: string | undefined;
-    displayText: string | undefined;
+    value: string;
+    displayText: string;
 }
 
 export class CreateOrUpdateEditionDto implements ICreateOrUpdateEditionDto {
@@ -9614,7 +9660,7 @@ export class CreateOrUpdateEditionDto implements ICreateOrUpdateEditionDto {
             for (let item of this.featureValues)
                 data["featureValues"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
@@ -9624,8 +9670,8 @@ export interface ICreateOrUpdateEditionDto {
 }
 
 export class CreateFriendshipRequestInput implements ICreateFriendshipRequestInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 
     constructor(data?: ICreateFriendshipRequestInput) {
         if (data) {
@@ -9654,18 +9700,18 @@ export class CreateFriendshipRequestInput implements ICreateFriendshipRequestInp
         data = typeof data === 'object' ? data : {};
         data["userId"] = this.userId;
         data["tenantId"] = this.tenantId;
-        return data; 
+        return data;
     }
 }
 
 export interface ICreateFriendshipRequestInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 }
 
 export class CreateFriendshipRequestByUserNameInput implements ICreateFriendshipRequestByUserNameInput {
     tenancyName: string;
-    userName: string | undefined;
+    userName: string;
 
     constructor(data?: ICreateFriendshipRequestByUserNameInput) {
         if (data) {
@@ -9694,18 +9740,18 @@ export class CreateFriendshipRequestByUserNameInput implements ICreateFriendship
         data = typeof data === 'object' ? data : {};
         data["tenancyName"] = this.tenancyName;
         data["userName"] = this.userName;
-        return data; 
+        return data;
     }
 }
 
 export interface ICreateFriendshipRequestByUserNameInput {
     tenancyName: string;
-    userName: string | undefined;
+    userName: string;
 }
 
 export class BlockUserInput implements IBlockUserInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 
     constructor(data?: IBlockUserInput) {
         if (data) {
@@ -9734,18 +9780,18 @@ export class BlockUserInput implements IBlockUserInput {
         data = typeof data === 'object' ? data : {};
         data["userId"] = this.userId;
         data["tenantId"] = this.tenantId;
-        return data; 
+        return data;
     }
 }
 
 export interface IBlockUserInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 }
 
 export class UnblockUserInput implements IUnblockUserInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 
     constructor(data?: IUnblockUserInput) {
         if (data) {
@@ -9774,18 +9820,18 @@ export class UnblockUserInput implements IUnblockUserInput {
         data = typeof data === 'object' ? data : {};
         data["userId"] = this.userId;
         data["tenantId"] = this.tenantId;
-        return data; 
+        return data;
     }
 }
 
 export interface IUnblockUserInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 }
 
 export class AcceptFriendshipRequestInput implements IAcceptFriendshipRequestInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 
     constructor(data?: IAcceptFriendshipRequestInput) {
         if (data) {
@@ -9814,31 +9860,31 @@ export class AcceptFriendshipRequestInput implements IAcceptFriendshipRequestInp
         data = typeof data === 'object' ? data : {};
         data["userId"] = this.userId;
         data["tenantId"] = this.tenantId;
-        return data; 
+        return data;
     }
 }
 
 export interface IAcceptFriendshipRequestInput {
-    userId: number | undefined;
-    tenantId: number | undefined;
+    userId: number;
+    tenantId: number;
 }
 
 export class HostDashboardData implements IHostDashboardData {
-    newTenantsCount: number | undefined;
-    newSubscriptionAmount: number | undefined;
-    dashboardPlaceholder1: number | undefined;
-    dashboardPlaceholder2: number | undefined;
-    incomeStatistics: IncomeStastistic[] | undefined;
-    editionStatistics: TenantEdition[] | undefined;
-    expiringTenants: ExpiringTenant[] | undefined;
-    recentTenants: RecentTenant[] | undefined;
-    maxExpiringTenantsShownCount: number | undefined;
-    maxRecentTenantsShownCount: number | undefined;
-    subscriptionEndAlertDayCount: number | undefined;
-    recentTenantsDayCount: number | undefined;
-    subscriptionEndDateStart: moment.Moment | undefined;
-    subscriptionEndDateEnd: moment.Moment | undefined;
-    tenantCreationStartDate: moment.Moment | undefined;
+    newTenantsCount: number;
+    newSubscriptionAmount: number;
+    dashboardPlaceholder1: number;
+    dashboardPlaceholder2: number;
+    incomeStatistics: IncomeStastistic[];
+    editionStatistics: TenantEdition[];
+    expiringTenants: ExpiringTenant[];
+    recentTenants: RecentTenant[];
+    maxExpiringTenantsShownCount: number;
+    maxRecentTenantsShownCount: number;
+    subscriptionEndAlertDayCount: number;
+    recentTenantsDayCount: number;
+    subscriptionEndDateStart: moment.Moment;
+    subscriptionEndDateEnd: moment.Moment;
+    tenantCreationStartDate: moment.Moment;
 
     constructor(data?: IHostDashboardData) {
         if (data) {
@@ -9925,32 +9971,32 @@ export class HostDashboardData implements IHostDashboardData {
         data["subscriptionEndDateStart"] = this.subscriptionEndDateStart ? this.subscriptionEndDateStart.toISOString() : <any>undefined;
         data["subscriptionEndDateEnd"] = this.subscriptionEndDateEnd ? this.subscriptionEndDateEnd.toISOString() : <any>undefined;
         data["tenantCreationStartDate"] = this.tenantCreationStartDate ? this.tenantCreationStartDate.toISOString() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IHostDashboardData {
-    newTenantsCount: number | undefined;
-    newSubscriptionAmount: number | undefined;
-    dashboardPlaceholder1: number | undefined;
-    dashboardPlaceholder2: number | undefined;
-    incomeStatistics: IncomeStastistic[] | undefined;
-    editionStatistics: TenantEdition[] | undefined;
-    expiringTenants: ExpiringTenant[] | undefined;
-    recentTenants: RecentTenant[] | undefined;
-    maxExpiringTenantsShownCount: number | undefined;
-    maxRecentTenantsShownCount: number | undefined;
-    subscriptionEndAlertDayCount: number | undefined;
-    recentTenantsDayCount: number | undefined;
-    subscriptionEndDateStart: moment.Moment | undefined;
-    subscriptionEndDateEnd: moment.Moment | undefined;
-    tenantCreationStartDate: moment.Moment | undefined;
+    newTenantsCount: number;
+    newSubscriptionAmount: number;
+    dashboardPlaceholder1: number;
+    dashboardPlaceholder2: number;
+    incomeStatistics: IncomeStastistic[];
+    editionStatistics: TenantEdition[];
+    expiringTenants: ExpiringTenant[];
+    recentTenants: RecentTenant[];
+    maxExpiringTenantsShownCount: number;
+    maxRecentTenantsShownCount: number;
+    subscriptionEndAlertDayCount: number;
+    recentTenantsDayCount: number;
+    subscriptionEndDateStart: moment.Moment;
+    subscriptionEndDateEnd: moment.Moment;
+    tenantCreationStartDate: moment.Moment;
 }
 
 export class IncomeStastistic implements IIncomeStastistic {
-    label: string | undefined;
-    date: moment.Moment | undefined;
-    amount: number | undefined;
+    label: string;
+    date: moment.Moment;
+    amount: number;
 
     constructor(data?: IIncomeStastistic) {
         if (data) {
@@ -9981,19 +10027,19 @@ export class IncomeStastistic implements IIncomeStastistic {
         data["label"] = this.label;
         data["date"] = this.date ? this.date.toISOString() : <any>undefined;
         data["amount"] = this.amount;
-        return data; 
+        return data;
     }
 }
 
 export interface IIncomeStastistic {
-    label: string | undefined;
-    date: moment.Moment | undefined;
-    amount: number | undefined;
+    label: string;
+    date: moment.Moment;
+    amount: number;
 }
 
 export class TenantEdition implements ITenantEdition {
-    label: string | undefined;
-    value: number | undefined;
+    label: string;
+    value: number;
 
     constructor(data?: ITenantEdition) {
         if (data) {
@@ -10022,18 +10068,18 @@ export class TenantEdition implements ITenantEdition {
         data = typeof data === 'object' ? data : {};
         data["label"] = this.label;
         data["value"] = this.value;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantEdition {
-    label: string | undefined;
-    value: number | undefined;
+    label: string;
+    value: number;
 }
 
 export class ExpiringTenant implements IExpiringTenant {
-    tenantName: string | undefined;
-    remainingDayCount: number | undefined;
+    tenantName: string;
+    remainingDayCount: number;
 
     constructor(data?: IExpiringTenant) {
         if (data) {
@@ -10062,19 +10108,19 @@ export class ExpiringTenant implements IExpiringTenant {
         data = typeof data === 'object' ? data : {};
         data["tenantName"] = this.tenantName;
         data["remainingDayCount"] = this.remainingDayCount;
-        return data; 
+        return data;
     }
 }
 
 export interface IExpiringTenant {
-    tenantName: string | undefined;
-    remainingDayCount: number | undefined;
+    tenantName: string;
+    remainingDayCount: number;
 }
 
 export class RecentTenant implements IRecentTenant {
-    id: number | undefined;
-    name: string | undefined;
-    creationTime: moment.Moment | undefined;
+    id: number;
+    name: string;
+    creationTime: moment.Moment;
 
     constructor(data?: IRecentTenant) {
         if (data) {
@@ -10105,18 +10151,18 @@ export class RecentTenant implements IRecentTenant {
         data["id"] = this.id;
         data["name"] = this.name;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IRecentTenant {
-    id: number | undefined;
-    name: string | undefined;
-    creationTime: moment.Moment | undefined;
+    id: number;
+    name: string;
+    creationTime: moment.Moment;
 }
 
 export class GetIncomeStatisticsDataOutput implements IGetIncomeStatisticsDataOutput {
-    incomeStatistics: IncomeStastistic[] | undefined;
+    incomeStatistics: IncomeStastistic[];
 
     constructor(data?: IGetIncomeStatisticsDataOutput) {
         if (data) {
@@ -10151,16 +10197,16 @@ export class GetIncomeStatisticsDataOutput implements IGetIncomeStatisticsDataOu
             for (let item of this.incomeStatistics)
                 data["incomeStatistics"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetIncomeStatisticsDataOutput {
-    incomeStatistics: IncomeStastistic[] | undefined;
+    incomeStatistics: IncomeStastistic[];
 }
 
 export class GetEditionTenantStatisticsOutput implements IGetEditionTenantStatisticsOutput {
-    editionStatistics: TenantEdition[] | undefined;
+    editionStatistics: TenantEdition[];
 
     constructor(data?: IGetEditionTenantStatisticsOutput) {
         if (data) {
@@ -10195,12 +10241,12 @@ export class GetEditionTenantStatisticsOutput implements IGetEditionTenantStatis
             for (let item of this.editionStatistics)
                 data["editionStatistics"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetEditionTenantStatisticsOutput {
-    editionStatistics: TenantEdition[] | undefined;
+    editionStatistics: TenantEdition[];
 }
 
 export class HostSettingsEditDto implements IHostSettingsEditDto {
@@ -10209,7 +10255,7 @@ export class HostSettingsEditDto implements IHostSettingsEditDto {
     email: EmailSettingsEditDto;
     tenantManagement: TenantManagementSettingsEditDto;
     security: SecuritySettingsEditDto;
-    billing: HostBillingSettingsEditDto | undefined;
+    billing: HostBillingSettingsEditDto;
 
     constructor(data?: IHostSettingsEditDto) {
         if (data) {
@@ -10253,7 +10299,7 @@ export class HostSettingsEditDto implements IHostSettingsEditDto {
         data["tenantManagement"] = this.tenantManagement ? this.tenantManagement.toJSON() : <any>undefined;
         data["security"] = this.security ? this.security.toJSON() : <any>undefined;
         data["billing"] = this.billing ? this.billing.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -10263,12 +10309,12 @@ export interface IHostSettingsEditDto {
     email: EmailSettingsEditDto;
     tenantManagement: TenantManagementSettingsEditDto;
     security: SecuritySettingsEditDto;
-    billing: HostBillingSettingsEditDto | undefined;
+    billing: HostBillingSettingsEditDto;
 }
 
 export class GeneralSettingsEditDto implements IGeneralSettingsEditDto {
-    timezone: string | undefined;
-    timezoneForComparison: string | undefined;
+    timezone: string;
+    timezoneForComparison: string;
 
     constructor(data?: IGeneralSettingsEditDto) {
         if (data) {
@@ -10297,18 +10343,18 @@ export class GeneralSettingsEditDto implements IGeneralSettingsEditDto {
         data = typeof data === 'object' ? data : {};
         data["timezone"] = this.timezone;
         data["timezoneForComparison"] = this.timezoneForComparison;
-        return data; 
+        return data;
     }
 }
 
 export interface IGeneralSettingsEditDto {
-    timezone: string | undefined;
-    timezoneForComparison: string | undefined;
+    timezone: string;
+    timezoneForComparison: string;
 }
 
 export class HostUserManagementSettingsEditDto implements IHostUserManagementSettingsEditDto {
-    isEmailConfirmationRequiredForLogin: boolean | undefined;
-    smsVerificationEnabled: boolean | undefined;
+    isEmailConfirmationRequiredForLogin: boolean;
+    smsVerificationEnabled: boolean;
 
     constructor(data?: IHostUserManagementSettingsEditDto) {
         if (data) {
@@ -10337,25 +10383,25 @@ export class HostUserManagementSettingsEditDto implements IHostUserManagementSet
         data = typeof data === 'object' ? data : {};
         data["isEmailConfirmationRequiredForLogin"] = this.isEmailConfirmationRequiredForLogin;
         data["smsVerificationEnabled"] = this.smsVerificationEnabled;
-        return data; 
+        return data;
     }
 }
 
 export interface IHostUserManagementSettingsEditDto {
-    isEmailConfirmationRequiredForLogin: boolean | undefined;
-    smsVerificationEnabled: boolean | undefined;
+    isEmailConfirmationRequiredForLogin: boolean;
+    smsVerificationEnabled: boolean;
 }
 
 export class EmailSettingsEditDto implements IEmailSettingsEditDto {
-    defaultFromAddress: string | undefined;
-    defaultFromDisplayName: string | undefined;
-    smtpHost: string | undefined;
-    smtpPort: number | undefined;
-    smtpUserName: string | undefined;
-    smtpPassword: string | undefined;
-    smtpDomain: string | undefined;
-    smtpEnableSsl: boolean | undefined;
-    smtpUseDefaultCredentials: boolean | undefined;
+    defaultFromAddress: string;
+    defaultFromDisplayName: string;
+    smtpHost: string;
+    smtpPort: number;
+    smtpUserName: string;
+    smtpPassword: string;
+    smtpDomain: string;
+    smtpEnableSsl: boolean;
+    smtpUseDefaultCredentials: boolean;
 
     constructor(data?: IEmailSettingsEditDto) {
         if (data) {
@@ -10398,27 +10444,27 @@ export class EmailSettingsEditDto implements IEmailSettingsEditDto {
         data["smtpDomain"] = this.smtpDomain;
         data["smtpEnableSsl"] = this.smtpEnableSsl;
         data["smtpUseDefaultCredentials"] = this.smtpUseDefaultCredentials;
-        return data; 
+        return data;
     }
 }
 
 export interface IEmailSettingsEditDto {
-    defaultFromAddress: string | undefined;
-    defaultFromDisplayName: string | undefined;
-    smtpHost: string | undefined;
-    smtpPort: number | undefined;
-    smtpUserName: string | undefined;
-    smtpPassword: string | undefined;
-    smtpDomain: string | undefined;
-    smtpEnableSsl: boolean | undefined;
-    smtpUseDefaultCredentials: boolean | undefined;
+    defaultFromAddress: string;
+    defaultFromDisplayName: string;
+    smtpHost: string;
+    smtpPort: number;
+    smtpUserName: string;
+    smtpPassword: string;
+    smtpDomain: string;
+    smtpEnableSsl: boolean;
+    smtpUseDefaultCredentials: boolean;
 }
 
 export class TenantManagementSettingsEditDto implements ITenantManagementSettingsEditDto {
-    allowSelfRegistration: boolean | undefined;
-    isNewRegisteredTenantActiveByDefault: boolean | undefined;
-    useCaptchaOnRegistration: boolean | undefined;
-    defaultEditionId: number | undefined;
+    allowSelfRegistration: boolean;
+    isNewRegisteredTenantActiveByDefault: boolean;
+    useCaptchaOnRegistration: boolean;
+    defaultEditionId: number;
 
     constructor(data?: ITenantManagementSettingsEditDto) {
         if (data) {
@@ -10451,23 +10497,23 @@ export class TenantManagementSettingsEditDto implements ITenantManagementSetting
         data["isNewRegisteredTenantActiveByDefault"] = this.isNewRegisteredTenantActiveByDefault;
         data["useCaptchaOnRegistration"] = this.useCaptchaOnRegistration;
         data["defaultEditionId"] = this.defaultEditionId;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantManagementSettingsEditDto {
-    allowSelfRegistration: boolean | undefined;
-    isNewRegisteredTenantActiveByDefault: boolean | undefined;
-    useCaptchaOnRegistration: boolean | undefined;
-    defaultEditionId: number | undefined;
+    allowSelfRegistration: boolean;
+    isNewRegisteredTenantActiveByDefault: boolean;
+    useCaptchaOnRegistration: boolean;
+    defaultEditionId: number;
 }
 
 export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
-    useDefaultPasswordComplexitySettings: boolean | undefined;
-    passwordComplexity: PasswordComplexitySetting | undefined;
-    defaultPasswordComplexity: PasswordComplexitySetting | undefined;
-    userLockOut: UserLockOutSettingsEditDto | undefined;
-    twoFactorLogin: TwoFactorLoginSettingsEditDto | undefined;
+    useDefaultPasswordComplexitySettings: boolean;
+    passwordComplexity: PasswordComplexitySetting;
+    defaultPasswordComplexity: PasswordComplexitySetting;
+    userLockOut: UserLockOutSettingsEditDto;
+    twoFactorLogin: TwoFactorLoginSettingsEditDto;
 
     constructor(data?: ISecuritySettingsEditDto) {
         if (data) {
@@ -10502,21 +10548,21 @@ export class SecuritySettingsEditDto implements ISecuritySettingsEditDto {
         data["defaultPasswordComplexity"] = this.defaultPasswordComplexity ? this.defaultPasswordComplexity.toJSON() : <any>undefined;
         data["userLockOut"] = this.userLockOut ? this.userLockOut.toJSON() : <any>undefined;
         data["twoFactorLogin"] = this.twoFactorLogin ? this.twoFactorLogin.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface ISecuritySettingsEditDto {
-    useDefaultPasswordComplexitySettings: boolean | undefined;
-    passwordComplexity: PasswordComplexitySetting | undefined;
-    defaultPasswordComplexity: PasswordComplexitySetting | undefined;
-    userLockOut: UserLockOutSettingsEditDto | undefined;
-    twoFactorLogin: TwoFactorLoginSettingsEditDto | undefined;
+    useDefaultPasswordComplexitySettings: boolean;
+    passwordComplexity: PasswordComplexitySetting;
+    defaultPasswordComplexity: PasswordComplexitySetting;
+    userLockOut: UserLockOutSettingsEditDto;
+    twoFactorLogin: TwoFactorLoginSettingsEditDto;
 }
 
 export class HostBillingSettingsEditDto implements IHostBillingSettingsEditDto {
-    legalName: string | undefined;
-    address: string | undefined;
+    legalName: string;
+    address: string;
 
     constructor(data?: IHostBillingSettingsEditDto) {
         if (data) {
@@ -10545,21 +10591,21 @@ export class HostBillingSettingsEditDto implements IHostBillingSettingsEditDto {
         data = typeof data === 'object' ? data : {};
         data["legalName"] = this.legalName;
         data["address"] = this.address;
-        return data; 
+        return data;
     }
 }
 
 export interface IHostBillingSettingsEditDto {
-    legalName: string | undefined;
-    address: string | undefined;
+    legalName: string;
+    address: string;
 }
 
 export class PasswordComplexitySetting implements IPasswordComplexitySetting {
-    requireDigit: boolean | undefined;
-    requireLowercase: boolean | undefined;
-    requireNonAlphanumeric: boolean | undefined;
-    requireUppercase: boolean | undefined;
-    requiredLength: number | undefined;
+    requireDigit: boolean;
+    requireLowercase: boolean;
+    requireNonAlphanumeric: boolean;
+    requireUppercase: boolean;
+    requiredLength: number;
 
     constructor(data?: IPasswordComplexitySetting) {
         if (data) {
@@ -10594,22 +10640,22 @@ export class PasswordComplexitySetting implements IPasswordComplexitySetting {
         data["requireNonAlphanumeric"] = this.requireNonAlphanumeric;
         data["requireUppercase"] = this.requireUppercase;
         data["requiredLength"] = this.requiredLength;
-        return data; 
+        return data;
     }
 }
 
 export interface IPasswordComplexitySetting {
-    requireDigit: boolean | undefined;
-    requireLowercase: boolean | undefined;
-    requireNonAlphanumeric: boolean | undefined;
-    requireUppercase: boolean | undefined;
-    requiredLength: number | undefined;
+    requireDigit: boolean;
+    requireLowercase: boolean;
+    requireNonAlphanumeric: boolean;
+    requireUppercase: boolean;
+    requiredLength: number;
 }
 
 export class UserLockOutSettingsEditDto implements IUserLockOutSettingsEditDto {
-    isEnabled: boolean | undefined;
-    maxFailedAccessAttemptsBeforeLockout: number | undefined;
-    defaultAccountLockoutSeconds: number | undefined;
+    isEnabled: boolean;
+    maxFailedAccessAttemptsBeforeLockout: number;
+    defaultAccountLockoutSeconds: number;
 
     constructor(data?: IUserLockOutSettingsEditDto) {
         if (data) {
@@ -10640,23 +10686,23 @@ export class UserLockOutSettingsEditDto implements IUserLockOutSettingsEditDto {
         data["isEnabled"] = this.isEnabled;
         data["maxFailedAccessAttemptsBeforeLockout"] = this.maxFailedAccessAttemptsBeforeLockout;
         data["defaultAccountLockoutSeconds"] = this.defaultAccountLockoutSeconds;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserLockOutSettingsEditDto {
-    isEnabled: boolean | undefined;
-    maxFailedAccessAttemptsBeforeLockout: number | undefined;
-    defaultAccountLockoutSeconds: number | undefined;
+    isEnabled: boolean;
+    maxFailedAccessAttemptsBeforeLockout: number;
+    defaultAccountLockoutSeconds: number;
 }
 
 export class TwoFactorLoginSettingsEditDto implements ITwoFactorLoginSettingsEditDto {
-    isEnabledForApplication: boolean | undefined;
-    isEnabled: boolean | undefined;
-    isEmailProviderEnabled: boolean | undefined;
-    isSmsProviderEnabled: boolean | undefined;
-    isRememberBrowserEnabled: boolean | undefined;
-    isGoogleAuthenticatorEnabled: boolean | undefined;
+    isEnabledForApplication: boolean;
+    isEnabled: boolean;
+    isEmailProviderEnabled: boolean;
+    isSmsProviderEnabled: boolean;
+    isRememberBrowserEnabled: boolean;
+    isGoogleAuthenticatorEnabled: boolean;
 
     constructor(data?: ITwoFactorLoginSettingsEditDto) {
         if (data) {
@@ -10693,17 +10739,17 @@ export class TwoFactorLoginSettingsEditDto implements ITwoFactorLoginSettingsEdi
         data["isSmsProviderEnabled"] = this.isSmsProviderEnabled;
         data["isRememberBrowserEnabled"] = this.isRememberBrowserEnabled;
         data["isGoogleAuthenticatorEnabled"] = this.isGoogleAuthenticatorEnabled;
-        return data; 
+        return data;
     }
 }
 
 export interface ITwoFactorLoginSettingsEditDto {
-    isEnabledForApplication: boolean | undefined;
-    isEnabled: boolean | undefined;
-    isEmailProviderEnabled: boolean | undefined;
-    isSmsProviderEnabled: boolean | undefined;
-    isRememberBrowserEnabled: boolean | undefined;
-    isGoogleAuthenticatorEnabled: boolean | undefined;
+    isEnabledForApplication: boolean;
+    isEnabled: boolean;
+    isEmailProviderEnabled: boolean;
+    isSmsProviderEnabled: boolean;
+    isRememberBrowserEnabled: boolean;
+    isGoogleAuthenticatorEnabled: boolean;
 }
 
 export class SendTestEmailInput implements ISendTestEmailInput {
@@ -10734,7 +10780,7 @@ export class SendTestEmailInput implements ISendTestEmailInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["emailAddress"] = this.emailAddress;
-        return data; 
+        return data;
     }
 }
 
@@ -10746,10 +10792,10 @@ export class InstallDto implements IInstallDto {
     connectionString: string;
     adminPassword: string;
     webSiteUrl: string;
-    serverUrl: string | undefined;
+    serverUrl: string;
     defaultLanguage: string;
-    smtpSettings: EmailSettingsEditDto | undefined;
-    billInfo: HostBillingSettingsEditDto | undefined;
+    smtpSettings: EmailSettingsEditDto;
+    billInfo: HostBillingSettingsEditDto;
 
     constructor(data?: IInstallDto) {
         if (data) {
@@ -10788,7 +10834,7 @@ export class InstallDto implements IInstallDto {
         data["defaultLanguage"] = this.defaultLanguage;
         data["smtpSettings"] = this.smtpSettings ? this.smtpSettings.toJSON() : <any>undefined;
         data["billInfo"] = this.billInfo ? this.billInfo.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -10796,17 +10842,17 @@ export interface IInstallDto {
     connectionString: string;
     adminPassword: string;
     webSiteUrl: string;
-    serverUrl: string | undefined;
+    serverUrl: string;
     defaultLanguage: string;
-    smtpSettings: EmailSettingsEditDto | undefined;
-    billInfo: HostBillingSettingsEditDto | undefined;
+    smtpSettings: EmailSettingsEditDto;
+    billInfo: HostBillingSettingsEditDto;
 }
 
 export class AppSettingsJsonDto implements IAppSettingsJsonDto {
-    connectionString: string | undefined;
-    webSiteUrl: string | undefined;
-    serverSiteUrl: string | undefined;
-    languages: NameValue[] | undefined;
+    connectionString: string;
+    webSiteUrl: string;
+    serverSiteUrl: string;
+    languages: NameValue[];
 
     constructor(data?: IAppSettingsJsonDto) {
         if (data) {
@@ -10847,20 +10893,20 @@ export class AppSettingsJsonDto implements IAppSettingsJsonDto {
             for (let item of this.languages)
                 data["languages"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IAppSettingsJsonDto {
-    connectionString: string | undefined;
-    webSiteUrl: string | undefined;
-    serverSiteUrl: string | undefined;
-    languages: NameValue[] | undefined;
+    connectionString: string;
+    webSiteUrl: string;
+    serverSiteUrl: string;
+    languages: NameValue[];
 }
 
 export class NameValue implements INameValue {
-    name: string | undefined;
-    value: string | undefined;
+    name: string;
+    value: string;
 
     constructor(data?: INameValue) {
         if (data) {
@@ -10889,17 +10935,17 @@ export class NameValue implements INameValue {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["value"] = this.value;
-        return data; 
+        return data;
     }
 }
 
 export interface INameValue {
-    name: string | undefined;
-    value: string | undefined;
+    name: string;
+    value: string;
 }
 
 export class CheckDatabaseOutput implements ICheckDatabaseOutput {
-    isDatabaseExist: boolean | undefined;
+    isDatabaseExist: boolean;
 
     constructor(data?: ICheckDatabaseOutput) {
         if (data) {
@@ -10926,24 +10972,24 @@ export class CheckDatabaseOutput implements ICheckDatabaseOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["isDatabaseExist"] = this.isDatabaseExist;
-        return data; 
+        return data;
     }
 }
 
 export interface ICheckDatabaseOutput {
-    isDatabaseExist: boolean | undefined;
+    isDatabaseExist: boolean;
 }
 
 export class InvoiceDto implements IInvoiceDto {
-    amount: number | undefined;
-    editionDisplayName: string | undefined;
-    invoiceNo: string | undefined;
-    invoiceDate: moment.Moment | undefined;
-    tenantLegalName: string | undefined;
-    tenantAddress: string[] | undefined;
-    tenantTaxNo: string | undefined;
-    hostLegalName: string | undefined;
-    hostAddress: string[] | undefined;
+    amount: number;
+    editionDisplayName: string;
+    invoiceNo: string;
+    invoiceDate: moment.Moment;
+    tenantLegalName: string;
+    tenantAddress: string[];
+    tenantTaxNo: string;
+    hostLegalName: string;
+    hostAddress: string[];
 
     constructor(data?: IInvoiceDto) {
         if (data) {
@@ -11002,24 +11048,24 @@ export class InvoiceDto implements IInvoiceDto {
             for (let item of this.hostAddress)
                 data["hostAddress"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IInvoiceDto {
-    amount: number | undefined;
-    editionDisplayName: string | undefined;
-    invoiceNo: string | undefined;
-    invoiceDate: moment.Moment | undefined;
-    tenantLegalName: string | undefined;
-    tenantAddress: string[] | undefined;
-    tenantTaxNo: string | undefined;
-    hostLegalName: string | undefined;
-    hostAddress: string[] | undefined;
+    amount: number;
+    editionDisplayName: string;
+    invoiceNo: string;
+    invoiceDate: moment.Moment;
+    tenantLegalName: string;
+    tenantAddress: string[];
+    tenantTaxNo: string;
+    hostLegalName: string;
+    hostAddress: string[];
 }
 
 export class CreateInvoiceDto implements ICreateInvoiceDto {
-    subscriptionPaymentId: number | undefined;
+    subscriptionPaymentId: number;
 
     constructor(data?: ICreateInvoiceDto) {
         if (data) {
@@ -11046,17 +11092,17 @@ export class CreateInvoiceDto implements ICreateInvoiceDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["subscriptionPaymentId"] = this.subscriptionPaymentId;
-        return data; 
+        return data;
     }
 }
 
 export interface ICreateInvoiceDto {
-    subscriptionPaymentId: number | undefined;
+    subscriptionPaymentId: number;
 }
 
 export class GetLanguagesOutput implements IGetLanguagesOutput {
-    defaultLanguageName: string | undefined;
-    items: ApplicationLanguageListDto[] | undefined;
+    defaultLanguageName: string;
+    items: ApplicationLanguageListDto[];
 
     constructor(data?: IGetLanguagesOutput) {
         if (data) {
@@ -11093,29 +11139,29 @@ export class GetLanguagesOutput implements IGetLanguagesOutput {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetLanguagesOutput {
-    defaultLanguageName: string | undefined;
-    items: ApplicationLanguageListDto[] | undefined;
+    defaultLanguageName: string;
+    items: ApplicationLanguageListDto[];
 }
 
 export class ApplicationLanguageListDto implements IApplicationLanguageListDto {
-    tenantId: number | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    icon: string | undefined;
-    isDisabled: boolean | undefined;
-    isDeleted: boolean | undefined;
-    deleterUserId: number | undefined;
-    deletionTime: moment.Moment | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    lastModifierUserId: number | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    id: number | undefined;
+    tenantId: number;
+    name: string;
+    displayName: string;
+    icon: string;
+    isDisabled: boolean;
+    isDeleted: boolean;
+    deleterUserId: number;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
 
     constructor(data?: IApplicationLanguageListDto) {
         if (data) {
@@ -11166,30 +11212,30 @@ export class ApplicationLanguageListDto implements IApplicationLanguageListDto {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["creatorUserId"] = this.creatorUserId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IApplicationLanguageListDto {
-    tenantId: number | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    icon: string | undefined;
-    isDisabled: boolean | undefined;
-    isDeleted: boolean | undefined;
-    deleterUserId: number | undefined;
-    deletionTime: moment.Moment | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    lastModifierUserId: number | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    id: number | undefined;
+    tenantId: number;
+    name: string;
+    displayName: string;
+    icon: string;
+    isDisabled: boolean;
+    isDeleted: boolean;
+    deleterUserId: number;
+    deletionTime: moment.Moment;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
 }
 
 export class GetLanguageForEditOutput implements IGetLanguageForEditOutput {
-    language: ApplicationLanguageEditDto | undefined;
-    languageNames: ComboboxItemDto[] | undefined;
-    flags: ComboboxItemDto[] | undefined;
+    language: ApplicationLanguageEditDto;
+    languageNames: ComboboxItemDto[];
+    flags: ComboboxItemDto[];
 
     constructor(data?: IGetLanguageForEditOutput) {
         if (data) {
@@ -11236,21 +11282,21 @@ export class GetLanguageForEditOutput implements IGetLanguageForEditOutput {
             for (let item of this.flags)
                 data["flags"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetLanguageForEditOutput {
-    language: ApplicationLanguageEditDto | undefined;
-    languageNames: ComboboxItemDto[] | undefined;
-    flags: ComboboxItemDto[] | undefined;
+    language: ApplicationLanguageEditDto;
+    languageNames: ComboboxItemDto[];
+    flags: ComboboxItemDto[];
 }
 
 export class ApplicationLanguageEditDto implements IApplicationLanguageEditDto {
-    id: number | undefined;
+    id: number;
     name: string;
-    icon: string | undefined;
-    isEnabled: boolean | undefined;
+    icon: string;
+    isEnabled: boolean;
 
     constructor(data?: IApplicationLanguageEditDto) {
         if (data) {
@@ -11283,21 +11329,21 @@ export class ApplicationLanguageEditDto implements IApplicationLanguageEditDto {
         data["name"] = this.name;
         data["icon"] = this.icon;
         data["isEnabled"] = this.isEnabled;
-        return data; 
+        return data;
     }
 }
 
 export interface IApplicationLanguageEditDto {
-    id: number | undefined;
+    id: number;
     name: string;
-    icon: string | undefined;
-    isEnabled: boolean | undefined;
+    icon: string;
+    isEnabled: boolean;
 }
 
 export class ComboboxItemDto implements IComboboxItemDto {
-    value: string | undefined;
-    displayText: string | undefined;
-    isSelected: boolean | undefined;
+    value: string;
+    displayText: string;
+    isSelected: boolean;
 
     constructor(data?: IComboboxItemDto) {
         if (data) {
@@ -11328,14 +11374,14 @@ export class ComboboxItemDto implements IComboboxItemDto {
         data["value"] = this.value;
         data["displayText"] = this.displayText;
         data["isSelected"] = this.isSelected;
-        return data; 
+        return data;
     }
 }
 
 export interface IComboboxItemDto {
-    value: string | undefined;
-    displayText: string | undefined;
-    isSelected: boolean | undefined;
+    value: string;
+    displayText: string;
+    isSelected: boolean;
 }
 
 export class CreateOrUpdateLanguageInput implements ICreateOrUpdateLanguageInput {
@@ -11369,7 +11415,7 @@ export class CreateOrUpdateLanguageInput implements ICreateOrUpdateLanguageInput
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["language"] = this.language ? this.language.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
@@ -11405,7 +11451,7 @@ export class SetDefaultLanguageInput implements ISetDefaultLanguageInput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
-        return data; 
+        return data;
     }
 }
 
@@ -11414,8 +11460,8 @@ export interface ISetDefaultLanguageInput {
 }
 
 export class PagedResultDtoOfLanguageTextListDto implements IPagedResultDtoOfLanguageTextListDto {
-    totalCount: number | undefined;
-    items: LanguageTextListDto[] | undefined;
+    totalCount: number;
+    items: LanguageTextListDto[];
 
     constructor(data?: IPagedResultDtoOfLanguageTextListDto) {
         if (data) {
@@ -11452,19 +11498,19 @@ export class PagedResultDtoOfLanguageTextListDto implements IPagedResultDtoOfLan
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfLanguageTextListDto {
-    totalCount: number | undefined;
-    items: LanguageTextListDto[] | undefined;
+    totalCount: number;
+    items: LanguageTextListDto[];
 }
 
 export class LanguageTextListDto implements ILanguageTextListDto {
-    key: string | undefined;
-    baseValue: string | undefined;
-    targetValue: string | undefined;
+    key: string;
+    baseValue: string;
+    targetValue: string;
 
     constructor(data?: ILanguageTextListDto) {
         if (data) {
@@ -11495,14 +11541,14 @@ export class LanguageTextListDto implements ILanguageTextListDto {
         data["key"] = this.key;
         data["baseValue"] = this.baseValue;
         data["targetValue"] = this.targetValue;
-        return data; 
+        return data;
     }
 }
 
 export interface ILanguageTextListDto {
-    key: string | undefined;
-    baseValue: string | undefined;
-    targetValue: string | undefined;
+    key: string;
+    baseValue: string;
+    targetValue: string;
 }
 
 export class UpdateLanguageTextInput implements IUpdateLanguageTextInput {
@@ -11542,7 +11588,7 @@ export class UpdateLanguageTextInput implements IUpdateLanguageTextInput {
         data["sourceName"] = this.sourceName;
         data["key"] = this.key;
         data["value"] = this.value;
-        return data; 
+        return data;
     }
 }
 
@@ -11554,9 +11600,9 @@ export interface IUpdateLanguageTextInput {
 }
 
 export class GetNotificationsOutput implements IGetNotificationsOutput {
-    unreadCount: number | undefined;
-    totalCount: number | undefined;
-    items: UserNotification[] | undefined;
+    unreadCount: number;
+    totalCount: number;
+    items: UserNotification[];
 
     constructor(data?: IGetNotificationsOutput) {
         if (data) {
@@ -11595,22 +11641,22 @@ export class GetNotificationsOutput implements IGetNotificationsOutput {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetNotificationsOutput {
-    unreadCount: number | undefined;
-    totalCount: number | undefined;
-    items: UserNotification[] | undefined;
+    unreadCount: number;
+    totalCount: number;
+    items: UserNotification[];
 }
 
 export class UserNotification implements IUserNotification {
-    tenantId: number | undefined;
-    userId: number | undefined;
-    state: UserNotificationState | undefined;
-    notification: TenantNotification | undefined;
-    id: string | undefined;
+    tenantId: number;
+    userId: number;
+    state: UserNotificationState;
+    notification: TenantNotification;
+    id: string;
 
     constructor(data?: IUserNotification) {
         if (data) {
@@ -11645,28 +11691,28 @@ export class UserNotification implements IUserNotification {
         data["state"] = this.state;
         data["notification"] = this.notification ? this.notification.toJSON() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserNotification {
-    tenantId: number | undefined;
-    userId: number | undefined;
-    state: UserNotificationState | undefined;
-    notification: TenantNotification | undefined;
-    id: string | undefined;
+    tenantId: number;
+    userId: number;
+    state: UserNotificationState;
+    notification: TenantNotification;
+    id: string;
 }
 
 export class TenantNotification implements ITenantNotification {
-    tenantId: number | undefined;
-    notificationName: string | undefined;
-    data: NotificationData | undefined;
-    entityType: string | undefined;
-    entityTypeName: string | undefined;
-    entityId: any | undefined;
-    severity: TenantNotificationSeverity | undefined;
-    creationTime: moment.Moment | undefined;
-    id: string | undefined;
+    tenantId: number;
+    notificationName: string;
+    data: NotificationData;
+    entityType: string;
+    entityTypeName: string;
+    entityId: any;
+    severity: TenantNotificationSeverity;
+    creationTime: moment.Moment;
+    id: string;
 
     constructor(data?: ITenantNotification) {
         if (data) {
@@ -11721,25 +11767,25 @@ export class TenantNotification implements ITenantNotification {
         data["severity"] = this.severity;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantNotification {
-    tenantId: number | undefined;
-    notificationName: string | undefined;
-    data: NotificationData | undefined;
-    entityType: string | undefined;
-    entityTypeName: string | undefined;
-    entityId: any | undefined;
-    severity: TenantNotificationSeverity | undefined;
-    creationTime: moment.Moment | undefined;
-    id: string | undefined;
+    tenantId: number;
+    notificationName: string;
+    data: NotificationData;
+    entityType: string;
+    entityTypeName: string;
+    entityId: any;
+    severity: TenantNotificationSeverity;
+    creationTime: moment.Moment;
+    id: string;
 }
 
 export class NotificationData implements INotificationData {
-    readonly type: string | undefined;
-    properties: { [key: string] : any; } | undefined;
+    type: string;
+    properties: { [key: string]: any; };
 
     constructor(data?: INotificationData) {
         if (data) {
@@ -11752,7 +11798,7 @@ export class NotificationData implements INotificationData {
 
     init(data?: any) {
         if (data) {
-            (<any>this).type = data["type"];
+            this.type = data["type"];
             if (data["properties"]) {
                 this.properties = {};
                 for (let key in data["properties"]) {
@@ -11780,17 +11826,17 @@ export class NotificationData implements INotificationData {
                     data["properties"][key] = this.properties[key];
             }
         }
-        return data; 
+        return data;
     }
 }
 
 export interface INotificationData {
-    type: string | undefined;
-    properties: { [key: string] : any; } | undefined;
+    type: string;
+    properties: { [key: string]: any; };
 }
 
 export class EntityDtoOfGuid implements IEntityDtoOfGuid {
-    id: string | undefined;
+    id: string;
 
     constructor(data?: IEntityDtoOfGuid) {
         if (data) {
@@ -11817,17 +11863,17 @@ export class EntityDtoOfGuid implements IEntityDtoOfGuid {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IEntityDtoOfGuid {
-    id: string | undefined;
+    id: string;
 }
 
 export class GetNotificationSettingsOutput implements IGetNotificationSettingsOutput {
-    receiveNotifications: boolean | undefined;
-    notifications: NotificationSubscriptionWithDisplayNameDto[] | undefined;
+    receiveNotifications: boolean;
+    notifications: NotificationSubscriptionWithDisplayNameDto[];
 
     constructor(data?: IGetNotificationSettingsOutput) {
         if (data) {
@@ -11864,20 +11910,20 @@ export class GetNotificationSettingsOutput implements IGetNotificationSettingsOu
             for (let item of this.notifications)
                 data["notifications"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetNotificationSettingsOutput {
-    receiveNotifications: boolean | undefined;
-    notifications: NotificationSubscriptionWithDisplayNameDto[] | undefined;
+    receiveNotifications: boolean;
+    notifications: NotificationSubscriptionWithDisplayNameDto[];
 }
 
 export class NotificationSubscriptionWithDisplayNameDto implements INotificationSubscriptionWithDisplayNameDto {
-    displayName: string | undefined;
-    description: string | undefined;
+    displayName: string;
+    description: string;
     name: string;
-    isSubscribed: boolean | undefined;
+    isSubscribed: boolean;
 
     constructor(data?: INotificationSubscriptionWithDisplayNameDto) {
         if (data) {
@@ -11910,20 +11956,20 @@ export class NotificationSubscriptionWithDisplayNameDto implements INotification
         data["description"] = this.description;
         data["name"] = this.name;
         data["isSubscribed"] = this.isSubscribed;
-        return data; 
+        return data;
     }
 }
 
 export interface INotificationSubscriptionWithDisplayNameDto {
-    displayName: string | undefined;
-    description: string | undefined;
+    displayName: string;
+    description: string;
     name: string;
-    isSubscribed: boolean | undefined;
+    isSubscribed: boolean;
 }
 
 export class UpdateNotificationSettingsInput implements IUpdateNotificationSettingsInput {
-    receiveNotifications: boolean | undefined;
-    notifications: NotificationSubscriptionDto[] | undefined;
+    receiveNotifications: boolean;
+    notifications: NotificationSubscriptionDto[];
 
     constructor(data?: IUpdateNotificationSettingsInput) {
         if (data) {
@@ -11960,18 +12006,18 @@ export class UpdateNotificationSettingsInput implements IUpdateNotificationSetti
             for (let item of this.notifications)
                 data["notifications"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateNotificationSettingsInput {
-    receiveNotifications: boolean | undefined;
-    notifications: NotificationSubscriptionDto[] | undefined;
+    receiveNotifications: boolean;
+    notifications: NotificationSubscriptionDto[];
 }
 
 export class NotificationSubscriptionDto implements INotificationSubscriptionDto {
     name: string;
-    isSubscribed: boolean | undefined;
+    isSubscribed: boolean;
 
     constructor(data?: INotificationSubscriptionDto) {
         if (data) {
@@ -12000,17 +12046,17 @@ export class NotificationSubscriptionDto implements INotificationSubscriptionDto
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["isSubscribed"] = this.isSubscribed;
-        return data; 
+        return data;
     }
 }
 
 export interface INotificationSubscriptionDto {
     name: string;
-    isSubscribed: boolean | undefined;
+    isSubscribed: boolean;
 }
 
 export class ListResultDtoOfOrganizationUnitDto implements IListResultDtoOfOrganizationUnitDto {
-    items: OrganizationUnitDto[] | undefined;
+    items: OrganizationUnitDto[];
 
     constructor(data?: IListResultDtoOfOrganizationUnitDto) {
         if (data) {
@@ -12045,24 +12091,24 @@ export class ListResultDtoOfOrganizationUnitDto implements IListResultDtoOfOrgan
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfOrganizationUnitDto {
-    items: OrganizationUnitDto[] | undefined;
+    items: OrganizationUnitDto[];
 }
 
 export class OrganizationUnitDto implements IOrganizationUnitDto {
-    parentId: number | undefined;
-    code: string | undefined;
-    displayName: string | undefined;
-    memberCount: number | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    lastModifierUserId: number | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    id: number | undefined;
+    parentId: number;
+    code: string;
+    displayName: string;
+    memberCount: number;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
 
     constructor(data?: IOrganizationUnitDto) {
         if (data) {
@@ -12105,25 +12151,25 @@ export class OrganizationUnitDto implements IOrganizationUnitDto {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["creatorUserId"] = this.creatorUserId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IOrganizationUnitDto {
-    parentId: number | undefined;
-    code: string | undefined;
-    displayName: string | undefined;
-    memberCount: number | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    lastModifierUserId: number | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    id: number | undefined;
+    parentId: number;
+    code: string;
+    displayName: string;
+    memberCount: number;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
 }
 
 export class PagedResultDtoOfOrganizationUnitUserListDto implements IPagedResultDtoOfOrganizationUnitUserListDto {
-    totalCount: number | undefined;
-    items: OrganizationUnitUserListDto[] | undefined;
+    totalCount: number;
+    items: OrganizationUnitUserListDto[];
 
     constructor(data?: IPagedResultDtoOfOrganizationUnitUserListDto) {
         if (data) {
@@ -12160,23 +12206,23 @@ export class PagedResultDtoOfOrganizationUnitUserListDto implements IPagedResult
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfOrganizationUnitUserListDto {
-    totalCount: number | undefined;
-    items: OrganizationUnitUserListDto[] | undefined;
+    totalCount: number;
+    items: OrganizationUnitUserListDto[];
 }
 
 export class OrganizationUnitUserListDto implements IOrganizationUnitUserListDto {
-    name: string | undefined;
-    surname: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    profilePictureId: string | undefined;
-    addedTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    surname: string;
+    userName: string;
+    emailAddress: string;
+    profilePictureId: string;
+    addedTime: moment.Moment;
+    id: number;
 
     constructor(data?: IOrganizationUnitUserListDto) {
         if (data) {
@@ -12215,22 +12261,22 @@ export class OrganizationUnitUserListDto implements IOrganizationUnitUserListDto
         data["profilePictureId"] = this.profilePictureId;
         data["addedTime"] = this.addedTime ? this.addedTime.toISOString() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IOrganizationUnitUserListDto {
-    name: string | undefined;
-    surname: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    profilePictureId: string | undefined;
-    addedTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    surname: string;
+    userName: string;
+    emailAddress: string;
+    profilePictureId: string;
+    addedTime: moment.Moment;
+    id: number;
 }
 
 export class CreateOrganizationUnitInput implements ICreateOrganizationUnitInput {
-    parentId: number | undefined;
+    parentId: number;
     displayName: string;
 
     constructor(data?: ICreateOrganizationUnitInput) {
@@ -12260,17 +12306,17 @@ export class CreateOrganizationUnitInput implements ICreateOrganizationUnitInput
         data = typeof data === 'object' ? data : {};
         data["parentId"] = this.parentId;
         data["displayName"] = this.displayName;
-        return data; 
+        return data;
     }
 }
 
 export interface ICreateOrganizationUnitInput {
-    parentId: number | undefined;
+    parentId: number;
     displayName: string;
 }
 
 export class UpdateOrganizationUnitInput implements IUpdateOrganizationUnitInput {
-    id: number | undefined;
+    id: number;
     displayName: string;
 
     constructor(data?: IUpdateOrganizationUnitInput) {
@@ -12300,18 +12346,18 @@ export class UpdateOrganizationUnitInput implements IUpdateOrganizationUnitInput
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["displayName"] = this.displayName;
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateOrganizationUnitInput {
-    id: number | undefined;
+    id: number;
     displayName: string;
 }
 
 export class MoveOrganizationUnitInput implements IMoveOrganizationUnitInput {
-    id: number | undefined;
-    newParentId: number | undefined;
+    id: number;
+    newParentId: number;
 
     constructor(data?: IMoveOrganizationUnitInput) {
         if (data) {
@@ -12340,18 +12386,18 @@ export class MoveOrganizationUnitInput implements IMoveOrganizationUnitInput {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["newParentId"] = this.newParentId;
-        return data; 
+        return data;
     }
 }
 
 export interface IMoveOrganizationUnitInput {
-    id: number | undefined;
-    newParentId: number | undefined;
+    id: number;
+    newParentId: number;
 }
 
 export class UsersToOrganizationUnitInput implements IUsersToOrganizationUnitInput {
-    userIds: number[] | undefined;
-    organizationUnitId: number | undefined;
+    userIds: number[];
+    organizationUnitId: number;
 
     constructor(data?: IUsersToOrganizationUnitInput) {
         if (data) {
@@ -12388,20 +12434,20 @@ export class UsersToOrganizationUnitInput implements IUsersToOrganizationUnitInp
                 data["userIds"].push(item);
         }
         data["organizationUnitId"] = this.organizationUnitId;
-        return data; 
+        return data;
     }
 }
 
 export interface IUsersToOrganizationUnitInput {
-    userIds: number[] | undefined;
-    organizationUnitId: number | undefined;
+    userIds: number[];
+    organizationUnitId: number;
 }
 
 export class FindOrganizationUnitUsersInput implements IFindOrganizationUnitUsersInput {
-    organizationUnitId: number | undefined;
-    maxResultCount: number | undefined;
-    skipCount: number | undefined;
-    filter: string | undefined;
+    organizationUnitId: number;
+    maxResultCount: number;
+    skipCount: number;
+    filter: string;
 
     constructor(data?: IFindOrganizationUnitUsersInput) {
         if (data) {
@@ -12434,20 +12480,20 @@ export class FindOrganizationUnitUsersInput implements IFindOrganizationUnitUser
         data["maxResultCount"] = this.maxResultCount;
         data["skipCount"] = this.skipCount;
         data["filter"] = this.filter;
-        return data; 
+        return data;
     }
 }
 
 export interface IFindOrganizationUnitUsersInput {
-    organizationUnitId: number | undefined;
-    maxResultCount: number | undefined;
-    skipCount: number | undefined;
-    filter: string | undefined;
+    organizationUnitId: number;
+    maxResultCount: number;
+    skipCount: number;
+    filter: string;
 }
 
 export class PaymentInfoDto implements IPaymentInfoDto {
-    edition: EditionSelectDto | undefined;
-    additionalPrice: number | undefined;
+    edition: EditionSelectDto;
+    additionalPrice: number;
 
     constructor(data?: IPaymentInfoDto) {
         if (data) {
@@ -12476,26 +12522,26 @@ export class PaymentInfoDto implements IPaymentInfoDto {
         data = typeof data === 'object' ? data : {};
         data["edition"] = this.edition ? this.edition.toJSON() : <any>undefined;
         data["additionalPrice"] = this.additionalPrice;
-        return data; 
+        return data;
     }
 }
 
 export interface IPaymentInfoDto {
-    edition: EditionSelectDto | undefined;
-    additionalPrice: number | undefined;
+    edition: EditionSelectDto;
+    additionalPrice: number;
 }
 
 export class EditionSelectDto implements IEditionSelectDto {
-    id: number | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    expiringEditionId: number | undefined;
-    monthlyPrice: number | undefined;
-    annualPrice: number | undefined;
-    trialDayCount: number | undefined;
-    waitingDayAfterExpire: number | undefined;
-    isFree: boolean | undefined;
-    additionalData: AdditionalData | undefined;
+    id: number;
+    name: string;
+    displayName: string;
+    expiringEditionId: number;
+    monthlyPrice: number;
+    annualPrice: number;
+    trialDayCount: number;
+    waitingDayAfterExpire: number;
+    isFree: boolean;
+    additionalData: AdditionalData;
 
     constructor(data?: IEditionSelectDto) {
         if (data) {
@@ -12540,28 +12586,28 @@ export class EditionSelectDto implements IEditionSelectDto {
         data["waitingDayAfterExpire"] = this.waitingDayAfterExpire;
         data["isFree"] = this.isFree;
         data["additionalData"] = this.additionalData ? this.additionalData.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IEditionSelectDto {
-    id: number | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    expiringEditionId: number | undefined;
-    monthlyPrice: number | undefined;
-    annualPrice: number | undefined;
-    trialDayCount: number | undefined;
-    waitingDayAfterExpire: number | undefined;
-    isFree: boolean | undefined;
-    additionalData: AdditionalData | undefined;
+    id: number;
+    name: string;
+    displayName: string;
+    expiringEditionId: number;
+    monthlyPrice: number;
+    annualPrice: number;
+    trialDayCount: number;
+    waitingDayAfterExpire: number;
+    isFree: boolean;
+    additionalData: AdditionalData;
 }
 
 export class CreatePaymentDto implements ICreatePaymentDto {
-    editionId: number | undefined;
-    editionPaymentType: CreatePaymentDtoEditionPaymentType | undefined;
-    paymentPeriodType: CreatePaymentDtoPaymentPeriodType | undefined;
-    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType | undefined;
+    editionId: number;
+    editionPaymentType: CreatePaymentDtoEditionPaymentType;
+    paymentPeriodType: CreatePaymentDtoPaymentPeriodType;
+    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType;
 
     constructor(data?: ICreatePaymentDto) {
         if (data) {
@@ -12594,23 +12640,23 @@ export class CreatePaymentDto implements ICreatePaymentDto {
         data["editionPaymentType"] = this.editionPaymentType;
         data["paymentPeriodType"] = this.paymentPeriodType;
         data["subscriptionPaymentGatewayType"] = this.subscriptionPaymentGatewayType;
-        return data; 
+        return data;
     }
 }
 
 export interface ICreatePaymentDto {
-    editionId: number | undefined;
-    editionPaymentType: CreatePaymentDtoEditionPaymentType | undefined;
-    paymentPeriodType: CreatePaymentDtoPaymentPeriodType | undefined;
-    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType | undefined;
+    editionId: number;
+    editionPaymentType: CreatePaymentDtoEditionPaymentType;
+    paymentPeriodType: CreatePaymentDtoPaymentPeriodType;
+    subscriptionPaymentGatewayType: CreatePaymentDtoSubscriptionPaymentGatewayType;
 }
 
 export class ExecutePaymentDto implements IExecutePaymentDto {
-    gateway: ExecutePaymentDtoGateway | undefined;
-    editionPaymentType: ExecutePaymentDtoEditionPaymentType | undefined;
-    editionId: number | undefined;
-    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType | undefined;
-    additionalData: { [key: string] : string; } | undefined;
+    gateway: ExecutePaymentDtoGateway;
+    editionPaymentType: ExecutePaymentDtoEditionPaymentType;
+    editionId: number;
+    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType;
+    additionalData: { [key: string]: string; };
 
     constructor(data?: IExecutePaymentDto) {
         if (data) {
@@ -12657,21 +12703,21 @@ export class ExecutePaymentDto implements IExecutePaymentDto {
                     data["additionalData"][key] = this.additionalData[key];
             }
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IExecutePaymentDto {
-    gateway: ExecutePaymentDtoGateway | undefined;
-    editionPaymentType: ExecutePaymentDtoEditionPaymentType | undefined;
-    editionId: number | undefined;
-    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType | undefined;
-    additionalData: { [key: string] : string; } | undefined;
+    gateway: ExecutePaymentDtoGateway;
+    editionPaymentType: ExecutePaymentDtoEditionPaymentType;
+    editionId: number;
+    paymentPeriodType: ExecutePaymentDtoPaymentPeriodType;
+    additionalData: { [key: string]: string; };
 }
 
 export class PagedResultDtoOfSubscriptionPaymentListDto implements IPagedResultDtoOfSubscriptionPaymentListDto {
-    totalCount: number | undefined;
-    items: SubscriptionPaymentListDto[] | undefined;
+    totalCount: number;
+    items: SubscriptionPaymentListDto[];
 
     constructor(data?: IPagedResultDtoOfSubscriptionPaymentListDto) {
         if (data) {
@@ -12708,32 +12754,32 @@ export class PagedResultDtoOfSubscriptionPaymentListDto implements IPagedResultD
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfSubscriptionPaymentListDto {
-    totalCount: number | undefined;
-    items: SubscriptionPaymentListDto[] | undefined;
+    totalCount: number;
+    items: SubscriptionPaymentListDto[];
 }
 
 export class SubscriptionPaymentListDto implements ISubscriptionPaymentListDto {
-    gateway: string | undefined;
-    amount: number | undefined;
-    editionId: number | undefined;
-    dayCount: number | undefined;
-    paymentPeriodType: string | undefined;
-    paymentId: string | undefined;
-    payerId: string | undefined;
-    status: string | undefined;
-    editionDisplayName: string | undefined;
-    tenantId: number | undefined;
-    invoiceNo: string | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    lastModifierUserId: number | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    id: number | undefined;
+    gateway: string;
+    amount: number;
+    editionId: number;
+    dayCount: number;
+    paymentPeriodType: string;
+    paymentId: string;
+    payerId: string;
+    status: string;
+    editionDisplayName: string;
+    tenantId: number;
+    invoiceNo: string;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
 
     constructor(data?: ISubscriptionPaymentListDto) {
         if (data) {
@@ -12790,31 +12836,136 @@ export class SubscriptionPaymentListDto implements ISubscriptionPaymentListDto {
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["creatorUserId"] = this.creatorUserId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface ISubscriptionPaymentListDto {
-    gateway: string | undefined;
-    amount: number | undefined;
-    editionId: number | undefined;
-    dayCount: number | undefined;
-    paymentPeriodType: string | undefined;
-    paymentId: string | undefined;
-    payerId: string | undefined;
-    status: string | undefined;
-    editionDisplayName: string | undefined;
-    tenantId: number | undefined;
-    invoiceNo: string | undefined;
-    lastModificationTime: moment.Moment | undefined;
-    lastModifierUserId: number | undefined;
-    creationTime: moment.Moment | undefined;
-    creatorUserId: number | undefined;
-    id: number | undefined;
+    gateway: string;
+    amount: number;
+    editionId: number;
+    dayCount: number;
+    paymentPeriodType: string;
+    paymentId: string;
+    payerId: string;
+    status: string;
+    editionDisplayName: string;
+    tenantId: number;
+    invoiceNo: string;
+    lastModificationTime: moment.Moment;
+    lastModifierUserId: number;
+    creationTime: moment.Moment;
+    creatorUserId: number;
+    id: number;
+}
+
+export class ListResultDtoOfTreePermissionDto implements IListResultDtoOfTreePermissionDto {
+    items: TreePermissionDto[];
+
+    constructor(data?: IListResultDtoOfTreePermissionDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(TreePermissionDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ListResultDtoOfTreePermissionDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new ListResultDtoOfTreePermissionDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface IListResultDtoOfTreePermissionDto {
+    items: TreePermissionDto[];
+}
+
+export class TreePermissionDto implements ITreePermissionDto {
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    children: TreePermissionDto[];
+    checked: boolean;
+
+    constructor(data?: ITreePermissionDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.parentName = data["parentName"];
+            this.name = data["name"];
+            this.displayName = data["displayName"];
+            this.description = data["description"];
+            if (data["children"] && data["children"].constructor === Array) {
+                this.children = [];
+                for (let item of data["children"])
+                    this.children.push(TreePermissionDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): TreePermissionDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new TreePermissionDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["parentName"] = this.parentName;
+        data["name"] = this.name;
+        data["displayName"] = this.displayName;
+        data["description"] = this.description;
+        if (this.children && this.children.constructor === Array) {
+            data["children"] = [];
+            for (let item of this.children)
+                data["children"].push(item.toJSON());
+        }
+        return data;
+    }
+}
+
+export interface ITreePermissionDto {
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    children: TreePermissionDto[];
 }
 
 export class ListResultDtoOfFlatPermissionWithLevelDto implements IListResultDtoOfFlatPermissionWithLevelDto {
-    items: FlatPermissionWithLevelDto[] | undefined;
+    items: FlatPermissionWithLevelDto[];
 
     constructor(data?: IListResultDtoOfFlatPermissionWithLevelDto) {
         if (data) {
@@ -12849,21 +13000,21 @@ export class ListResultDtoOfFlatPermissionWithLevelDto implements IListResultDto
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfFlatPermissionWithLevelDto {
-    items: FlatPermissionWithLevelDto[] | undefined;
+    items: FlatPermissionWithLevelDto[];
 }
 
 export class FlatPermissionWithLevelDto implements IFlatPermissionWithLevelDto {
-    level: number | undefined;
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    isGrantedByDefault: boolean | undefined;
+    level: number;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    isGrantedByDefault: boolean;
 
     constructor(data?: IFlatPermissionWithLevelDto) {
         if (data) {
@@ -12900,17 +13051,17 @@ export class FlatPermissionWithLevelDto implements IFlatPermissionWithLevelDto {
         data["displayName"] = this.displayName;
         data["description"] = this.description;
         data["isGrantedByDefault"] = this.isGrantedByDefault;
-        return data; 
+        return data;
     }
 }
 
 export interface IFlatPermissionWithLevelDto {
-    level: number | undefined;
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    isGrantedByDefault: boolean | undefined;
+    level: number;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    isGrantedByDefault: boolean;
 }
 
 export class CurrentUserProfileEditDto implements ICurrentUserProfileEditDto {
@@ -12918,11 +13069,11 @@ export class CurrentUserProfileEditDto implements ICurrentUserProfileEditDto {
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string | undefined;
-    isPhoneNumberConfirmed: boolean | undefined;
-    timezone: string | undefined;
-    qrCodeSetupImageUrl: string | undefined;
-    isGoogleAuthenticatorEnabled: boolean | undefined;
+    phoneNumber: string;
+    isPhoneNumberConfirmed: boolean;
+    timezone: string;
+    qrCodeSetupImageUrl: string;
+    isGoogleAuthenticatorEnabled: boolean;
 
     constructor(data?: ICurrentUserProfileEditDto) {
         if (data) {
@@ -12965,7 +13116,7 @@ export class CurrentUserProfileEditDto implements ICurrentUserProfileEditDto {
         data["timezone"] = this.timezone;
         data["qrCodeSetupImageUrl"] = this.qrCodeSetupImageUrl;
         data["isGoogleAuthenticatorEnabled"] = this.isGoogleAuthenticatorEnabled;
-        return data; 
+        return data;
     }
 }
 
@@ -12974,15 +13125,15 @@ export interface ICurrentUserProfileEditDto {
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string | undefined;
-    isPhoneNumberConfirmed: boolean | undefined;
-    timezone: string | undefined;
-    qrCodeSetupImageUrl: string | undefined;
-    isGoogleAuthenticatorEnabled: boolean | undefined;
+    phoneNumber: string;
+    isPhoneNumberConfirmed: boolean;
+    timezone: string;
+    qrCodeSetupImageUrl: string;
+    isGoogleAuthenticatorEnabled: boolean;
 }
 
 export class UpdateGoogleAuthenticatorKeyOutput implements IUpdateGoogleAuthenticatorKeyOutput {
-    qrCodeSetupImageUrl: string | undefined;
+    qrCodeSetupImageUrl: string;
 
     constructor(data?: IUpdateGoogleAuthenticatorKeyOutput) {
         if (data) {
@@ -13009,16 +13160,16 @@ export class UpdateGoogleAuthenticatorKeyOutput implements IUpdateGoogleAuthenti
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["qrCodeSetupImageUrl"] = this.qrCodeSetupImageUrl;
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateGoogleAuthenticatorKeyOutput {
-    qrCodeSetupImageUrl: string | undefined;
+    qrCodeSetupImageUrl: string;
 }
 
 export class VerifySmsCodeInputDto implements IVerifySmsCodeInputDto {
-    code: string | undefined;
+    code: string;
 
     constructor(data?: IVerifySmsCodeInputDto) {
         if (data) {
@@ -13045,12 +13196,12 @@ export class VerifySmsCodeInputDto implements IVerifySmsCodeInputDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["code"] = this.code;
-        return data; 
+        return data;
     }
 }
 
 export interface IVerifySmsCodeInputDto {
-    code: string | undefined;
+    code: string;
 }
 
 export class ChangePasswordInput implements IChangePasswordInput {
@@ -13084,7 +13235,7 @@ export class ChangePasswordInput implements IChangePasswordInput {
         data = typeof data === 'object' ? data : {};
         data["currentPassword"] = this.currentPassword;
         data["newPassword"] = this.newPassword;
-        return data; 
+        return data;
     }
 }
 
@@ -13095,10 +13246,10 @@ export interface IChangePasswordInput {
 
 export class UpdateProfilePictureInput implements IUpdateProfilePictureInput {
     fileName: string;
-    x: number | undefined;
-    y: number | undefined;
-    width: number | undefined;
-    height: number | undefined;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
 
     constructor(data?: IUpdateProfilePictureInput) {
         if (data) {
@@ -13133,20 +13284,20 @@ export class UpdateProfilePictureInput implements IUpdateProfilePictureInput {
         data["y"] = this.y;
         data["width"] = this.width;
         data["height"] = this.height;
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateProfilePictureInput {
     fileName: string;
-    x: number | undefined;
-    y: number | undefined;
-    width: number | undefined;
-    height: number | undefined;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
 }
 
 export class GetPasswordComplexitySettingOutput implements IGetPasswordComplexitySettingOutput {
-    setting: PasswordComplexitySetting | undefined;
+    setting: PasswordComplexitySetting;
 
     constructor(data?: IGetPasswordComplexitySettingOutput) {
         if (data) {
@@ -13173,16 +13324,16 @@ export class GetPasswordComplexitySettingOutput implements IGetPasswordComplexit
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["setting"] = this.setting ? this.setting.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IGetPasswordComplexitySettingOutput {
-    setting: PasswordComplexitySetting | undefined;
+    setting: PasswordComplexitySetting;
 }
 
 export class GetProfilePictureOutput implements IGetProfilePictureOutput {
-    profilePicture: string | undefined;
+    profilePicture: string;
 
     constructor(data?: IGetProfilePictureOutput) {
         if (data) {
@@ -13209,12 +13360,12 @@ export class GetProfilePictureOutput implements IGetProfilePictureOutput {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["profilePicture"] = this.profilePicture;
-        return data; 
+        return data;
     }
 }
 
 export interface IGetProfilePictureOutput {
-    profilePicture: string | undefined;
+    profilePicture: string;
 }
 
 export class ChangeUserLanguageDto implements IChangeUserLanguageDto {
@@ -13245,7 +13396,7 @@ export class ChangeUserLanguageDto implements IChangeUserLanguageDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["languageName"] = this.languageName;
-        return data; 
+        return data;
     }
 }
 
@@ -13254,7 +13405,7 @@ export interface IChangeUserLanguageDto {
 }
 
 export class ListResultDtoOfRoleListDto implements IListResultDtoOfRoleListDto {
-    items: RoleListDto[] | undefined;
+    items: RoleListDto[];
 
     constructor(data?: IListResultDtoOfRoleListDto) {
         if (data) {
@@ -13289,21 +13440,21 @@ export class ListResultDtoOfRoleListDto implements IListResultDtoOfRoleListDto {
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfRoleListDto {
-    items: RoleListDto[] | undefined;
+    items: RoleListDto[];
 }
 
 export class RoleListDto implements IRoleListDto {
-    name: string | undefined;
-    displayName: string | undefined;
-    isStatic: boolean | undefined;
-    isDefault: boolean | undefined;
-    creationTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    displayName: string;
+    isStatic: boolean;
+    isDefault: boolean;
+    creationTime: moment.Moment;
+    id: number;
 
     constructor(data?: IRoleListDto) {
         if (data) {
@@ -13340,23 +13491,23 @@ export class RoleListDto implements IRoleListDto {
         data["isDefault"] = this.isDefault;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IRoleListDto {
-    name: string | undefined;
-    displayName: string | undefined;
-    isStatic: boolean | undefined;
-    isDefault: boolean | undefined;
-    creationTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    displayName: string;
+    isStatic: boolean;
+    isDefault: boolean;
+    creationTime: moment.Moment;
+    id: number;
 }
 
 export class GetRoleForEditOutput implements IGetRoleForEditOutput {
-    role: RoleEditDto | undefined;
-    permissions: FlatPermissionDto[] | undefined;
-    grantedPermissionNames: string[] | undefined;
+    role: RoleEditDto;
+    permissions: FlatPermissionDto[];
+    grantedPermissionNames: string[];
 
     constructor(data?: IGetRoleForEditOutput) {
         if (data) {
@@ -13403,20 +13554,20 @@ export class GetRoleForEditOutput implements IGetRoleForEditOutput {
             for (let item of this.grantedPermissionNames)
                 data["grantedPermissionNames"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetRoleForEditOutput {
-    role: RoleEditDto | undefined;
-    permissions: FlatPermissionDto[] | undefined;
-    grantedPermissionNames: string[] | undefined;
+    role: RoleEditDto;
+    permissions: FlatPermissionDto[];
+    grantedPermissionNames: string[];
 }
 
 export class RoleEditDto implements IRoleEditDto {
-    id: number | undefined;
+    id: number;
     displayName: string;
-    isDefault: boolean | undefined;
+    isDefault: boolean;
 
     constructor(data?: IRoleEditDto) {
         if (data) {
@@ -13447,22 +13598,22 @@ export class RoleEditDto implements IRoleEditDto {
         data["id"] = this.id;
         data["displayName"] = this.displayName;
         data["isDefault"] = this.isDefault;
-        return data; 
+        return data;
     }
 }
 
 export interface IRoleEditDto {
-    id: number | undefined;
+    id: number;
     displayName: string;
-    isDefault: boolean | undefined;
+    isDefault: boolean;
 }
 
 export class FlatPermissionDto implements IFlatPermissionDto {
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    isGrantedByDefault: boolean | undefined;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    isGrantedByDefault: boolean;
 
     constructor(data?: IFlatPermissionDto) {
         if (data) {
@@ -13497,16 +13648,16 @@ export class FlatPermissionDto implements IFlatPermissionDto {
         data["displayName"] = this.displayName;
         data["description"] = this.description;
         data["isGrantedByDefault"] = this.isGrantedByDefault;
-        return data; 
+        return data;
     }
 }
 
 export interface IFlatPermissionDto {
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    isGrantedByDefault: boolean | undefined;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    isGrantedByDefault: boolean;
 }
 
 export class CreateOrUpdateRoleInput implements ICreateOrUpdateRoleInput {
@@ -13552,7 +13703,7 @@ export class CreateOrUpdateRoleInput implements ICreateOrUpdateRoleInput {
             for (let item of this.grantedPermissionNames)
                 data["grantedPermissionNames"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
@@ -13562,9 +13713,9 @@ export interface ICreateOrUpdateRoleInput {
 }
 
 export class GetCurrentLoginInformationsOutput implements IGetCurrentLoginInformationsOutput {
-    user: UserLoginInfoDto | undefined;
-    tenant: TenantLoginInfoDto | undefined;
-    application: ApplicationInfoDto | undefined;
+    user: UserLoginInfoDto;
+    tenant: TenantLoginInfoDto;
+    application: ApplicationInfoDto;
 
     constructor(data?: IGetCurrentLoginInformationsOutput) {
         if (data) {
@@ -13595,23 +13746,23 @@ export class GetCurrentLoginInformationsOutput implements IGetCurrentLoginInform
         data["user"] = this.user ? this.user.toJSON() : <any>undefined;
         data["tenant"] = this.tenant ? this.tenant.toJSON() : <any>undefined;
         data["application"] = this.application ? this.application.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IGetCurrentLoginInformationsOutput {
-    user: UserLoginInfoDto | undefined;
-    tenant: TenantLoginInfoDto | undefined;
-    application: ApplicationInfoDto | undefined;
+    user: UserLoginInfoDto;
+    tenant: TenantLoginInfoDto;
+    application: ApplicationInfoDto;
 }
 
 export class UserLoginInfoDto implements IUserLoginInfoDto {
-    name: string | undefined;
-    surname: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    profilePictureId: string | undefined;
-    id: number | undefined;
+    name: string;
+    surname: string;
+    userName: string;
+    emailAddress: string;
+    profilePictureId: string;
+    id: number;
 
     constructor(data?: IUserLoginInfoDto) {
         if (data) {
@@ -13648,33 +13799,33 @@ export class UserLoginInfoDto implements IUserLoginInfoDto {
         data["emailAddress"] = this.emailAddress;
         data["profilePictureId"] = this.profilePictureId;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserLoginInfoDto {
-    name: string | undefined;
-    surname: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    profilePictureId: string | undefined;
-    id: number | undefined;
+    name: string;
+    surname: string;
+    userName: string;
+    emailAddress: string;
+    profilePictureId: string;
+    id: number;
 }
 
 export class TenantLoginInfoDto implements ITenantLoginInfoDto {
-    tenancyName: string | undefined;
-    name: string | undefined;
-    logoId: string | undefined;
-    logoFileType: string | undefined;
-    customCssId: string | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    isInTrialPeriod: boolean | undefined;
-    edition: EditionInfoDto | undefined;
-    creationTime: moment.Moment | undefined;
-    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType | undefined;
-    subscriptionDateString: string | undefined;
-    creationTimeString: string | undefined;
-    id: number | undefined;
+    tenancyName: string;
+    name: string;
+    logoId: string;
+    logoFileType: string;
+    customCssId: string;
+    subscriptionEndDateUtc: moment.Moment;
+    isInTrialPeriod: boolean;
+    edition: EditionInfoDto;
+    creationTime: moment.Moment;
+    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType;
+    subscriptionDateString: string;
+    creationTimeString: string;
+    id: number;
 
     constructor(data?: ITenantLoginInfoDto) {
         if (data) {
@@ -13725,30 +13876,30 @@ export class TenantLoginInfoDto implements ITenantLoginInfoDto {
         data["subscriptionDateString"] = this.subscriptionDateString;
         data["creationTimeString"] = this.creationTimeString;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantLoginInfoDto {
-    tenancyName: string | undefined;
-    name: string | undefined;
-    logoId: string | undefined;
-    logoFileType: string | undefined;
-    customCssId: string | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    isInTrialPeriod: boolean | undefined;
-    edition: EditionInfoDto | undefined;
-    creationTime: moment.Moment | undefined;
-    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType | undefined;
-    subscriptionDateString: string | undefined;
-    creationTimeString: string | undefined;
-    id: number | undefined;
+    tenancyName: string;
+    name: string;
+    logoId: string;
+    logoFileType: string;
+    customCssId: string;
+    subscriptionEndDateUtc: moment.Moment;
+    isInTrialPeriod: boolean;
+    edition: EditionInfoDto;
+    creationTime: moment.Moment;
+    paymentPeriodType: TenantLoginInfoDtoPaymentPeriodType;
+    subscriptionDateString: string;
+    creationTimeString: string;
+    id: number;
 }
 
 export class ApplicationInfoDto implements IApplicationInfoDto {
-    version: string | undefined;
-    releaseDate: moment.Moment | undefined;
-    features: { [key: string] : boolean; } | undefined;
+    version: string;
+    releaseDate: moment.Moment;
+    features: { [key: string]: boolean; };
 
     constructor(data?: IApplicationInfoDto) {
         if (data) {
@@ -13791,24 +13942,24 @@ export class ApplicationInfoDto implements IApplicationInfoDto {
                     data["features"][key] = this.features[key];
             }
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IApplicationInfoDto {
-    version: string | undefined;
-    releaseDate: moment.Moment | undefined;
-    features: { [key: string] : boolean; } | undefined;
+    version: string;
+    releaseDate: moment.Moment;
+    features: { [key: string]: boolean; };
 }
 
 export class EditionInfoDto implements IEditionInfoDto {
-    displayName: string | undefined;
-    trialDayCount: number | undefined;
-    monthlyPrice: number | undefined;
-    annualPrice: number | undefined;
-    isHighestEdition: boolean | undefined;
-    isFree: boolean | undefined;
-    id: number | undefined;
+    displayName: string;
+    trialDayCount: number;
+    monthlyPrice: number;
+    annualPrice: number;
+    isHighestEdition: boolean;
+    isFree: boolean;
+    id: number;
 
     constructor(data?: IEditionInfoDto) {
         if (data) {
@@ -13847,24 +13998,24 @@ export class EditionInfoDto implements IEditionInfoDto {
         data["isHighestEdition"] = this.isHighestEdition;
         data["isFree"] = this.isFree;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IEditionInfoDto {
-    displayName: string | undefined;
-    trialDayCount: number | undefined;
-    monthlyPrice: number | undefined;
-    annualPrice: number | undefined;
-    isHighestEdition: boolean | undefined;
-    isFree: boolean | undefined;
-    id: number | undefined;
+    displayName: string;
+    trialDayCount: number;
+    monthlyPrice: number;
+    annualPrice: number;
+    isHighestEdition: boolean;
+    isFree: boolean;
+    id: number;
 }
 
 export class UpdateUserSignInTokenOutput implements IUpdateUserSignInTokenOutput {
-    signInToken: string | undefined;
-    encodedUserId: string | undefined;
-    encodedTenantId: string | undefined;
+    signInToken: string;
+    encodedUserId: string;
+    encodedTenantId: string;
 
     constructor(data?: IUpdateUserSignInTokenOutput) {
         if (data) {
@@ -13895,19 +14046,19 @@ export class UpdateUserSignInTokenOutput implements IUpdateUserSignInTokenOutput
         data["signInToken"] = this.signInToken;
         data["encodedUserId"] = this.encodedUserId;
         data["encodedTenantId"] = this.encodedTenantId;
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateUserSignInTokenOutput {
-    signInToken: string | undefined;
-    encodedUserId: string | undefined;
-    encodedTenantId: string | undefined;
+    signInToken: string;
+    encodedUserId: string;
+    encodedTenantId: string;
 }
 
 export class PagedResultDtoOfTenantListDto implements IPagedResultDtoOfTenantListDto {
-    totalCount: number | undefined;
-    items: TenantListDto[] | undefined;
+    totalCount: number;
+    items: TenantListDto[];
 
     constructor(data?: IPagedResultDtoOfTenantListDto) {
         if (data) {
@@ -13944,26 +14095,26 @@ export class PagedResultDtoOfTenantListDto implements IPagedResultDtoOfTenantLis
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfTenantListDto {
-    totalCount: number | undefined;
-    items: TenantListDto[] | undefined;
+    totalCount: number;
+    items: TenantListDto[];
 }
 
 export class TenantListDto implements ITenantListDto {
-    tenancyName: string | undefined;
-    name: string | undefined;
-    editionDisplayName: string | undefined;
-    connectionString: string | undefined;
-    isActive: boolean | undefined;
-    creationTime: moment.Moment | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    editionId: number | undefined;
-    isInTrialPeriod: boolean | undefined;
-    id: number | undefined;
+    tenancyName: string;
+    name: string;
+    editionDisplayName: string;
+    connectionString: string;
+    isActive: boolean;
+    creationTime: moment.Moment;
+    subscriptionEndDateUtc: moment.Moment;
+    editionId: number;
+    isInTrialPeriod: boolean;
+    id: number;
 
     constructor(data?: ITenantListDto) {
         if (data) {
@@ -14008,35 +14159,35 @@ export class TenantListDto implements ITenantListDto {
         data["editionId"] = this.editionId;
         data["isInTrialPeriod"] = this.isInTrialPeriod;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantListDto {
-    tenancyName: string | undefined;
-    name: string | undefined;
-    editionDisplayName: string | undefined;
-    connectionString: string | undefined;
-    isActive: boolean | undefined;
-    creationTime: moment.Moment | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    editionId: number | undefined;
-    isInTrialPeriod: boolean | undefined;
-    id: number | undefined;
+    tenancyName: string;
+    name: string;
+    editionDisplayName: string;
+    connectionString: string;
+    isActive: boolean;
+    creationTime: moment.Moment;
+    subscriptionEndDateUtc: moment.Moment;
+    editionId: number;
+    isInTrialPeriod: boolean;
+    id: number;
 }
 
 export class CreateTenantInput implements ICreateTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string | undefined;
-    connectionString: string | undefined;
-    shouldChangePasswordOnNextLogin: boolean | undefined;
-    sendActivationEmail: boolean | undefined;
-    editionId: number | undefined;
-    isActive: boolean | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    isInTrialPeriod: boolean | undefined;
+    adminPassword: string;
+    connectionString: string;
+    shouldChangePasswordOnNextLogin: boolean;
+    sendActivationEmail: boolean;
+    editionId: number;
+    isActive: boolean;
+    subscriptionEndDateUtc: moment.Moment;
+    isInTrialPeriod: boolean;
 
     constructor(data?: ICreateTenantInput) {
         if (data) {
@@ -14083,7 +14234,7 @@ export class CreateTenantInput implements ICreateTenantInput {
         data["isActive"] = this.isActive;
         data["subscriptionEndDateUtc"] = this.subscriptionEndDateUtc ? this.subscriptionEndDateUtc.toISOString() : <any>undefined;
         data["isInTrialPeriod"] = this.isInTrialPeriod;
-        return data; 
+        return data;
     }
 }
 
@@ -14091,25 +14242,25 @@ export interface ICreateTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string | undefined;
-    connectionString: string | undefined;
-    shouldChangePasswordOnNextLogin: boolean | undefined;
-    sendActivationEmail: boolean | undefined;
-    editionId: number | undefined;
-    isActive: boolean | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    isInTrialPeriod: boolean | undefined;
+    adminPassword: string;
+    connectionString: string;
+    shouldChangePasswordOnNextLogin: boolean;
+    sendActivationEmail: boolean;
+    editionId: number;
+    isActive: boolean;
+    subscriptionEndDateUtc: moment.Moment;
+    isInTrialPeriod: boolean;
 }
 
 export class TenantEditDto implements ITenantEditDto {
     tenancyName: string;
     name: string;
-    connectionString: string | undefined;
-    editionId: number | undefined;
-    isActive: boolean | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    isInTrialPeriod: boolean | undefined;
-    id: number | undefined;
+    connectionString: string;
+    editionId: number;
+    isActive: boolean;
+    subscriptionEndDateUtc: moment.Moment;
+    isInTrialPeriod: boolean;
+    id: number;
 
     constructor(data?: ITenantEditDto) {
         if (data) {
@@ -14150,24 +14301,24 @@ export class TenantEditDto implements ITenantEditDto {
         data["subscriptionEndDateUtc"] = this.subscriptionEndDateUtc ? this.subscriptionEndDateUtc.toISOString() : <any>undefined;
         data["isInTrialPeriod"] = this.isInTrialPeriod;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantEditDto {
     tenancyName: string;
     name: string;
-    connectionString: string | undefined;
-    editionId: number | undefined;
-    isActive: boolean | undefined;
-    subscriptionEndDateUtc: moment.Moment | undefined;
-    isInTrialPeriod: boolean | undefined;
-    id: number | undefined;
+    connectionString: string;
+    editionId: number;
+    isActive: boolean;
+    subscriptionEndDateUtc: moment.Moment;
+    isInTrialPeriod: boolean;
+    id: number;
 }
 
 export class GetTenantFeaturesEditOutput implements IGetTenantFeaturesEditOutput {
-    featureValues: NameValueDto[] | undefined;
-    features: FlatFeatureDto[] | undefined;
+    featureValues: NameValueDto[];
+    features: FlatFeatureDto[];
 
     constructor(data?: IGetTenantFeaturesEditOutput) {
         if (data) {
@@ -14212,17 +14363,17 @@ export class GetTenantFeaturesEditOutput implements IGetTenantFeaturesEditOutput
             for (let item of this.features)
                 data["features"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetTenantFeaturesEditOutput {
-    featureValues: NameValueDto[] | undefined;
-    features: FlatFeatureDto[] | undefined;
+    featureValues: NameValueDto[];
+    features: FlatFeatureDto[];
 }
 
 export class UpdateTenantFeaturesInput implements IUpdateTenantFeaturesInput {
-    id: number | undefined;
+    id: number;
     featureValues: NameValueDto[];
 
     constructor(data?: IUpdateTenantFeaturesInput) {
@@ -14263,17 +14414,17 @@ export class UpdateTenantFeaturesInput implements IUpdateTenantFeaturesInput {
             for (let item of this.featureValues)
                 data["featureValues"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateTenantFeaturesInput {
-    id: number | undefined;
+    id: number;
     featureValues: NameValueDto[];
 }
 
 export class EntityDto implements IEntityDto {
-    id: number | undefined;
+    id: number;
 
     constructor(data?: IEntityDto) {
         if (data) {
@@ -14300,16 +14451,16 @@ export class EntityDto implements IEntityDto {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IEntityDto {
-    id: number | undefined;
+    id: number;
 }
 
 export class GetMemberActivityOutput implements IGetMemberActivityOutput {
-    memberActivities: MemberActivity[] | undefined;
+    memberActivities: MemberActivity[];
 
     constructor(data?: IGetMemberActivityOutput) {
         if (data) {
@@ -14344,20 +14495,20 @@ export class GetMemberActivityOutput implements IGetMemberActivityOutput {
             for (let item of this.memberActivities)
                 data["memberActivities"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetMemberActivityOutput {
-    memberActivities: MemberActivity[] | undefined;
+    memberActivities: MemberActivity[];
 }
 
 export class MemberActivity implements IMemberActivity {
-    name: string | undefined;
-    earnings: string | undefined;
-    cases: number | undefined;
-    closed: number | undefined;
-    rate: string | undefined;
+    name: string;
+    earnings: string;
+    cases: number;
+    closed: number;
+    rate: string;
 
     constructor(data?: IMemberActivity) {
         if (data) {
@@ -14392,33 +14543,33 @@ export class MemberActivity implements IMemberActivity {
         data["cases"] = this.cases;
         data["closed"] = this.closed;
         data["rate"] = this.rate;
-        return data; 
+        return data;
     }
 }
 
 export interface IMemberActivity {
-    name: string | undefined;
-    earnings: string | undefined;
-    cases: number | undefined;
-    closed: number | undefined;
-    rate: string | undefined;
+    name: string;
+    earnings: string;
+    cases: number;
+    closed: number;
+    rate: string;
 }
 
 export class GetDashboardDataOutput implements IGetDashboardDataOutput {
-    totalProfit: number | undefined;
-    newFeedbacks: number | undefined;
-    newOrders: number | undefined;
-    newUsers: number | undefined;
-    salesSummary: SalesSummaryData[] | undefined;
-    totalSales: number | undefined;
-    revenue: number | undefined;
-    expenses: number | undefined;
-    growth: number | undefined;
-    transactionPercent: number | undefined;
-    newVisitPercent: number | undefined;
-    bouncePercent: number | undefined;
-    dailySales: number[] | undefined;
-    profitShares: number[] | undefined;
+    totalProfit: number;
+    newFeedbacks: number;
+    newOrders: number;
+    newUsers: number;
+    salesSummary: SalesSummaryData[];
+    totalSales: number;
+    revenue: number;
+    expenses: number;
+    growth: number;
+    transactionPercent: number;
+    newVisitPercent: number;
+    bouncePercent: number;
+    dailySales: number[];
+    profitShares: number[];
 
     constructor(data?: IGetDashboardDataOutput) {
         if (data) {
@@ -14495,31 +14646,31 @@ export class GetDashboardDataOutput implements IGetDashboardDataOutput {
             for (let item of this.profitShares)
                 data["profitShares"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetDashboardDataOutput {
-    totalProfit: number | undefined;
-    newFeedbacks: number | undefined;
-    newOrders: number | undefined;
-    newUsers: number | undefined;
-    salesSummary: SalesSummaryData[] | undefined;
-    totalSales: number | undefined;
-    revenue: number | undefined;
-    expenses: number | undefined;
-    growth: number | undefined;
-    transactionPercent: number | undefined;
-    newVisitPercent: number | undefined;
-    bouncePercent: number | undefined;
-    dailySales: number[] | undefined;
-    profitShares: number[] | undefined;
+    totalProfit: number;
+    newFeedbacks: number;
+    newOrders: number;
+    newUsers: number;
+    salesSummary: SalesSummaryData[];
+    totalSales: number;
+    revenue: number;
+    expenses: number;
+    growth: number;
+    transactionPercent: number;
+    newVisitPercent: number;
+    bouncePercent: number;
+    dailySales: number[];
+    profitShares: number[];
 }
 
 export class SalesSummaryData implements ISalesSummaryData {
-    period: string | undefined;
-    sales: number | undefined;
-    profit: number | undefined;
+    period: string;
+    sales: number;
+    profit: number;
 
     constructor(data?: ISalesSummaryData) {
         if (data) {
@@ -14550,18 +14701,18 @@ export class SalesSummaryData implements ISalesSummaryData {
         data["period"] = this.period;
         data["sales"] = this.sales;
         data["profit"] = this.profit;
-        return data; 
+        return data;
     }
 }
 
 export interface ISalesSummaryData {
-    period: string | undefined;
-    sales: number | undefined;
-    profit: number | undefined;
+    period: string;
+    sales: number;
+    profit: number;
 }
 
 export class GetSalesSummaryOutput implements IGetSalesSummaryOutput {
-    salesSummary: SalesSummaryData[] | undefined;
+    salesSummary: SalesSummaryData[];
 
     constructor(data?: IGetSalesSummaryOutput) {
         if (data) {
@@ -14596,16 +14747,16 @@ export class GetSalesSummaryOutput implements IGetSalesSummaryOutput {
             for (let item of this.salesSummary)
                 data["salesSummary"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetSalesSummaryOutput {
-    salesSummary: SalesSummaryData[] | undefined;
+    salesSummary: SalesSummaryData[];
 }
 
 export class GetWorldMapOutput implements IGetWorldMapOutput {
-    countries: WorldMapCountry[] | undefined;
+    countries: WorldMapCountry[];
 
     constructor(data?: IGetWorldMapOutput) {
         if (data) {
@@ -14640,17 +14791,17 @@ export class GetWorldMapOutput implements IGetWorldMapOutput {
             for (let item of this.countries)
                 data["countries"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetWorldMapOutput {
-    countries: WorldMapCountry[] | undefined;
+    countries: WorldMapCountry[];
 }
 
 export class WorldMapCountry implements IWorldMapCountry {
-    countryName: string | undefined;
-    color: number | undefined;
+    countryName: string;
+    color: number;
 
     constructor(data?: IWorldMapCountry) {
         if (data) {
@@ -14679,19 +14830,19 @@ export class WorldMapCountry implements IWorldMapCountry {
         data = typeof data === 'object' ? data : {};
         data["countryName"] = this.countryName;
         data["color"] = this.color;
-        return data; 
+        return data;
     }
 }
 
 export interface IWorldMapCountry {
-    countryName: string | undefined;
-    color: number | undefined;
+    countryName: string;
+    color: number;
 }
 
 export class GetGeneralStatsOutput implements IGetGeneralStatsOutput {
-    transactionPercent: number | undefined;
-    newVisitPercent: number | undefined;
-    bouncePercent: number | undefined;
+    transactionPercent: number;
+    newVisitPercent: number;
+    bouncePercent: number;
 
     constructor(data?: IGetGeneralStatsOutput) {
         if (data) {
@@ -14722,26 +14873,26 @@ export class GetGeneralStatsOutput implements IGetGeneralStatsOutput {
         data["transactionPercent"] = this.transactionPercent;
         data["newVisitPercent"] = this.newVisitPercent;
         data["bouncePercent"] = this.bouncePercent;
-        return data; 
+        return data;
     }
 }
 
 export interface IGetGeneralStatsOutput {
-    transactionPercent: number | undefined;
-    newVisitPercent: number | undefined;
-    bouncePercent: number | undefined;
+    transactionPercent: number;
+    newVisitPercent: number;
+    bouncePercent: number;
 }
 
 export class RegisterTenantInput implements IRegisterTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string | undefined;
-    captchaResponse: string | undefined;
-    subscriptionStartType: RegisterTenantInputSubscriptionStartType | undefined;
-    gateway: RegisterTenantInputGateway | undefined;
-    editionId: number | undefined;
-    paymentId: string | undefined;
+    adminPassword: string;
+    captchaResponse: string;
+    subscriptionStartType: RegisterTenantInputSubscriptionStartType;
+    gateway: RegisterTenantInputGateway;
+    editionId: number;
+    paymentId: string;
 
     constructor(data?: IRegisterTenantInput) {
         if (data) {
@@ -14784,7 +14935,7 @@ export class RegisterTenantInput implements IRegisterTenantInput {
         data["gateway"] = this.gateway;
         data["editionId"] = this.editionId;
         data["paymentId"] = this.paymentId;
-        return data; 
+        return data;
     }
 }
 
@@ -14792,23 +14943,23 @@ export interface IRegisterTenantInput {
     tenancyName: string;
     name: string;
     adminEmailAddress: string;
-    adminPassword: string | undefined;
-    captchaResponse: string | undefined;
-    subscriptionStartType: RegisterTenantInputSubscriptionStartType | undefined;
-    gateway: RegisterTenantInputGateway | undefined;
-    editionId: number | undefined;
-    paymentId: string | undefined;
+    adminPassword: string;
+    captchaResponse: string;
+    subscriptionStartType: RegisterTenantInputSubscriptionStartType;
+    gateway: RegisterTenantInputGateway;
+    editionId: number;
+    paymentId: string;
 }
 
 export class RegisterTenantOutput implements IRegisterTenantOutput {
-    tenantId: number | undefined;
-    tenancyName: string | undefined;
-    name: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    isTenantActive: boolean | undefined;
-    isActive: boolean | undefined;
-    isEmailConfirmationRequired: boolean | undefined;
+    tenantId: number;
+    tenancyName: string;
+    name: string;
+    userName: string;
+    emailAddress: string;
+    isTenantActive: boolean;
+    isActive: boolean;
+    isEmailConfirmationRequired: boolean;
 
     constructor(data?: IRegisterTenantOutput) {
         if (data) {
@@ -14849,25 +15000,25 @@ export class RegisterTenantOutput implements IRegisterTenantOutput {
         data["isTenantActive"] = this.isTenantActive;
         data["isActive"] = this.isActive;
         data["isEmailConfirmationRequired"] = this.isEmailConfirmationRequired;
-        return data; 
+        return data;
     }
 }
 
 export interface IRegisterTenantOutput {
-    tenantId: number | undefined;
-    tenancyName: string | undefined;
-    name: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    isTenantActive: boolean | undefined;
-    isActive: boolean | undefined;
-    isEmailConfirmationRequired: boolean | undefined;
+    tenantId: number;
+    tenancyName: string;
+    name: string;
+    userName: string;
+    emailAddress: string;
+    isTenantActive: boolean;
+    isActive: boolean;
+    isEmailConfirmationRequired: boolean;
 }
 
 export class EditionsSelectOutput implements IEditionsSelectOutput {
-    allFeatures: FlatFeatureSelectDto[] | undefined;
-    editionsWithFeatures: EditionWithFeaturesDto[] | undefined;
-    tenantEditionId: number | undefined;
+    allFeatures: FlatFeatureSelectDto[];
+    editionsWithFeatures: EditionWithFeaturesDto[];
+    tenantEditionId: number;
 
     constructor(data?: IEditionsSelectOutput) {
         if (data) {
@@ -14914,24 +15065,24 @@ export class EditionsSelectOutput implements IEditionsSelectOutput {
                 data["editionsWithFeatures"].push(item.toJSON());
         }
         data["tenantEditionId"] = this.tenantEditionId;
-        return data; 
+        return data;
     }
 }
 
 export interface IEditionsSelectOutput {
-    allFeatures: FlatFeatureSelectDto[] | undefined;
-    editionsWithFeatures: EditionWithFeaturesDto[] | undefined;
-    tenantEditionId: number | undefined;
+    allFeatures: FlatFeatureSelectDto[];
+    editionsWithFeatures: EditionWithFeaturesDto[];
+    tenantEditionId: number;
 }
 
 export class FlatFeatureSelectDto implements IFlatFeatureSelectDto {
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    defaultValue: string | undefined;
-    inputType: IInputType | undefined;
-    textHtmlColor: string | undefined;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    defaultValue: string;
+    inputType: IInputType;
+    textHtmlColor: string;
 
     constructor(data?: IFlatFeatureSelectDto) {
         if (data) {
@@ -14970,23 +15121,23 @@ export class FlatFeatureSelectDto implements IFlatFeatureSelectDto {
         data["defaultValue"] = this.defaultValue;
         data["inputType"] = this.inputType ? this.inputType.toJSON() : <any>undefined;
         data["textHtmlColor"] = this.textHtmlColor;
-        return data; 
+        return data;
     }
 }
 
 export interface IFlatFeatureSelectDto {
-    parentName: string | undefined;
-    name: string | undefined;
-    displayName: string | undefined;
-    description: string | undefined;
-    defaultValue: string | undefined;
-    inputType: IInputType | undefined;
-    textHtmlColor: string | undefined;
+    parentName: string;
+    name: string;
+    displayName: string;
+    description: string;
+    defaultValue: string;
+    inputType: IInputType;
+    textHtmlColor: string;
 }
 
 export class EditionWithFeaturesDto implements IEditionWithFeaturesDto {
-    edition: EditionSelectDto | undefined;
-    featureValues: NameValueDto[] | undefined;
+    edition: EditionSelectDto;
+    featureValues: NameValueDto[];
 
     constructor(data?: IEditionWithFeaturesDto) {
         if (data) {
@@ -15023,19 +15174,19 @@ export class EditionWithFeaturesDto implements IEditionWithFeaturesDto {
             for (let item of this.featureValues)
                 data["featureValues"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IEditionWithFeaturesDto {
-    edition: EditionSelectDto | undefined;
-    featureValues: NameValueDto[] | undefined;
+    edition: EditionSelectDto;
+    featureValues: NameValueDto[];
 }
 
 export class IInputType implements IIInputType {
-    readonly name: string | undefined;
-    readonly attributes: { [key: string] : any; } | undefined;
-    validator: IValueValidator | undefined;
+    name: string;
+    attributes: { [key: string]: any; };
+    validator: IValueValidator;
 
     constructor(data?: IIInputType) {
         if (data) {
@@ -15048,12 +15199,12 @@ export class IInputType implements IIInputType {
 
     init(data?: any) {
         if (data) {
-            (<any>this).name = data["name"];
+            this.name = data["name"];
             if (data["attributes"]) {
-                (<any>this).attributes = {};
+                this.attributes = {};
                 for (let key in data["attributes"]) {
                     if (data["attributes"].hasOwnProperty(key))
-                        (<any>this).attributes[key] = data["attributes"][key];
+                        this.attributes[key] = data["attributes"][key];
                 }
             }
             this.validator = data["validator"] ? IValueValidator.fromJS(data["validator"]) : <any>undefined;
@@ -15078,23 +15229,23 @@ export class IInputType implements IIInputType {
             }
         }
         data["validator"] = this.validator ? this.validator.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IIInputType {
-    name: string | undefined;
-    attributes: { [key: string] : any; } | undefined;
-    validator: IValueValidator | undefined;
+    name: string;
+    attributes: { [key: string]: any; };
+    validator: IValueValidator;
 }
 
 export class TenantSettingsEditDto implements ITenantSettingsEditDto {
-    general: GeneralSettingsEditDto | undefined;
+    general: GeneralSettingsEditDto;
     userManagement: TenantUserManagementSettingsEditDto;
-    email: EmailSettingsEditDto | undefined;
-    ldap: LdapSettingsEditDto | undefined;
+    email: EmailSettingsEditDto;
+    ldap: LdapSettingsEditDto;
     security: SecuritySettingsEditDto;
-    billing: TenantBillingSettingsEditDto | undefined;
+    billing: TenantBillingSettingsEditDto;
 
     constructor(data?: ITenantSettingsEditDto) {
         if (data) {
@@ -15135,24 +15286,24 @@ export class TenantSettingsEditDto implements ITenantSettingsEditDto {
         data["ldap"] = this.ldap ? this.ldap.toJSON() : <any>undefined;
         data["security"] = this.security ? this.security.toJSON() : <any>undefined;
         data["billing"] = this.billing ? this.billing.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantSettingsEditDto {
-    general: GeneralSettingsEditDto | undefined;
+    general: GeneralSettingsEditDto;
     userManagement: TenantUserManagementSettingsEditDto;
-    email: EmailSettingsEditDto | undefined;
-    ldap: LdapSettingsEditDto | undefined;
+    email: EmailSettingsEditDto;
+    ldap: LdapSettingsEditDto;
     security: SecuritySettingsEditDto;
-    billing: TenantBillingSettingsEditDto | undefined;
+    billing: TenantBillingSettingsEditDto;
 }
 
 export class TenantUserManagementSettingsEditDto implements ITenantUserManagementSettingsEditDto {
-    allowSelfRegistration: boolean | undefined;
-    isNewRegisteredUserActiveByDefault: boolean | undefined;
-    isEmailConfirmationRequiredForLogin: boolean | undefined;
-    useCaptchaOnRegistration: boolean | undefined;
+    allowSelfRegistration: boolean;
+    isNewRegisteredUserActiveByDefault: boolean;
+    isEmailConfirmationRequiredForLogin: boolean;
+    useCaptchaOnRegistration: boolean;
 
     constructor(data?: ITenantUserManagementSettingsEditDto) {
         if (data) {
@@ -15185,23 +15336,23 @@ export class TenantUserManagementSettingsEditDto implements ITenantUserManagemen
         data["isNewRegisteredUserActiveByDefault"] = this.isNewRegisteredUserActiveByDefault;
         data["isEmailConfirmationRequiredForLogin"] = this.isEmailConfirmationRequiredForLogin;
         data["useCaptchaOnRegistration"] = this.useCaptchaOnRegistration;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantUserManagementSettingsEditDto {
-    allowSelfRegistration: boolean | undefined;
-    isNewRegisteredUserActiveByDefault: boolean | undefined;
-    isEmailConfirmationRequiredForLogin: boolean | undefined;
-    useCaptchaOnRegistration: boolean | undefined;
+    allowSelfRegistration: boolean;
+    isNewRegisteredUserActiveByDefault: boolean;
+    isEmailConfirmationRequiredForLogin: boolean;
+    useCaptchaOnRegistration: boolean;
 }
 
 export class LdapSettingsEditDto implements ILdapSettingsEditDto {
-    isModuleEnabled: boolean | undefined;
-    isEnabled: boolean | undefined;
-    domain: string | undefined;
-    userName: string | undefined;
-    password: string | undefined;
+    isModuleEnabled: boolean;
+    isEnabled: boolean;
+    domain: string;
+    userName: string;
+    password: string;
 
     constructor(data?: ILdapSettingsEditDto) {
         if (data) {
@@ -15236,22 +15387,22 @@ export class LdapSettingsEditDto implements ILdapSettingsEditDto {
         data["domain"] = this.domain;
         data["userName"] = this.userName;
         data["password"] = this.password;
-        return data; 
+        return data;
     }
 }
 
 export interface ILdapSettingsEditDto {
-    isModuleEnabled: boolean | undefined;
-    isEnabled: boolean | undefined;
-    domain: string | undefined;
-    userName: string | undefined;
-    password: string | undefined;
+    isModuleEnabled: boolean;
+    isEnabled: boolean;
+    domain: string;
+    userName: string;
+    password: string;
 }
 
 export class TenantBillingSettingsEditDto implements ITenantBillingSettingsEditDto {
-    legalName: string | undefined;
-    address: string | undefined;
-    taxVatNo: string | undefined;
+    legalName: string;
+    address: string;
+    taxVatNo: string;
 
     constructor(data?: ITenantBillingSettingsEditDto) {
         if (data) {
@@ -15282,20 +15433,20 @@ export class TenantBillingSettingsEditDto implements ITenantBillingSettingsEditD
         data["legalName"] = this.legalName;
         data["address"] = this.address;
         data["taxVatNo"] = this.taxVatNo;
-        return data; 
+        return data;
     }
 }
 
 export interface ITenantBillingSettingsEditDto {
-    legalName: string | undefined;
-    address: string | undefined;
-    taxVatNo: string | undefined;
+    legalName: string;
+    address: string;
+    taxVatNo: string;
 }
 
 export class AuthenticateModel implements IAuthenticateModel {
     userNameOrEmailAddress: string;
     password: string;
-    rememberClient: boolean | undefined;
+    rememberClient: boolean;
 
     constructor(data?: IAuthenticateModel) {
         if (data) {
@@ -15326,21 +15477,21 @@ export class AuthenticateModel implements IAuthenticateModel {
         data["userNameOrEmailAddress"] = this.userNameOrEmailAddress;
         data["password"] = this.password;
         data["rememberClient"] = this.rememberClient;
-        return data; 
+        return data;
     }
 }
 
 export interface IAuthenticateModel {
     userNameOrEmailAddress: string;
     password: string;
-    rememberClient: boolean | undefined;
+    rememberClient: boolean;
 }
 
 export class AuthenticateResultModel implements IAuthenticateResultModel {
-    accessToken: string | undefined;
-    encryptedAccessToken: string | undefined;
-    expireInSeconds: number | undefined;
-    userId: number | undefined;
+    accessToken: string;
+    encryptedAccessToken: string;
+    expireInSeconds: number;
+    userId: number;
 
     constructor(data?: IAuthenticateResultModel) {
         if (data) {
@@ -15373,20 +15524,20 @@ export class AuthenticateResultModel implements IAuthenticateResultModel {
         data["encryptedAccessToken"] = this.encryptedAccessToken;
         data["expireInSeconds"] = this.expireInSeconds;
         data["userId"] = this.userId;
-        return data; 
+        return data;
     }
 }
 
 export interface IAuthenticateResultModel {
-    accessToken: string | undefined;
-    encryptedAccessToken: string | undefined;
-    expireInSeconds: number | undefined;
-    userId: number | undefined;
+    accessToken: string;
+    encryptedAccessToken: string;
+    expireInSeconds: number;
+    userId: number;
 }
 
 export class ExternalLoginProviderInfoModel implements IExternalLoginProviderInfoModel {
-    name: string | undefined;
-    clientId: string | undefined;
+    name: string;
+    clientId: string;
 
     constructor(data?: IExternalLoginProviderInfoModel) {
         if (data) {
@@ -15415,13 +15566,13 @@ export class ExternalLoginProviderInfoModel implements IExternalLoginProviderInf
         data = typeof data === 'object' ? data : {};
         data["name"] = this.name;
         data["clientId"] = this.clientId;
-        return data; 
+        return data;
     }
 }
 
 export interface IExternalLoginProviderInfoModel {
-    name: string | undefined;
-    clientId: string | undefined;
+    name: string;
+    clientId: string;
 }
 
 export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
@@ -15458,7 +15609,7 @@ export class ExternalAuthenticateModel implements IExternalAuthenticateModel {
         data["authProvider"] = this.authProvider;
         data["providerKey"] = this.providerKey;
         data["providerAccessCode"] = this.providerAccessCode;
-        return data; 
+        return data;
     }
 }
 
@@ -15469,10 +15620,10 @@ export interface IExternalAuthenticateModel {
 }
 
 export class ExternalAuthenticateResultModel implements IExternalAuthenticateResultModel {
-    accessToken: string | undefined;
-    encryptedAccessToken: string | undefined;
-    expireInSeconds: number | undefined;
-    waitingForActivation: boolean | undefined;
+    accessToken: string;
+    encryptedAccessToken: string;
+    expireInSeconds: number;
+    waitingForActivation: boolean;
 
     constructor(data?: IExternalAuthenticateResultModel) {
         if (data) {
@@ -15505,22 +15656,22 @@ export class ExternalAuthenticateResultModel implements IExternalAuthenticateRes
         data["encryptedAccessToken"] = this.encryptedAccessToken;
         data["expireInSeconds"] = this.expireInSeconds;
         data["waitingForActivation"] = this.waitingForActivation;
-        return data; 
+        return data;
     }
 }
 
 export interface IExternalAuthenticateResultModel {
-    accessToken: string | undefined;
-    encryptedAccessToken: string | undefined;
-    expireInSeconds: number | undefined;
-    waitingForActivation: boolean | undefined;
+    accessToken: string;
+    encryptedAccessToken: string;
+    expireInSeconds: number;
+    waitingForActivation: boolean;
 }
 
 export class UiCustomizationSettingsEditDto implements IUiCustomizationSettingsEditDto {
-    layout: UiCustomizationLayoutSettingsEditDto | undefined;
-    header: UiCustomizationHeaderSettingsEditDto | undefined;
-    menu: UiCustomizationMenuSettingsEditDto | undefined;
-    footer: UiCustomizationFooterSettingsEditDto | undefined;
+    layout: UiCustomizationLayoutSettingsEditDto;
+    header: UiCustomizationHeaderSettingsEditDto;
+    menu: UiCustomizationMenuSettingsEditDto;
+    footer: UiCustomizationFooterSettingsEditDto;
 
     constructor(data?: IUiCustomizationSettingsEditDto) {
         if (data) {
@@ -15553,21 +15704,21 @@ export class UiCustomizationSettingsEditDto implements IUiCustomizationSettingsE
         data["header"] = this.header ? this.header.toJSON() : <any>undefined;
         data["menu"] = this.menu ? this.menu.toJSON() : <any>undefined;
         data["footer"] = this.footer ? this.footer.toJSON() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IUiCustomizationSettingsEditDto {
-    layout: UiCustomizationLayoutSettingsEditDto | undefined;
-    header: UiCustomizationHeaderSettingsEditDto | undefined;
-    menu: UiCustomizationMenuSettingsEditDto | undefined;
-    footer: UiCustomizationFooterSettingsEditDto | undefined;
+    layout: UiCustomizationLayoutSettingsEditDto;
+    header: UiCustomizationHeaderSettingsEditDto;
+    menu: UiCustomizationMenuSettingsEditDto;
+    footer: UiCustomizationFooterSettingsEditDto;
 }
 
 export class UiCustomizationLayoutSettingsEditDto implements IUiCustomizationLayoutSettingsEditDto {
-    layoutType: string | undefined;
-    pageLoader: string | undefined;
-    contentSkin: string | undefined;
+    layoutType: string;
+    pageLoader: string;
+    contentSkin: string;
 
     constructor(data?: IUiCustomizationLayoutSettingsEditDto) {
         if (data) {
@@ -15598,23 +15749,23 @@ export class UiCustomizationLayoutSettingsEditDto implements IUiCustomizationLay
         data["layoutType"] = this.layoutType;
         data["pageLoader"] = this.pageLoader;
         data["contentSkin"] = this.contentSkin;
-        return data; 
+        return data;
     }
 }
 
 export interface IUiCustomizationLayoutSettingsEditDto {
-    layoutType: string | undefined;
-    pageLoader: string | undefined;
-    contentSkin: string | undefined;
+    layoutType: string;
+    pageLoader: string;
+    contentSkin: string;
 }
 
 export class UiCustomizationHeaderSettingsEditDto implements IUiCustomizationHeaderSettingsEditDto {
-    desktopFixedHeader: boolean | undefined;
-    desktopMinimizeMode: string | undefined;
-    mobileFixedHeader: boolean | undefined;
-    dropdownSkinDesktop: string | undefined;
-    displaySubmenuArrowDesktop: boolean | undefined;
-    dropdownSkin: string | undefined;
+    desktopFixedHeader: boolean;
+    desktopMinimizeMode: string;
+    mobileFixedHeader: boolean;
+    dropdownSkinDesktop: string;
+    displaySubmenuArrowDesktop: boolean;
+    dropdownSkin: string;
 
     constructor(data?: IUiCustomizationHeaderSettingsEditDto) {
         if (data) {
@@ -15651,30 +15802,30 @@ export class UiCustomizationHeaderSettingsEditDto implements IUiCustomizationHea
         data["dropdownSkinDesktop"] = this.dropdownSkinDesktop;
         data["displaySubmenuArrowDesktop"] = this.displaySubmenuArrowDesktop;
         data["dropdownSkin"] = this.dropdownSkin;
-        return data; 
+        return data;
     }
 }
 
 export interface IUiCustomizationHeaderSettingsEditDto {
-    desktopFixedHeader: boolean | undefined;
-    desktopMinimizeMode: string | undefined;
-    mobileFixedHeader: boolean | undefined;
-    dropdownSkinDesktop: string | undefined;
-    displaySubmenuArrowDesktop: boolean | undefined;
-    dropdownSkin: string | undefined;
+    desktopFixedHeader: boolean;
+    desktopMinimizeMode: string;
+    mobileFixedHeader: boolean;
+    dropdownSkinDesktop: string;
+    displaySubmenuArrowDesktop: boolean;
+    dropdownSkin: string;
 }
 
 export class UiCustomizationMenuSettingsEditDto implements IUiCustomizationMenuSettingsEditDto {
-    position: string | undefined;
-    asideSkin: string | undefined;
-    fixedAside: boolean | undefined;
-    allowAsideMinimizing: boolean | undefined;
-    defaultMinimizedAside: boolean | undefined;
-    allowAsideHiding: boolean | undefined;
-    defaultHiddenAside: boolean | undefined;
-    submenuToggle: string | undefined;
-    dropdownSubmenuSkin: string | undefined;
-    dropdownSubmenuArrow: boolean | undefined;
+    position: string;
+    asideSkin: string;
+    fixedAside: boolean;
+    allowAsideMinimizing: boolean;
+    defaultMinimizedAside: boolean;
+    allowAsideHiding: boolean;
+    defaultHiddenAside: boolean;
+    submenuToggle: string;
+    dropdownSubmenuSkin: string;
+    dropdownSubmenuArrow: boolean;
 
     constructor(data?: IUiCustomizationMenuSettingsEditDto) {
         if (data) {
@@ -15719,25 +15870,25 @@ export class UiCustomizationMenuSettingsEditDto implements IUiCustomizationMenuS
         data["submenuToggle"] = this.submenuToggle;
         data["dropdownSubmenuSkin"] = this.dropdownSubmenuSkin;
         data["dropdownSubmenuArrow"] = this.dropdownSubmenuArrow;
-        return data; 
+        return data;
     }
 }
 
 export interface IUiCustomizationMenuSettingsEditDto {
-    position: string | undefined;
-    asideSkin: string | undefined;
-    fixedAside: boolean | undefined;
-    allowAsideMinimizing: boolean | undefined;
-    defaultMinimizedAside: boolean | undefined;
-    allowAsideHiding: boolean | undefined;
-    defaultHiddenAside: boolean | undefined;
-    submenuToggle: string | undefined;
-    dropdownSubmenuSkin: string | undefined;
-    dropdownSubmenuArrow: boolean | undefined;
+    position: string;
+    asideSkin: string;
+    fixedAside: boolean;
+    allowAsideMinimizing: boolean;
+    defaultMinimizedAside: boolean;
+    allowAsideHiding: boolean;
+    defaultHiddenAside: boolean;
+    submenuToggle: string;
+    dropdownSubmenuSkin: string;
+    dropdownSubmenuArrow: boolean;
 }
 
 export class UiCustomizationFooterSettingsEditDto implements IUiCustomizationFooterSettingsEditDto {
-    fixedFooter: boolean | undefined;
+    fixedFooter: boolean;
 
     constructor(data?: IUiCustomizationFooterSettingsEditDto) {
         if (data) {
@@ -15764,17 +15915,17 @@ export class UiCustomizationFooterSettingsEditDto implements IUiCustomizationFoo
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["fixedFooter"] = this.fixedFooter;
-        return data; 
+        return data;
     }
 }
 
 export interface IUiCustomizationFooterSettingsEditDto {
-    fixedFooter: boolean | undefined;
+    fixedFooter: boolean;
 }
 
 export class PagedResultDtoOfUserListDto implements IPagedResultDtoOfUserListDto {
-    totalCount: number | undefined;
-    items: UserListDto[] | undefined;
+    totalCount: number;
+    items: UserListDto[];
 
     constructor(data?: IPagedResultDtoOfUserListDto) {
         if (data) {
@@ -15811,28 +15962,28 @@ export class PagedResultDtoOfUserListDto implements IPagedResultDtoOfUserListDto
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfUserListDto {
-    totalCount: number | undefined;
-    items: UserListDto[] | undefined;
+    totalCount: number;
+    items: UserListDto[];
 }
 
 export class UserListDto implements IUserListDto {
-    name: string | undefined;
-    surname: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    phoneNumber: string | undefined;
-    profilePictureId: string | undefined;
-    isEmailConfirmed: boolean | undefined;
-    roles: UserListRoleDto[] | undefined;
-    lastLoginTime: moment.Moment | undefined;
-    isActive: boolean | undefined;
-    creationTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    surname: string;
+    userName: string;
+    emailAddress: string;
+    phoneNumber: string;
+    profilePictureId: string;
+    isEmailConfirmed: boolean;
+    roles: UserListRoleDto[];
+    lastLoginTime: moment.Moment;
+    isActive: boolean;
+    creationTime: moment.Moment;
+    id: number;
 
     constructor(data?: IUserListDto) {
         if (data) {
@@ -15889,28 +16040,28 @@ export class UserListDto implements IUserListDto {
         data["isActive"] = this.isActive;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserListDto {
-    name: string | undefined;
-    surname: string | undefined;
-    userName: string | undefined;
-    emailAddress: string | undefined;
-    phoneNumber: string | undefined;
-    profilePictureId: string | undefined;
-    isEmailConfirmed: boolean | undefined;
-    roles: UserListRoleDto[] | undefined;
-    lastLoginTime: moment.Moment | undefined;
-    isActive: boolean | undefined;
-    creationTime: moment.Moment | undefined;
-    id: number | undefined;
+    name: string;
+    surname: string;
+    userName: string;
+    emailAddress: string;
+    phoneNumber: string;
+    profilePictureId: string;
+    isEmailConfirmed: boolean;
+    roles: UserListRoleDto[];
+    lastLoginTime: moment.Moment;
+    isActive: boolean;
+    creationTime: moment.Moment;
+    id: number;
 }
 
 export class UserListRoleDto implements IUserListRoleDto {
-    roleId: number | undefined;
-    roleName: string | undefined;
+    roleId: number;
+    roleName: string;
 
     constructor(data?: IUserListRoleDto) {
         if (data) {
@@ -15939,21 +16090,21 @@ export class UserListRoleDto implements IUserListRoleDto {
         data = typeof data === 'object' ? data : {};
         data["roleId"] = this.roleId;
         data["roleName"] = this.roleName;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserListRoleDto {
-    roleId: number | undefined;
-    roleName: string | undefined;
+    roleId: number;
+    roleName: string;
 }
 
 export class GetUserForEditOutput implements IGetUserForEditOutput {
-    profilePictureId: string | undefined;
-    user: UserEditDto | undefined;
-    roles: UserRoleDto[] | undefined;
-    allOrganizationUnits: OrganizationUnitDto[] | undefined;
-    memberedOrganizationUnits: string[] | undefined;
+    profilePictureId: string;
+    user: UserEditDto;
+    roles: UserRoleDto[];
+    allOrganizationUnits: OrganizationUnitDto[];
+    memberedOrganizationUnits: string[];
 
     constructor(data?: IGetUserForEditOutput) {
         if (data) {
@@ -16012,30 +16163,30 @@ export class GetUserForEditOutput implements IGetUserForEditOutput {
             for (let item of this.memberedOrganizationUnits)
                 data["memberedOrganizationUnits"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetUserForEditOutput {
-    profilePictureId: string | undefined;
-    user: UserEditDto | undefined;
-    roles: UserRoleDto[] | undefined;
-    allOrganizationUnits: OrganizationUnitDto[] | undefined;
-    memberedOrganizationUnits: string[] | undefined;
+    profilePictureId: string;
+    user: UserEditDto;
+    roles: UserRoleDto[];
+    allOrganizationUnits: OrganizationUnitDto[];
+    memberedOrganizationUnits: string[];
 }
 
 export class UserEditDto implements IUserEditDto {
-    id: number | undefined;
+    id: number;
     name: string;
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string | undefined;
-    password: string | undefined;
-    isActive: boolean | undefined;
-    shouldChangePasswordOnNextLogin: boolean | undefined;
-    isTwoFactorEnabled: boolean | undefined;
-    isLockoutEnabled: boolean | undefined;
+    phoneNumber: string;
+    password: string;
+    isActive: boolean;
+    shouldChangePasswordOnNextLogin: boolean;
+    isTwoFactorEnabled: boolean;
+    isLockoutEnabled: boolean;
 
     constructor(data?: IUserEditDto) {
         if (data) {
@@ -16082,29 +16233,29 @@ export class UserEditDto implements IUserEditDto {
         data["shouldChangePasswordOnNextLogin"] = this.shouldChangePasswordOnNextLogin;
         data["isTwoFactorEnabled"] = this.isTwoFactorEnabled;
         data["isLockoutEnabled"] = this.isLockoutEnabled;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserEditDto {
-    id: number | undefined;
+    id: number;
     name: string;
     surname: string;
     userName: string;
     emailAddress: string;
-    phoneNumber: string | undefined;
-    password: string | undefined;
-    isActive: boolean | undefined;
-    shouldChangePasswordOnNextLogin: boolean | undefined;
-    isTwoFactorEnabled: boolean | undefined;
-    isLockoutEnabled: boolean | undefined;
+    phoneNumber: string;
+    password: string;
+    isActive: boolean;
+    shouldChangePasswordOnNextLogin: boolean;
+    isTwoFactorEnabled: boolean;
+    isLockoutEnabled: boolean;
 }
 
 export class UserRoleDto implements IUserRoleDto {
-    roleId: number | undefined;
-    roleName: string | undefined;
-    roleDisplayName: string | undefined;
-    isAssigned: boolean | undefined;
+    roleId: number;
+    roleName: string;
+    roleDisplayName: string;
+    isAssigned: boolean;
 
     constructor(data?: IUserRoleDto) {
         if (data) {
@@ -16137,20 +16288,20 @@ export class UserRoleDto implements IUserRoleDto {
         data["roleName"] = this.roleName;
         data["roleDisplayName"] = this.roleDisplayName;
         data["isAssigned"] = this.isAssigned;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserRoleDto {
-    roleId: number | undefined;
-    roleName: string | undefined;
-    roleDisplayName: string | undefined;
-    isAssigned: boolean | undefined;
+    roleId: number;
+    roleName: string;
+    roleDisplayName: string;
+    isAssigned: boolean;
 }
 
 export class GetUserPermissionsForEditOutput implements IGetUserPermissionsForEditOutput {
-    permissions: FlatPermissionDto[] | undefined;
-    grantedPermissionNames: string[] | undefined;
+    permissions: FlatPermissionDto[];
+    grantedPermissionNames: string[];
 
     constructor(data?: IGetUserPermissionsForEditOutput) {
         if (data) {
@@ -16195,17 +16346,17 @@ export class GetUserPermissionsForEditOutput implements IGetUserPermissionsForEd
             for (let item of this.grantedPermissionNames)
                 data["grantedPermissionNames"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetUserPermissionsForEditOutput {
-    permissions: FlatPermissionDto[] | undefined;
-    grantedPermissionNames: string[] | undefined;
+    permissions: FlatPermissionDto[];
+    grantedPermissionNames: string[];
 }
 
 export class EntityDtoOfInt64 implements IEntityDtoOfInt64 {
-    id: number | undefined;
+    id: number;
 
     constructor(data?: IEntityDtoOfInt64) {
         if (data) {
@@ -16232,16 +16383,16 @@ export class EntityDtoOfInt64 implements IEntityDtoOfInt64 {
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface IEntityDtoOfInt64 {
-    id: number | undefined;
+    id: number;
 }
 
 export class UpdateUserPermissionsInput implements IUpdateUserPermissionsInput {
-    id: number | undefined;
+    id: number;
     grantedPermissionNames: string[];
 
     constructor(data?: IUpdateUserPermissionsInput) {
@@ -16282,21 +16433,21 @@ export class UpdateUserPermissionsInput implements IUpdateUserPermissionsInput {
             for (let item of this.grantedPermissionNames)
                 data["grantedPermissionNames"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IUpdateUserPermissionsInput {
-    id: number | undefined;
+    id: number;
     grantedPermissionNames: string[];
 }
 
 export class CreateOrUpdateUserInput implements ICreateOrUpdateUserInput {
     user: UserEditDto;
     assignedRoleNames: string[];
-    sendActivationEmail: boolean | undefined;
-    setRandomPassword: boolean | undefined;
-    organizationUnits: number[] | undefined;
+    sendActivationEmail: boolean;
+    setRandomPassword: boolean;
+    organizationUnits: number[];
 
     constructor(data?: ICreateOrUpdateUserInput) {
         if (data) {
@@ -16351,20 +16502,20 @@ export class CreateOrUpdateUserInput implements ICreateOrUpdateUserInput {
             for (let item of this.organizationUnits)
                 data["organizationUnits"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface ICreateOrUpdateUserInput {
     user: UserEditDto;
     assignedRoleNames: string[];
-    sendActivationEmail: boolean | undefined;
-    setRandomPassword: boolean | undefined;
-    organizationUnits: number[] | undefined;
+    sendActivationEmail: boolean;
+    setRandomPassword: boolean;
+    organizationUnits: number[];
 }
 
 export class LinkToUserInput implements ILinkToUserInput {
-    tenancyName: string | undefined;
+    tenancyName: string;
     usernameOrEmailAddress: string;
     password: string;
 
@@ -16397,19 +16548,19 @@ export class LinkToUserInput implements ILinkToUserInput {
         data["tenancyName"] = this.tenancyName;
         data["usernameOrEmailAddress"] = this.usernameOrEmailAddress;
         data["password"] = this.password;
-        return data; 
+        return data;
     }
 }
 
 export interface ILinkToUserInput {
-    tenancyName: string | undefined;
+    tenancyName: string;
     usernameOrEmailAddress: string;
     password: string;
 }
 
 export class PagedResultDtoOfLinkedUserDto implements IPagedResultDtoOfLinkedUserDto {
-    totalCount: number | undefined;
-    items: LinkedUserDto[] | undefined;
+    totalCount: number;
+    items: LinkedUserDto[];
 
     constructor(data?: IPagedResultDtoOfLinkedUserDto) {
         if (data) {
@@ -16446,21 +16597,21 @@ export class PagedResultDtoOfLinkedUserDto implements IPagedResultDtoOfLinkedUse
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IPagedResultDtoOfLinkedUserDto {
-    totalCount: number | undefined;
-    items: LinkedUserDto[] | undefined;
+    totalCount: number;
+    items: LinkedUserDto[];
 }
 
 export class LinkedUserDto implements ILinkedUserDto {
-    tenantId: number | undefined;
-    tenancyName: string | undefined;
-    username: string | undefined;
-    lastLoginTime: moment.Moment | undefined;
-    id: number | undefined;
+    tenantId: number;
+    tenancyName: string;
+    username: string;
+    lastLoginTime: moment.Moment;
+    id: number;
 
     constructor(data?: ILinkedUserDto) {
         if (data) {
@@ -16495,20 +16646,20 @@ export class LinkedUserDto implements ILinkedUserDto {
         data["username"] = this.username;
         data["lastLoginTime"] = this.lastLoginTime ? this.lastLoginTime.toISOString() : <any>undefined;
         data["id"] = this.id;
-        return data; 
+        return data;
     }
 }
 
 export interface ILinkedUserDto {
-    tenantId: number | undefined;
-    tenancyName: string | undefined;
-    username: string | undefined;
-    lastLoginTime: moment.Moment | undefined;
-    id: number | undefined;
+    tenantId: number;
+    tenancyName: string;
+    username: string;
+    lastLoginTime: moment.Moment;
+    id: number;
 }
 
 export class ListResultDtoOfLinkedUserDto implements IListResultDtoOfLinkedUserDto {
-    items: LinkedUserDto[] | undefined;
+    items: LinkedUserDto[];
 
     constructor(data?: IListResultDtoOfLinkedUserDto) {
         if (data) {
@@ -16543,17 +16694,17 @@ export class ListResultDtoOfLinkedUserDto implements IListResultDtoOfLinkedUserD
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfLinkedUserDto {
-    items: LinkedUserDto[] | undefined;
+    items: LinkedUserDto[];
 }
 
 export class UnlinkUserInput implements IUnlinkUserInput {
-    tenantId: number | undefined;
-    userId: number | undefined;
+    tenantId: number;
+    userId: number;
 
     constructor(data?: IUnlinkUserInput) {
         if (data) {
@@ -16582,17 +16733,17 @@ export class UnlinkUserInput implements IUnlinkUserInput {
         data = typeof data === 'object' ? data : {};
         data["tenantId"] = this.tenantId;
         data["userId"] = this.userId;
-        return data; 
+        return data;
     }
 }
 
 export interface IUnlinkUserInput {
-    tenantId: number | undefined;
-    userId: number | undefined;
+    tenantId: number;
+    userId: number;
 }
 
 export class ListResultDtoOfUserLoginAttemptDto implements IListResultDtoOfUserLoginAttemptDto {
-    items: UserLoginAttemptDto[] | undefined;
+    items: UserLoginAttemptDto[];
 
     constructor(data?: IListResultDtoOfUserLoginAttemptDto) {
         if (data) {
@@ -16627,22 +16778,22 @@ export class ListResultDtoOfUserLoginAttemptDto implements IListResultDtoOfUserL
             for (let item of this.items)
                 data["items"].push(item.toJSON());
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IListResultDtoOfUserLoginAttemptDto {
-    items: UserLoginAttemptDto[] | undefined;
+    items: UserLoginAttemptDto[];
 }
 
 export class UserLoginAttemptDto implements IUserLoginAttemptDto {
-    tenancyName: string | undefined;
-    userNameOrEmail: string | undefined;
-    clientIpAddress: string | undefined;
-    clientName: string | undefined;
-    browserInfo: string | undefined;
-    result: string | undefined;
-    creationTime: moment.Moment | undefined;
+    tenancyName: string;
+    userNameOrEmail: string;
+    clientIpAddress: string;
+    clientName: string;
+    browserInfo: string;
+    result: string;
+    creationTime: moment.Moment;
 
     constructor(data?: IUserLoginAttemptDto) {
         if (data) {
@@ -16681,22 +16832,22 @@ export class UserLoginAttemptDto implements IUserLoginAttemptDto {
         data["browserInfo"] = this.browserInfo;
         data["result"] = this.result;
         data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : <any>undefined;
-        return data; 
+        return data;
     }
 }
 
 export interface IUserLoginAttemptDto {
-    tenancyName: string | undefined;
-    userNameOrEmail: string | undefined;
-    clientIpAddress: string | undefined;
-    clientName: string | undefined;
-    browserInfo: string | undefined;
-    result: string | undefined;
-    creationTime: moment.Moment | undefined;
+    tenancyName: string;
+    userNameOrEmail: string;
+    clientIpAddress: string;
+    clientName: string;
+    browserInfo: string;
+    result: string;
+    creationTime: moment.Moment;
 }
 
 export class GetLatestWebLogsOutput implements IGetLatestWebLogsOutput {
-    latestWebLogLines: string[] | undefined;
+    latestWebLogLines: string[];
 
     constructor(data?: IGetLatestWebLogsOutput) {
         if (data) {
@@ -16731,84 +16882,84 @@ export class GetLatestWebLogsOutput implements IGetLatestWebLogsOutput {
             for (let item of this.latestWebLogLines)
                 data["latestWebLogLines"].push(item);
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IGetLatestWebLogsOutput {
-    latestWebLogLines: string[] | undefined;
+    latestWebLogLines: string[];
 }
 
 export enum IncomeStatisticsDateInterval {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum IncomeStatisticsDateInterval2 {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum State {
-    _0 = 0, 
-    _1 = 1, 
+    _0 = 0,
+    _1 = 1,
 }
 
 export enum SalesSummaryDatePeriod {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum SalesSummaryDatePeriod2 {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum IsTenantAvailableOutputState {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum FriendDtoState {
-    _1 = 1, 
-    _2 = 2, 
+    _1 = 1,
+    _2 = 2,
 }
 
 export enum ChatMessageDtoSide {
-    _1 = 1, 
-    _2 = 2, 
+    _1 = 1,
+    _2 = 2,
 }
 
 export enum ChatMessageDtoReadState {
-    _1 = 1, 
-    _2 = 2, 
+    _1 = 1,
+    _2 = 2,
 }
 
 export enum ChatMessageDtoReceiverReadState {
-    _1 = 1, 
-    _2 = 2, 
+    _1 = 1,
+    _2 = 2,
 }
 
 export enum UserNotificationState {
-    _0 = 0, 
-    _1 = 1, 
+    _0 = 0,
+    _1 = 1,
 }
 
 export enum TenantNotificationSeverity {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
-    _4 = 4, 
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
+    _4 = 4,
 }
 
 export class AdditionalData implements IAdditionalData {
-    paypal: { [key: string] : string; } | undefined;
+    paypal: { [key: string]: string; };
 
     constructor(data?: IAdditionalData) {
         if (data) {
@@ -16847,67 +16998,67 @@ export class AdditionalData implements IAdditionalData {
                     data["Paypal"][key] = this.paypal[key];
             }
         }
-        return data; 
+        return data;
     }
 }
 
 export interface IAdditionalData {
-    paypal: { [key: string] : string; } | undefined;
+    paypal: { [key: string]: string; };
 }
 
 export enum CreatePaymentDtoEditionPaymentType {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum CreatePaymentDtoPaymentPeriodType {
-    _30 = 30, 
-    _365 = 365, 
+    _30 = 30,
+    _365 = 365,
 }
 
 export enum CreatePaymentDtoSubscriptionPaymentGatewayType {
-    _1 = 1, 
+    _1 = 1,
 }
 
 export enum ExecutePaymentDtoGateway {
-    _1 = 1, 
+    _1 = 1,
 }
 
 export enum ExecutePaymentDtoEditionPaymentType {
-    _0 = 0, 
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _0 = 0,
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum ExecutePaymentDtoPaymentPeriodType {
-    _30 = 30, 
-    _365 = 365, 
+    _30 = 30,
+    _365 = 365,
 }
 
 export enum TenantLoginInfoDtoPaymentPeriodType {
-    _30 = 30, 
-    _365 = 365, 
+    _30 = 30,
+    _365 = 365,
 }
 
 export enum RegisterTenantInputSubscriptionStartType {
-    _1 = 1, 
-    _2 = 2, 
-    _3 = 3, 
+    _1 = 1,
+    _2 = 2,
+    _3 = 3,
 }
 
 export enum RegisterTenantInputGateway {
-    _1 = 1, 
+    _1 = 1,
 }
 
 export class SwaggerException extends Error {
     message: string;
-    status: number; 
-    response: string; 
+    status: number;
+    response: string;
     headers: { [key: string]: any; };
-    result: any; 
+    result: any;
 
     constructor(message: string, status: number, response: string, headers: { [key: string]: any; }, result: any) {
         super();
@@ -16927,7 +17078,7 @@ export class SwaggerException extends Error {
 }
 
 function throwException(message: string, status: number, response: string, headers: { [key: string]: any; }, result?: any): Observable<any> {
-    if(result !== null && result !== undefined)
+    if (result !== null && result !== undefined)
         return Observable.throw(result);
     else
         return Observable.throw(new SwaggerException(message, status, response, headers, null));
@@ -16939,12 +17090,12 @@ function blobToText(blob: any): Observable<string> {
             observer.next("");
             observer.complete();
         } else {
-            let reader = new FileReader(); 
-            reader.onload = function() { 
+            let reader = new FileReader();
+            reader.onload = function () {
                 observer.next(this.result);
                 observer.complete();
             }
-            reader.readAsText(blob); 
+            reader.readAsText(blob);
         }
     });
 }

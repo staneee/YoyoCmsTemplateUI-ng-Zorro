@@ -1,10 +1,11 @@
 import { Component, Injector, ViewChild } from '@angular/core';
 import { ModalHelper } from '@shared/helpers/modal.helper';
 import { PagedListingComponentBase, PagedRequestDto } from "shared/component-base";
-import { RoleServiceProxy, RoleListDto,  ListResultDtoOfRoleListDto} from "shared/service-proxies/service-proxies";
+import { RoleServiceProxy, RoleListDto, ListResultDtoOfRoleListDto } from "shared/service-proxies/service-proxies";
 
 import { CreateRoleComponent } from "./create-role/create-role.component";
 import { EditRoleComponent } from "./edit-role/edit-role.component";
+import { CreateOrEditRoleComponent } from '@app/pages/roles/create-or-edit-role.component';
 
 @Component({
 	selector: 'pro-page-roles',
@@ -57,10 +58,11 @@ export class RolesComponent extends PagedListingComponentBase<RoleListDto> {
 	}
 
 	create(): void {
-		this.modalHelper.open(CreateRoleComponent).subscribe(res => this.refresh());
+		this.modalHelper.open(CreateOrEditRoleComponent, { isEdit: false }).subscribe(res => this.refresh())
+		//this.modalHelper.open(CreateRoleComponent).subscribe(res => this.refresh());
 	}
 
 	edit(role: RoleListDto): void {
-		this.modalHelper.open(EditRoleComponent, { id: role.id }).subscribe(res => this.refresh());
+		this.modalHelper.open(CreateOrEditRoleComponent, { id: role.id, isEdit: true }).subscribe(res => this.refresh());
 	}
 }

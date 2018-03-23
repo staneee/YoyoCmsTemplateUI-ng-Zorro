@@ -5,7 +5,7 @@ export function generateData(nodes, _x, _y, _z, _preKey?: any, _tns?: any) {
     const children = [];
     for (let i = 0; i < _x; i++) {
       const key = `${preKey}-${i}`;
-      tns.push({ name: key, id: key, disableCheckbox: i === 1 });
+      tns.push({ displayName: key, disableCheckbox: i === 1 });
       if (i < _y) {
         children.push(key);
       }

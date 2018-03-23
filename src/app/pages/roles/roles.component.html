@@ -17,30 +17,42 @@
             </div>
         </div>
     </form>
-    <nz-table #nzTable [nzDataSource]="dataItems" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize" [nzLoading]="loading"
-        [nzShowSizeChanger]="true" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()">
+    <nz-table #nzTable [nzDataSource]="dataItems" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize"
+        [nzLoading]="loading" [nzShowSizeChanger]="true" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()">
         <thead nz-thead>
             <tr>
                 <th nz-th>
+                    <span>{{l('Actions')}}</span>
+                </th>
+                <th nz-th>
                     <span>{{l('RoleName')}}</span>
                 </th>
+
                 <th nz-th>
-                    <span>{{l('DisplayName')}}</span>
-                </th>
-                <th nz-th>
-                    <span>{{l('Actions')}}</span>
+                    <span>{{l('CreationTime')}}</span>
                 </th>
             </tr>
         </thead>
         <tbody nz-tbody>
             <tr nz-tbody-tr *ngFor="let item of nzTable.data">
-                <td nz-td>{{item.name}}</td>
-                <td nz-td>{{item.displayName}}</td>
                 <td nz-td>
-                    <a (click)="edit(item)">{{l('Edit')}}</a>
-                    <span nz-table-divider></span>
-                    <a (click)="delete(item)">{{l('Delete')}}</a>
+                    <nz-dropdown [nzTrigger]="'click'">
+                        <a href class="ant-dropdown-link" nz-dropdown>
+                            操作
+                            <i class="anticon anticon-down"></i>
+                        </a>
+                        <ul nz-menu>
+                            <li nz-menu-item>
+                                <a (click)="edit(item)">{{l('Edit')}}</a>
+                            </li>
+                            <li nz-menu-item *ngIf="!item.isStatic">
+                                <a (click)="delete(item)">{{l('Delete')}}</a>
+                            </li>
+                        </ul>
+                    </nz-dropdown>
                 </td>
+                <td nz-td>{{item.displayName}}</td>
+                <td nz-td>{{item.creationTime}}</td>
             </tr>
         </tbody>
     </nz-table>
