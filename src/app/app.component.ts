@@ -7,6 +7,8 @@ import { MenuItem } from '@shared/layout/menu-item';
 
 import { Abp } from '@abp';
 
+import * as moment from 'moment';
+
 @Component({
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.less']

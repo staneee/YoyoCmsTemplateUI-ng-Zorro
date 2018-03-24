@@ -101,6 +101,7 @@ export class CreateOrEditUserComponent extends ModalComponentBase implements OnI
                 this.roles = roles;
                 this.input.user = result.user;
                 this.input.user.password = '';
+                this.checkPasswordInput.setValue('');
                 this.title = this.l('EditUser') + ' : ' + result.user.userName;
                 // 判断是否为管理员用户
                 this.canChangeUserName = result.user.userName !== AppConsts.userManagement.defaultAdminUserName;
