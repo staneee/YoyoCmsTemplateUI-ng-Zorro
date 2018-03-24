@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 import { EditUserComponent } from './users/edit-user/edit-user.component';
 import { CreateUserComponent } from "./users/create-user/create-user.component";
 import { PermissionTreeComponent } from '@shared/permission-tree.component';
+import { CreateOrEditUserComponent } from '@app/pages/users/create-or-edit-user.component';
 
 @NgModule({
     imports: [
@@ -35,12 +36,14 @@ import { PermissionTreeComponent } from '@shared/permission-tree.component';
         EditUserComponent,
         CreateUserComponent,
         CreateOrEditRoleComponent,
-        PermissionTreeComponent
+        PermissionTreeComponent,
+        CreateOrEditUserComponent
     ],
     entryComponents: [
         CreateUserComponent,
         EditUserComponent,
-        CreateOrEditRoleComponent
+        CreateOrEditRoleComponent,
+        CreateOrEditUserComponent
     ]
 })
 

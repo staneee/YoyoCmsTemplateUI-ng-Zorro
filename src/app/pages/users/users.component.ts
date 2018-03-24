@@ -5,6 +5,7 @@ import { UserServiceProxy, PagedResultDtoOfUserListDto, UserListDto } from '@sha
 
 import { CreateUserComponent } from "./create-user/create-user.component";
 import { EditUserComponent } from "./edit-user/edit-user.component";
+import { CreateOrEditUserComponent } from '@app/pages/users/create-or-edit-user.component';
 
 @Component({
 	templateUrl: './users.component.html'
@@ -54,10 +55,10 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> {
 	}
 
 	create(): void {
-		this.modalHelper.open(CreateUserComponent).subscribe(res => this.refresh());
+		this.modalHelper.open(CreateOrEditUserComponent, { isEdit: false }).subscribe(res => this.refresh());
 	}
 
 	edit(user: UserListDto): void {
-		this.modalHelper.open(EditUserComponent, { id: user.id }).subscribe(res => this.refresh());
+		this.modalHelper.open(CreateOrEditUserComponent, { id: user.id, isEdit: true }).subscribe(res => this.refresh());
 	}
 }
