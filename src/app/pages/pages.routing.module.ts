@@ -10,6 +10,7 @@ import { RolesComponent } from './roles/roles.component';
 import { TenantsComponent } from './tenants/tenants.component';
 import { AboutComponent } from './about/about.component';
 import { CreateOrEditRoleComponent } from '@app/pages/roles/create-or-edit-role.component';
+import { OrganizationUnitsComponent } from '@app/pages/organization-units/organization-units.component';
 
 const routes: Routes = [
     {
@@ -21,8 +22,9 @@ const routes: Routes = [
             { path: 'users', component: UsersComponent, data: { translate: 'users', permission: 'Pages.Administration.Users' }, canActivate: [AppRouteGuard] },
             { path: 'roles', component: RolesComponent, data: { translate: 'roles', permission: 'Pages.Administration.Roles' }, canActivate: [AppRouteGuard] },
             { path: 'tenants', component: TenantsComponent, data: { translate: 'tenants', permission: 'Pages.Tenants' }, canActivate: [AppRouteGuard] },
-            { path: 'about', component: AboutComponent, data: { translate: 'about' } },
-            { path: 'test', component: CreateOrEditRoleComponent, data: { translate: 'test' } }
+            { path: 'organization-units', component: OrganizationUnitsComponent, data: { translate: 'organization-units', permission: 'Pages.Administration.OrganizationUnits' }, canActivate: [AppRouteGuard] },
+            // { path: 'about', component: AboutComponent, data: { translate: 'about' } },
+            // { path: 'test', component: CreateOrEditRoleComponent, data: { translate: 'test' } }
         ]
     }
 ];

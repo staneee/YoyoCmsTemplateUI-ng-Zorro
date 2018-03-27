@@ -24,7 +24,7 @@ export class TreeAntdBasicComponent implements OnInit {
   nodes = [];
 
   treeOptions: ITreeOptions = {
-    displayField: 'displayName'
+    displayField: 'name'
   };
   selectedNodes = [];
 

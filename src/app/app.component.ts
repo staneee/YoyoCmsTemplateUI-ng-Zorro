@@ -32,6 +32,7 @@ export class AppComponent extends AppComponentBase implements OnInit, AfterViewI
 				new MenuItem(this.l("Users"), "Pages.Administration.Users", "anticon anticon-appstore", "/app/pages/users"),
 				new MenuItem(this.l("Tenants"), "Pages.Tenants", "anticon anticon-appstore", "/app/pages/tenants"),
 				new MenuItem(this.l("Roles"), "Pages.Administration.Roles", "anticon anticon-appstore", "/app/pages/roles"),
+				new MenuItem(this.l("OrganizationUnits"), "Pages.Administration.OrganizationUnits", "anticon anticon-appstore", "/app/pages/organization-units"),
 				new MenuItem("测试", "", "anticon anticon-appstore", "/app/pages/test"),
 				// new MenuItem(this.l("About"), "", "anticon anticon-appstore", "/app/pages/about")
 			]),

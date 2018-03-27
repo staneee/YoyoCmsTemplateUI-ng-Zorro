@@ -28,7 +28,7 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.InstallServiceProxy,
         ApiServiceProxies.InvoiceServiceProxy,
         ApiServiceProxies.LanguageServiceProxy,
-        ApiServiceProxies.LogServiceProxy,
+        // ApiServiceProxies.LogServiceProxy,
         ApiServiceProxies.OrganizationUnitServiceProxy,
         ApiServiceProxies.PaymentServiceProxy,
         ApiServiceProxies.SubscriptionServiceProxy,

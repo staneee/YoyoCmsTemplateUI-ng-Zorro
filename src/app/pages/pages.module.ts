@@ -11,11 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
-import {CreateOrEditRoleComponent} from './roles/create-or-edit-role.component'
+import { CreateOrEditRoleComponent } from './roles/create-or-edit-role.component'
 import { TenantsComponent } from './tenants/tenants.component';
 import { AboutComponent } from './about/about.component';
 import { PermissionTreeComponent } from '@shared/permission-tree.component';
 import { CreateOrEditUserComponent } from '@app/pages/users/create-or-edit-user.component';
+import { OrganizationUnitsComponent } from '@app/pages/organization-units/organization-units.component';
+import { OrganizationUnitOnTreeComponent } from '@app/pages/organization-units/organization-tree.component';
+
 
 @NgModule({
     imports: [
@@ -33,7 +36,9 @@ import { CreateOrEditUserComponent } from '@app/pages/users/create-or-edit-user.
         AboutComponent,
         CreateOrEditRoleComponent,
         PermissionTreeComponent,
-        CreateOrEditUserComponent
+        CreateOrEditUserComponent,
+        OrganizationUnitsComponent,
+        OrganizationUnitOnTreeComponent
     ],
     entryComponents: [
         CreateOrEditRoleComponent,
@@ -41,4 +46,4 @@ import { CreateOrEditUserComponent } from '@app/pages/users/create-or-edit-user.
     ]
 })
 
-export class PagesModule {}
+export class PagesModule { }
