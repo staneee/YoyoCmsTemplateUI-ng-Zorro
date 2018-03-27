@@ -34,12 +34,12 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> {
 				this.dataItems = result.items;
 				//this.showPaging(result, pageNumber);
 			});
-			this.permission.isGranted("");
-			this.appSession.user
+		this.permission.isGranted("");
+		this.appSession.user
 	}
 
 
-	loginAsThisUser(user:UserListDto):void{
+	loginAsThisUser(user: UserListDto): void {
 		alert('暂未实现');
 	}
 
@@ -61,7 +61,9 @@ export class UsersComponent extends PagedListingComponentBase<UserListDto> {
 	}
 
 	createUser(): void {
-		this.modalHelper.open(CreateOrEditUserComponent, { isEdit: false }).subscribe(res => this.refresh());
+		this.modalHelper.open(CreateOrEditUserComponent, { isEdit: false }).subscribe(res => { 
+			this.refresh();
+		});
 	}
 
 	editUser(user: UserListDto): void {

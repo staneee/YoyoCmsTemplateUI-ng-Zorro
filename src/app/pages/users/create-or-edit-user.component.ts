@@ -23,7 +23,7 @@ export class CreateOrEditUserComponent extends ModalComponentBase implements OnI
     @Input() isEdit: boolean = false;
     title: string;
     input: CreateOrUpdateUserInput = new CreateOrUpdateUserInput();
-    canChangeUserName: boolean=true;
+    canChangeUserName: boolean = true;
     validateForm: FormGroup;
     roles: ListResultDtoOfRoleListDto = null;
     roleOptions: { label: string, value: string, checked: boolean }[];
@@ -42,12 +42,7 @@ export class CreateOrEditUserComponent extends ModalComponentBase implements OnI
     ngOnInit(): void {
         this.input.user = new UserEditDto();
 
-        if (!this.isEdit) {
-            this.title = this.l('CreateUser');
-            this.create();
-        } else {
-            this.edit();
-        }
+        this.edit();
 
         this.validateForm = this.formBuilder.group({
             email: [null, [Validators.email]],
@@ -69,46 +64,33 @@ export class CreateOrEditUserComponent extends ModalComponentBase implements OnI
         this.checkPasswordInput = this.getFormControl('checkPassword');
 
         if (this.isEdit) {
+            this.title = this.l('EditUser') + ' : ' + this.input.user.userName;
             this.passwordInput.clearValidators();
             this.checkPasswordInput.clearValidators();
             this.setRandomPassword(undefined);
+        }else{
+            this.title = this.l('CreateUser');
         }
-
         this.resetForm();
     }
-
-    create(): void {
-        zip(
-            this._roleService.getRoles(undefined)
-        ).finally(() => { })
-            .subscribe(([roles]) => {
-                this.canChangeUserName = true;
-                this.roles = roles;
-                this.roleOptions = [];
-                roles.items.forEach(item => {
-                    this.roleOptions.push({ label: this.l(item.displayName), value: item.name, checked: true });
-                });
-            });
-    }
-
     edit(): void {
         zip(
-            this._roleService.getRoles(undefined),
-            this._userService.getUserForEdit(this.id)
+            this._userService.getUserForEdit(this.id == -1 ? undefined : this.id)
         )
             .finally(() => { })
-            .subscribe(([roles, result]) => {
-                this.roles = roles;
+            .subscribe(([result]) => {
+                //this.roles = roles;
                 this.input.user = result.user;
                 this.input.user.password = '';
                 this.checkPasswordInput.setValue('');
-                this.title = this.l('EditUser') + ' : ' + result.user.userName;
+
                 // 判断是否为管理员用户
                 this.canChangeUserName = result.user.userName !== AppConsts.userManagement.defaultAdminUserName;
                 let options = [];
 
-                roles.items.forEach(item => {
-                    options.push({ label: this.l(item.displayName), value: item.name, checked: false });
+                // 授权勾选
+                result.roles.forEach(item => {
+                    options.push({ label: this.l(item.roleDisplayName), value: item.roleName, checked: item.isAssigned });
                 });
 
                 let i = 0;
@@ -191,7 +173,7 @@ export class CreateOrEditUserComponent extends ModalComponentBase implements OnI
 
 
         this._userService.createOrUpdateUser(this.input)
-            .finally(() => {  })
+            .finally(() => { })
             .subscribe(() => {
                 this.notify.success(this.l('SavedSuccessfully'));
                 this.success();

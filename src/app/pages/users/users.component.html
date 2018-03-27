@@ -1,23 +1,12 @@
 <pro-header [title]="l('Users')">
 </pro-header>
 <nz-card [nzBordered]="false">
-    <form nz-form (ngSubmit)="refresh()" [nzLayout]="'inline'">
-        <div nz-row [nzGutter]="24">
-            <div nz-col [nzSpan]="8" class="mb-md">
-
-            </div>
-            <div nz-col [nzSpan]="8" class="mb-md">
-
-            </div>
-
-            <div nz-col [nzSpan]="8" class="mb-md" [class.text-right]="'true'">
-                <button nz-button (click)="createUser()" [nzType]="'primary'" [nzSize]="'large'">
-                    <i class="anticon anticon-plus"></i>
-                    <span>{{l('Create')}}</span>
-                </button>
-            </div>
-        </div>
-    </form>
+    <ng-template #extra>
+        <button nz-button (click)="createUser()" [nzType]="'primary'" [nzSize]="'large'">
+            <i class="anticon anticon-plus"></i>
+            <span>{{l('Create')}}</span>
+        </button>
+    </ng-template>
     <nz-table #nzTable [nzDataSource]="dataItems" [nzTotal]="totalItems" [(nzPageIndex)]="pageNumber" [(nzPageSize)]="pageSize"
         [nzLoading]="loading" [nzShowSizeChanger]="true" (nzPageIndexChange)="refresh()" (nzPageSizeChange)="refresh()">
         <thead nz-thead>
@@ -57,7 +46,7 @@
                             <i class="anticon anticon-down"></i>
                         </a>
                         <ul nz-menu>
-                            <li nz-menu-item *ngIf="permission.isGranted('Pages.Administration.Users.Impersonation')&&item.id !== appSession.userId" >
+                            <li nz-menu-item *ngIf="permission.isGranted('Pages.Administration.Users.Impersonation')&&item.id !== appSession.userId">
                                 <a (click)="loginAsThisUser(item)">{{l('LoginAsThisUser')}}</a>
                             </li>
                             <li nz-menu-item>
